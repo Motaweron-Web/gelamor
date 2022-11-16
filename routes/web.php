@@ -21,11 +21,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 //    Auth::routes();
 //    Route::get('/home', [HomeController::class, 'index'])->name('home');
 //
-//
-//    Route::get('/', function () {
-//
-//        return view('layouts.welcome');
-//    });
+
+    Route::get('/', function () {
+
+        return 'welcome in web';
+    });
 //});
 
 

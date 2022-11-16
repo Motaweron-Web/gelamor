@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AuthController;
+use App\Http\Controllers\Admin\Auth\SelectLoginController;
 use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\home\MainController;
@@ -25,7 +26,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
     Route::group(['prefix' => 'admin'], function () {
-
+        Route::get('/admin-login', [SelectLoginController::class, 'index'])->name('select-login');
         Route::get('login', [AuthController::class, 'index'])->name('admin.login');
         Route::POST('login', [AuthController::class, 'login'])->name('admin.login');
         Route::post('logout', [AuthController::class,'logout'])->name('admin.logout');

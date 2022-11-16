@@ -15,7 +15,7 @@
                     <!-- menu title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">@lang('home.elements') </li>
 
-                    <!-- admins-->
+                    <!-- Admins -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#Grades-menu">
                             <div class="pull-left"><i class="fas fa-shield"></i><span
@@ -28,7 +28,7 @@
 
                         </ul>
                     </li>
-                    <!-- classes-->
+                    <!-- Users -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#classes-menu">
                             <div class="pull-left"><i class="fa fa-users"></i><span
@@ -42,7 +42,7 @@
                     </li>
 
 
-                    <!-- sections-->
+                    <!-- Settings -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">
                             <div class="pull-left"><i class="fas fa-chalkboard"></i><span
@@ -55,22 +55,6 @@
                             <li><a href="{{ route('setting.terms') }}">@lang('home.terms')</a></li>
                             <li><a href="{{ route('setting.privacy') }}">@lang('home.privacy')</a></li>
                             <li><a href="{{ route('setting.about') }}">@lang('home.about')</a></li>
-                        </ul>
-                    </li>
-
-
-
-
-                    <!-- Users-->
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Users-icon">
-                            <div class="pull-left"><i class="fas fa-users"></i><span class="right-nav-text">قائمه الادمن</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="Users-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="fontawesome-icon.html">اضافه موظف</a> </li>
-                            <li> <a href="themify-icons.html">عرض الموظفين</a> </li>
                         </ul>
                     </li>
 

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class Admin
+class Chef
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class Admin
     public function handle($request, Closure $next)
     {
 //        abort(403);
-        if (Auth::guard('admin')->check()){
+        if (Auth::guard('chef')->check()){
             if ($request=='login'){
                 return redirect('admin/home');
             }
