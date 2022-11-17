@@ -11,9 +11,4 @@ class HomeController extends Controller
     {
         return view('chef.home.index');
     }
-
-    public function order()
-    {
-        return view('chef.order.index');
-    }
 }
