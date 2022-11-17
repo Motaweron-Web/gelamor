@@ -3,7 +3,7 @@
    <div class="row">
        <div class="col-md-6">
            <div class="text-center text-md-left">
-               <p class="mb-0"> &copy; {{trans('main_trans.Copyright')}} <span id="copyright">
+               <p class="mb-0"> &copy; {{trans('home.copyright')}} <span id="copyright">
                        <script>
                            document.getElementById('copyright').appendChild(document
                                .createTextNode(new Date().getFullYear()))

@@ -70,4 +70,14 @@ return [
     'show' => 'Show',
     'image' => 'Image',
 
+
+
+
+
+
+    // Chef
+    'orders' => 'Orders',
+    'order_day' => 'Order of Day',
+    'all_order' => 'All Order',
+
 ];

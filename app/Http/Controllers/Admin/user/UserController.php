@@ -21,5 +21,5 @@ class UserController extends Controller
         $admin->delete();
         toastr()->error(trans('messages.delete_message_success'));
         return redirect()->back();
-    }
+    } // end delete
 }
