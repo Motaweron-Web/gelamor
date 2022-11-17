@@ -55,6 +55,7 @@
                                                 <th>#</th>
                                                 <th>{{ trans('home.name') }}</th>
                                                 <th>{{ trans('home.email') }}</th>
+                                                <th>{{ trans('home.image') }}</th>
                                                 <th>{{ trans('home.actions') }}</th>
                                             </tr>
                                             </thead>
@@ -64,8 +65,11 @@
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ $user->name_ar }}</td>
                                                     <td>{{ $user->email }}</td>
+                                                    <td>
+                                                        <img src="{{ getFile($user->img) }}" width="10%" height="10%">
+                                                    </td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
                                                                 data-toggle="modal"
@@ -84,7 +88,7 @@
                                                 <div class="modal fade" id="show{{ $user->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"
@@ -102,19 +106,27 @@
 {{--                                                                <form action="{{ route('admin.update') }}"--}}
 {{--                                                                      method="post">--}}
 {{--                                                                    {{ method_field('patch') }}--}}
-                                                                    @csrf
+{{--                                                                    @csrf--}}
                                                                     <input type="text" hidden name="role_id" value="1">
                                                                     <div class="row">
-                                                                        <div class="col-6">
+                                                                        <div class="col-12">
+                                                                            <img src="{{ asset('assets/images/user1.jpg') }}" class="form-control" style="border-radius: 150px;   display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;">
+                                                                        </div>
+                                                                    </div>
+                                                                        <div class="row">
+                                                                        <div class="col-12">
                                                                             <label for="Name"
                                                                                    class="mr-sm-2">{{ trans('home.name') }}
                                                                                 :</label>
                                                                             <input id="name" type="text" name="name"
                                                                                    class="form-control"
-                                                                                   value="{{ $user->name }}"
+                                                                                   value="{{ $user->name_ar}}"
                                                                                    disabled>
                                                                         </div>
-                                                                        <div class="col-6">
+                                                                        <div class="col-12">
                                                                             <label for="email"
                                                                                    class="mr-sm-2">{{ trans('home.email') }}
                                                                                 :</label>
@@ -123,15 +135,25 @@
                                                                                    value="{{ $user->email }}"
                                                                                    disabled>
                                                                         </div>
-                                                                        <div class="col-6">
-                                                                            <label for="email"
+                                                                            <div class="col-12">
+                                                                                <label for="phone"
+                                                                                       class="mr-sm-2">{{ trans('home.phone') }}
+                                                                                    :</label>
+                                                                                <input id="phone" type="text" name="phone"
+                                                                                       class="form-control"
+                                                                                       value="{{ $user->phone }}"
+                                                                                       disabled>
+                                                                            </div>
+                                                                        <div class="col-12">
+                                                                            <label for="location"
                                                                                    class="mr-sm-2">{{ trans('home.location') }}
                                                                                 :</label>
-                                                                            <input id="name" type="text" name="name"
+                                                                            <input id="location" type="text" name="location"
                                                                                    class="form-control"
-                                                                                   value="{{ $user->location_. LaravelLocalization::getCurrentLocale() }}"
+                                                                                   value="{{ $user->location_ar. LaravelLocalization::getCurrentLocale() }}"
                                                                                    disabled>
                                                                         </div>
+                                                                    </div>
                                                                     </div>
 
                                                                     <br><br>

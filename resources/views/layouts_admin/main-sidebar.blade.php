@@ -28,6 +28,21 @@
 
                         </ul>
                     </li>
+
+                    <!--  chefs -->
+
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Grades-chef">
+                            <div class="pull-left"><i class="fas fa-hat-chef"></i><span
+                                    class="right-nav-t">@lang('home.chef')</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="Grades-chef" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('chef.index') }}">@lang('home.chef_list')</a></li>
+
+                        </ul>
+                    </li>
                     <!-- classes-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#classes-menu">

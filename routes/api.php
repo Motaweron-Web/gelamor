@@ -46,3 +46,6 @@ Route::group(['prefix' => 'setting'], function () {
 
     Route::get('show',[\App\Http\Controllers\Api\SettingController::class,'setting']);
 });
+
+
+

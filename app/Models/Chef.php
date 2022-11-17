@@ -13,6 +13,8 @@ class Chef extends Authenticatable implements JWTSubject{
 
     use HasFactory;
 
+    protected $table = 'chefs';
+
     protected $fillable = [
         'name',
         'email',
