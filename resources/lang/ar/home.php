@@ -81,6 +81,13 @@ return [
 
 
 
+    // meals
+    'meals' => 'الوجبات',
+    'meals_list' => 'قائمة الوجبات',
+    'add_meal' => 'اضافة وجبة',
+    'edit_meal' => 'تعديل وجبة',
+    'delete_meal' => 'حذف وجبة',
+    'components' => 'المكونات',
 
 
 

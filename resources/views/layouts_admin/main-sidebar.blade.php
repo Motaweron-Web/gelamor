@@ -63,18 +63,31 @@
                         </li>
                         <!-- Users -->
                         <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#classes-menu">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#users-menu">
                                 <div class="pull-left"><i class="fa fa-users"></i><span
                                         class="right-nav-text">@lang('home.users')</span></div>
                                 <div class="pull-right"><i class="ti-plus"></i></div>
                                 <div class="clearfix"></div>
                             </a>
-                            <ul id="classes-menu" class="collapse" data-parent="#sidebarnav">
+                            <ul id="users-menu" class="collapse" data-parent="#sidebarnav">
                                 <li><a href="{{ route('users.index') }}">@lang('home.user_list')</a></li>
                             </ul>
                         </li>
 >>>>>>> 2e59ebd7da130f6f997503ba5283650d7ec7721e
 
+
+                        <!-- Meals -->
+                        <li>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#meal-menu">
+                                <div class="pull-left"><i class="fa fa-food"></i><span
+                                        class="right-nav-text">@lang('home.meals')</span></div>
+                                <div class="pull-right"><i class="ti-plus"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            <ul id="meal-menu" class="collapse" data-parent="#sidebarnav">
+                                <li><a href="{{ route('users.index') }}">@lang('home.meals_list')</a></li>
+                            </ul>
+                        </li>
 
                         <!-- Settings -->
                         <li>
@@ -92,6 +105,15 @@
                             </ul>
                         </li>
                     @else
+
+
+
+
+
+
+
+
+
                         {{---------------------CHEF LAyout ---------------}}
                         <li>
                             <a href="{{ route('chef.home') }}">
