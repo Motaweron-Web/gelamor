@@ -3,8 +3,10 @@ header start-->
 <nav class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <!-- logo -->
     <div class="text-left navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo" href="{{ route('admin.home') }}"><img src="{{ URL::asset('assets/images/logo-dark.png') }}" alt=""></a>
-        <a class="navbar-brand brand-logo-mini" href="{{ route('admin.home') }}"><img src="{{ URL::asset('assets/images/logo-icon-dark.png') }}"
+        <a class="navbar-brand brand-logo" href="{{ route('admin.home') }}"><img
+                src="{{ URL::asset('assets/images/logo-dark.png') }}" alt=""></a>
+        <a class="navbar-brand brand-logo-mini" href="{{ route('admin.home') }}"><img
+                src="{{ URL::asset('assets/images/logo-icon-dark.png') }}"
                 alt=""></a>
 
 
@@ -13,15 +15,15 @@ header start-->
     <ul class="nav navbar-nav mr-auto">
         <li class="nav-item">
             <a id="button-toggle" class="button-toggle-nav inline-block ml-20 pull-left"
-                href="javascript:void(0);"><i class="zmdi zmdi-menu ti-align-right"></i></a>
+               href="javascript:void(0);"><i class="zmdi zmdi-menu ti-align-right"></i></a>
         </li>
         <li class="nav-item">
             <div class="search">
                 <a class="search-btn not_click" href="javascript:void(0);"></a>
                 <div class="search-box not-click">
                     <input type="text" class="not-click form-control" placeholder="Search" value=""
-                        name="search">
-                    <button class="search-button" type="submit"> <i class="fa fa-search not-click"></i></button>
+                           name="search">
+                    <button class="search-button" type="submit"><i class="fa fa-search not-click"></i></button>
                 </div>
             </div>
         </li>
@@ -30,7 +32,8 @@ header start-->
     <ul class="nav navbar-nav ml-auto">
 
         <div class="btn-group mb-1">
-            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                 @if (App::getLocale() == 'ar')
                     {{ LaravelLocalization::getCurrentLocaleName() }}
                     <img src="{{ URL::asset('assets/images/flags/EG.png') }}" alt="">
@@ -41,7 +44,8 @@ header start-->
             </button>
             <div class="dropdown-menu">
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                    <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
+                       href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                         {{ $properties['native'] }}
                     </a>
                 @endforeach
@@ -55,7 +59,7 @@ header start-->
         </li>
         <li class="nav-item dropdown ">
             <a class="nav-link top-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                aria-expanded="false">
+               aria-expanded="false">
                 <i class="ti-bell"></i>
                 <span class="badge badge-danger notification-status"> </span>
             </a>
@@ -79,7 +83,7 @@ header start-->
         </li>
         <li class="nav-item dropdown ">
             <a class="nav-link top-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                aria-expanded="true"> <i class=" ti-view-grid"></i> </a>
+               aria-expanded="true"> <i class=" ti-view-grid"></i> </a>
             <div class="dropdown-menu dropdown-menu-right dropdown-big">
                 <div class="dropdown-header">
                     <strong>Quick Links</strong>
@@ -105,7 +109,7 @@ header start-->
         </li>
         <li class="nav-item dropdown mr-30">
             <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
-                aria-haspopup="true" aria-expanded="false">
+               aria-haspopup="true" aria-expanded="false">
                 <img src="{{ URL::asset('assets/images/user_icon.png') }}" alt="avatar">
 
 
@@ -114,8 +118,14 @@ header start-->
                 <div class="dropdown-header">
                     <div class="media">
                         <div class="media-body">
-                            <h5 class="mt-0 mb-0">{{ auth('admin')->user()->name }}</h5>
-                            <span>{{ auth('admin')->user()->email }}</span>
+                            @if(Auth::guard('chef')->check())
+                                <h5 class="mt-0 mb-0">{{ auth('chef')->user()->name }}</h5>
+                                <span>{{ auth('chef')->user()->email }}</span>
+                            @elseif(Auth::guard('admin')->check())
+                                <h5 class="mt-0 mb-0">{{ auth('admin')->user()->name }}</h5>
+                                <span>{{ auth('admin')->user()->email }}</span>
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -127,12 +137,23 @@ header start-->
                         class="badge badge-info">6</span> </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
+                @if(Auth::guard('admin')->check())
                     <form method="post" action="{{ route('admin.logout') }}">
 
-                @csrf
-                <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();this.closest('form').submit();"><i class="bx bx-log-out"></i>@lang('home.logout')</a>
-            </form>
+                        @csrf
+                        <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                           onclick="event.preventDefault();this.closest('form').submit();"><i
+                                class="bx bx-log-out"></i>@lang('home.logout')</a>
+                    </form>
+                @elseif(Auth::guard('chef')->check())
+                    <form method="post" action="{{ route('chef.logout') }}">
 
+                        @csrf
+                        <a class="dropdown-item" href="{{ route('chef.logout') }}"
+                           onclick="event.preventDefault();this.closest('form').submit();"><i
+                                class="bx bx-log-out"></i>@lang('home.logout')</a>
+                    </form>
+                @endif
             </div>
         </li>
     </ul>

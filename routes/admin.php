@@ -13,23 +13,28 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Admin Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register Admin routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "Admin" middleware group. Now create something great!
 |
 */
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
 
+    ##################### Select Login #################################
+    Route::get('/select-login', [SelectLoginController::class, 'index'])->name('select-login');
+    ##################### Select Login #################################
+
+
+    ##################### Admin Login #################################
     Route::group(['prefix' => 'admin'], function () {
-        Route::get('/admin-login', [SelectLoginController::class, 'index'])->name('select-login');
-        Route::get('login', [AuthController::class, 'index'])->name('admin.login');
-        Route::POST('login', [AuthController::class, 'login'])->name('admin.login');
-        Route::post('logout', [AuthController::class,'logout'])->name('admin.logout');
+        Route::get('ad-login', [AuthController::class, 'index'])->name('admin.login');
+        Route::POST('ad-login', [AuthController::class, 'login'])->name('admin.login');
+        Route::post('ad-logout', [AuthController::class, 'logout'])->name('admin.logout');
     });
 
     ################## ADMINS ROUTES ##########################
@@ -38,14 +43,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('/', [MainController::class, 'index'])->name('admin.home');
 
         #### Admin ####
-        Route::get('/admins',[AdminController::class, 'index'])->name('admin.index');
-        Route::post('/admin/store',[AdminController::class, 'store'])->name('admin.store');
-        Route::post('/admin/update',[AdminController::class, 'update'])->name('admin.update');
-        Route::post('/admin/delete',[AdminController::class, 'delete'])->name('admin.delete');
+        Route::get('/admins', [AdminController::class, 'index'])->name('admin.index');
+        Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
+        Route::post('/admin/update', [AdminController::class, 'update'])->name('admin.update');
+        Route::post('/admin/delete', [AdminController::class, 'delete'])->name('admin.delete');
 
         #### Users ####
-        Route::get('/users',[UserController::class, 'index'])->name('users.index');
-        Route::post('/user/delete',[UserController::class, 'delete'])->name('user.delete');
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::post('/user/delete', [UserController::class, 'delete'])->name('user.delete');
 
         #### setting ####
         Route::get('/setting', [SettingController::class, 'index'])->name('setting.index');
@@ -58,6 +63,41 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/setting/update', [SettingController::class, 'update'])->name('setting.update');
 
     });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Chef Routes
+    |--------------------------------------------------------------------------
+    |
+    | Here is where you can register Chef routes for your application. These
+    | routes are loaded by the RouteServiceProvider within a group which
+    | contains the "Chef" middleware group. Now create something great!
+    |
+    */
+
+
+    ##################### Chef Login #################################
+
+    Route::group(['prefix' => 'chef'], function () {
+//        Route::get('/chef-login', [SelectLoginController::class, 'index'])->name('select-login');
+        Route::get('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'index'])->name('chef.login');
+        Route::POST('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'login'])->name('chef.login');
+        Route::post('ch-logout', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'logout'])->name('chef.logout');
+    });
+
+    ################## ADMINS ROUTES ##########################
+    Route::group(['prefix' => 'chef', 'middleware' => 'Chef'], function () {
+
+
+
+        ####  Chef Home ####
+        Route::get('/', [\App\Http\Controllers\Chef\home\HomeController::class, 'index'])->name('chef.home');
+        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
+
+
+    });
+
 });
 
 

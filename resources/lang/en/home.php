@@ -69,4 +69,14 @@ return [
     'delete_user' => 'Delete User',
     'show' => 'Show',
 
+
+
+
+
+
+    // Chef
+    'orders' => 'Orders',
+    'order_day' => 'Order of Day',
+    'all_order' => 'All Order',
+
 ];

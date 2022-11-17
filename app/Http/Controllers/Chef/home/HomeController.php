@@ -7,5 +7,13 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('chef.home.index');
+    }
+
+    public function order()
+    {
+        return view('chef.order.index');
+    }
 }

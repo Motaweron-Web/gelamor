@@ -8,7 +8,7 @@
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>برنامج مورا سوفت لادارة المدارس</title>
+    <title>حدد طريقة الدخول</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico" />
@@ -35,7 +35,7 @@
                     <div class="login-fancy pb-40 clearfix">
                         <h3 style="font-family: 'Cairo', sans-serif ; text-align: center" class="">حدد طريقة الدخول</h3>
                         <div class="form-inline">
-                            <a class="btn btn-default col-6" title="شيف" href="#!">
+                            <a class="btn btn-default col-6" title="شيف" href="{{ route('chef.login') }}">
                                 <h4>شيف</h4>
                                 <img alt="user-img" width="100px;" src="{{URL::asset('assets/images/chef.jpg')}}">
                             </a>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Auth;
+namespace App\Http\Controllers\Chef\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -11,25 +11,25 @@ class AuthController extends Controller
 
     public function index()
     {
-        if (Auth::guard('admin')->check()) {
-            return redirect()->route('admin.home');
+        if (Auth::guard('chef')->check()) {
+            return redirect()->route('chef.home');
         }
-        return view('Admin.auth.login');
+        return view('chef.auth.login');
     }
 
     public function login(Request $request)
     {
         $data = $request->validate([
-            'email' => 'required|exists:admins',
+            'email' => 'required|exists:chefs',
             'password' => 'required'
         ], [
             'email.exists' => 'هذا البريد غير مسجل معنا',
             'email.required' => 'يرجي ادخال البريد الالكتروني',
             'password.required' => 'يرجي ادخال كلمة المرور',
         ]);
-        if (Auth::guard('admin')->attempt($data)) {
+        if (Auth::guard('chef')->attempt($data)) {
             toastr()->success('Your Login was successful');
-            return redirect()->route('admin.home');
+            return redirect()->route('chef.home');
         } else {
             return redirect()->back();
         }
@@ -37,7 +37,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('chef')->logout();
         toastr()->info('تم تسجيل الخروج');
         return redirect()->route('select-login');
     }

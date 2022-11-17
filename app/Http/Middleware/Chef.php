@@ -19,7 +19,7 @@ class Chef
 //        abort(403);
         if (Auth::guard('chef')->check()){
             if ($request=='login'){
-                return redirect('admin/home');
+                return redirect()->route('chef.home');
             }
 //            return $request;
             return $next($request);
