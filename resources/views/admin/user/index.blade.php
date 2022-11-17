@@ -65,11 +65,8 @@
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
-<<<<<<< HEAD
-                                                    <td>{{ $user->name_ar }}</td>
-=======
+
                                                     <td>{{ lang() == 'ar' ? $user->name_ar : $user->name_en }}</td>
->>>>>>> 2e59ebd7da130f6f997503ba5283650d7ec7721e
                                                     <td>{{ $user->email }}</td>
                                                     <td>
                                                         <img src="{{ getFile($user->img) }}" width="10%" height="10%">
@@ -127,11 +124,8 @@
                                                                                 :</label>
                                                                             <input id="name" type="text" name="name"
                                                                                    class="form-control"
-<<<<<<< HEAD
                                                                                    value="{{ $user->name_ar}}"
-=======
                                                                                    value="{{ lang() == 'ar' ? $user->name_ar : $user->name_en }}"
->>>>>>> 2e59ebd7da130f6f997503ba5283650d7ec7721e
                                                                                    disabled>
                                                                         </div>
                                                                         <div class="col-12">
@@ -158,11 +152,9 @@
                                                                                 :</label>
                                                                             <input id="location" type="text" name="location"
                                                                                    class="form-control"
-<<<<<<< HEAD
+
                                                                                    value="{{ $user->location_ar. LaravelLocalization::getCurrentLocale() }}"
-=======
                                                                                    value="{{ lang() == 'ar' ? $user->location_ar : $user->location_en }}"
->>>>>>> 2e59ebd7da130f6f997503ba5283650d7ec7721e
                                                                                    disabled>
                                                                         </div>
                                                                     </div>
@@ -180,6 +172,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
 
                                                 <!-- delete_modal_Grade -->
                                                 <div class="modal fade" id="delete{{ $user->id }}" tabindex="-1"
