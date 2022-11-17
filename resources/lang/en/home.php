@@ -68,6 +68,7 @@ return [
     'edit_user' => 'Edit User',
     'delete_user' => 'Delete User',
     'show' => 'Show',
+    'image' => 'Image',
 
 
 

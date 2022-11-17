@@ -31,6 +31,7 @@ return [
     'actions' => 'العمليات',
     'close' => 'اغلاق',
     'warning_delete' => 'هل انت متأكد من عملية الحذف ! ',
+    'show_admin' => 'عرض مشرف',
 
     //settings
     'setting' => 'الإعدادات',
@@ -59,6 +60,8 @@ return [
     'edit' => 'اضف',
     'update' => 'تحديث' ,
     'delete' => 'اضف',
+    'image' => 'صورة',
+    'phone' => 'هاتف',
 
     // users
     'user_list' => 'قائمة المستخدمين',
@@ -67,6 +70,16 @@ return [
     'edit_user' => 'تعديل مستخدم',
     'delete_user' => 'حذف مستخدم',
     'show' => ' عرض ',
+
+    //chefs
+    'chef' => 'شيف',
+    'chef_list' => 'قائمة الشيفات',
+    'add_chef' => 'اضف شيف',
+    'delete_chef' => 'حذف شيف',
+    'edit_chef' => 'تعديل شيف',
+
+
+
 
     // meals
     'meals' => 'الوجبات',

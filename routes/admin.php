@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\chef\Chefcontroller;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -61,6 +62,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('/setting/about', [SettingController::class, 'about'])->name('setting.about');
         Route::post('/setting/about', [SettingController::class, 'about_update'])->name('setting.about_update');
         Route::post('/setting/update', [SettingController::class, 'update'])->name('setting.update');
+
+        #### Chefs ####
+
+        Route::get('/chefs', [Chefcontroller::class, 'index'])->name('chef.index');
+        Route::post('/chef/store', [Chefcontroller::class, 'store'])->name('chef.store');
+        Route::post('/chef/delete', [Chefcontroller::class, 'delete'])->name('chef.delete');
+        Route::post('/chef/update', [Chefcontroller::class, 'update'])->name('chef.update');
 
     });
 

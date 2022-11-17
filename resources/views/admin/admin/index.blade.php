@@ -77,14 +77,85 @@
                                                                 data-target="#delete{{ $admin->id }}"
                                                                 title="{{ trans('home.delete') }}"><i
                                                                 class="fa fa-trash"></i></button>
+                                                        <button type="button" class="btn btn-warning btn-sm"
+                                                                data-toggle="modal"
+                                                                data-target="#update{{ $admin->id }}"
+                                                                title="{{ trans('home.update') }}"><i class="fa fa-eye"></i>
+                                                        </button>
                                                     </td>
                                                 </tr>
+
+                                                <!-- show_modal_Grade -->
+                                                <div class="modal fade" id="update{{ $admin->id }}" tabindex="-1"
+                                                     role="dialog"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 style="font-family: 'Cairo', sans-serif;"
+                                                                    class="modal-title"
+                                                                    id="exampleModalLabel">
+                                                                    {{ trans('home.show_admin') }}
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+
+                                                                    {{--                                                                    {{ method_field('patch') }}--}}
+                                                                    @csrf
+                                                                    <input type="text" hidden name="role_id" value="1">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name"
+                                                                                   class="form-control"
+                                                                                   value="{{ $admin->name }}"
+                                                                                   disabled>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $admin->id }}" disabled>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="email"
+                                                                                   class="mr-sm-2">{{ trans('home.email') }}
+                                                                                :</label>
+                                                                            <input type="email" class="form-control"
+                                                                                   value="{{ $admin->email }}"
+                                                                                   name="email" disabled>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <label for="password"
+                                                                                   class="mr-sm-2">{{ trans('home.password') }}
+                                                                                :</label>
+                                                                            <input type="password" class="form-control"
+                                                                                   placeholder="(optional)"
+                                                                                   name="password" disabled>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <br><br>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                                data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                                    </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <!-- edit_modal_Grade -->
                                                 <div class="modal fade" id="edit{{ $admin->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-dialog modal-lg" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"
@@ -201,7 +272,7 @@
                         <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
-                            <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
