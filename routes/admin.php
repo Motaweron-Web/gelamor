@@ -3,11 +3,11 @@
 use App\Http\Controllers\Admin\admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Auth\SelectLoginController;
+use App\Http\Controllers\Admin\meals\MealController;
 use App\Http\Controllers\Admin\user\UserController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Chef\home\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\chef\Chefcontroller;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -70,7 +70,31 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/chef/delete', [Chefcontroller::class, 'delete'])->name('chef.delete');
         Route::post('/chef/update', [Chefcontroller::class, 'update'])->name('chef.update');
 
+        ####### Meals #######
+        Route::get('/meals', [MealController::class, 'index'])->name('meals.index');
+
     });
+    ################################# end Admin #################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /*
@@ -100,7 +124,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
         ####  Chef Home ####
-        Route::get('/', [\App\Http\Controllers\Chef\home\HomeController::class, 'index'])->name('chef.home');
+        Route::get('/', [HomeController::class, 'index' ])->name('chef.home');
 //        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
 
 

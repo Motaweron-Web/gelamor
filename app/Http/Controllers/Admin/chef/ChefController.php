@@ -47,7 +47,12 @@ class ChefController extends Controller
     {
         $chefs = Chef::find($request->id);
         $inputs = $request->all();
-        $inputs['password'] = Hash::make($request->password);
+
+        if ($request->has('password') && $request->password != null)
+            $inputs['password'] = Hash::make($request->password);
+        else
+            unset($inputs['password']);
+
         if ($chefs->update($inputs)) {
             toastr()->success(trans('messages.update_message_success'));
             return redirect()->route('chef.index');

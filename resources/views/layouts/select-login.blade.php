@@ -41,7 +41,7 @@
                             </a>
                             <a class="btn btn-default col-6" title="ادمن" href="{{ route('admin.login') }}">
                                 <h4>ادمن</h4>
-                                <img alt="user-img" width="100px;" src="{{URL::asset('assets/images/admin.png')}}">
+                                <img alt="user-img" width="100px;" src="{{URL::asset('img_default/default.png')}}">
                             </a>
                         </div>
 

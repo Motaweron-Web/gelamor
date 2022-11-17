@@ -45,7 +45,7 @@
 
                             </ul>
                         </li>
-                        <!-- classes-->
+                        <!-- users -->
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#classes-menu">
                                 <div class="pull-left"><i class="fa fa-users"></i><span
@@ -59,37 +59,39 @@
                         </li>
 
 
-                        <!-- Users -->
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#users-menu">
-                                <div class="pull-left"><i class="fa fa-users"></i><span
-                                        class="right-nav-text">@lang('home.users')</span></div>
-                                <div class="pull-right"><i class="ti-plus"></i></div>
-                                <div class="clearfix"></div>
-                            </a>
-                            <ul id="users-menu" class="collapse" data-parent="#sidebarnav">
-                                <li><a href="{{ route('users.index') }}">@lang('home.user_list')</a></li>
-                            </ul>
-                        </li>
-
-
                         <!-- Meals -->
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#meal-menu">
-                                <div class="pull-left"><i class="fa fa-food"></i><span
+                                <div class="pull-left"><i class="fas fa-utensils"></i><span
                                         class="right-nav-text">@lang('home.meals')</span></div>
                                 <div class="pull-right"><i class="ti-plus"></i></div>
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="meal-menu" class="collapse" data-parent="#sidebarnav">
-                                <li><a href="{{ route('users.index') }}">@lang('home.meals_list')</a></li>
+                                <li><a href="{{ route('meals.index') }}">@lang('home.meals_list')</a></li>
                             </ul>
                         </li>
+
+                        <!-- Components -->
+                        <li>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#users-menu">
+                                <div class="pull-left"><i class="fas fa-carrot"></i><span
+                                        class="right-nav-text">@lang('home.components')</span></div>
+                                <div class="pull-right"><i class="ti-plus"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            <ul id="users-menu" class="collapse" data-parent="#sidebarnav">
+                                <li><a href="{{ route('users.index') }}">@lang('home.components')</a></li>
+                            </ul>
+                        </li>
+
+
+
 
                         <!-- Settings -->
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">
-                                <div class="pull-left"><i class="fas fa-chalkboard"></i><span
+                                <div class="pull-left"><i class="fas fa-gears"></i><span
                                         class="right-nav-text">@lang('home.setting')</span></div>
                                 <div class="pull-right"><i class="ti-plus"></i></div>
                                 <div class="clearfix"></div>
