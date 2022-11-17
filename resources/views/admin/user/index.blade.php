@@ -40,10 +40,10 @@
                                         </div>
                                     @endif
 
-                                    <button type="button" class="button x-small" data-toggle="modal"
-                                            data-target="#addModal">
-                                        @lang('home.add_admin')
-                                    </button>
+{{--                                    <button type="button" class="button x-small" data-toggle="modal"--}}
+{{--                                            data-target="#addModal">--}}
+{{--                                        @lang('home.add_admin')--}}
+{{--                                    </button>--}}
                                     <br><br>
 
                                     <div class="table-responsive">
@@ -64,7 +64,7 @@
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $user->name }}</td>
+                                                    <td>{{ lang() == 'ar' ? $user->name_ar : $user->name_en }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
@@ -111,7 +111,7 @@
                                                                                 :</label>
                                                                             <input id="name" type="text" name="name"
                                                                                    class="form-control"
-                                                                                   value="{{ $user->name }}"
+                                                                                   value="{{ lang() == 'ar' ? $user->name_ar : $user->name_en }}"
                                                                                    disabled>
                                                                         </div>
                                                                         <div class="col-6">
@@ -129,7 +129,7 @@
                                                                                 :</label>
                                                                             <input id="name" type="text" name="name"
                                                                                    class="form-control"
-                                                                                   value="{{ $user->location_. LaravelLocalization::getCurrentLocale() }}"
+                                                                                   value="{{ lang() == 'ar' ? $user->location_ar : $user->location_en }}"
                                                                                    disabled>
                                                                         </div>
                                                                     </div>
