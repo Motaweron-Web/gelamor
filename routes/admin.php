@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
 use App\Http\Controllers\Chef\home\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\chef\Chefcontroller;
+use App\Http\Controllers\Admin\chef\ChefController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -65,10 +65,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
         #### Chefs ####
 
-        Route::get('/chefs', [Chefcontroller::class, 'index'])->name('chef.index');
-        Route::post('/chef/store', [Chefcontroller::class, 'store'])->name('chef.store');
-        Route::post('/chef/delete', [Chefcontroller::class, 'delete'])->name('chef.delete');
-        Route::post('/chef/update', [Chefcontroller::class, 'update'])->name('chef.update');
+        Route::get('/chefs', [ChefController::class, 'index'])->name('chef.index');
+        Route::post('/chef/store', [ChefController::class, 'store'])->name('chef.store');
+        Route::post('/chef/delete', [ChefController::class, 'delete'])->name('chef.delete');
+        Route::post('/chef/update', [ChefController::class, 'update'])->name('chef.update');
 
         ####### Meals #######
         Route::get('/meals', [MealController::class, 'index'])->name('meals.index');
