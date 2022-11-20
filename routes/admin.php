@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\setting\SettingController;
 use App\Http\Controllers\Chef\home\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\chef\ChefController;
+use App\Http\Controllers\Admin\package\PackageController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -73,6 +74,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         ####### Meals #######
         Route::get('/meals', [MealController::class, 'index'])->name('meals.index');
 
+        #### packages ####
+        Route::get('/packages_hanging', [PackageController::class, 'index_hanging'])->name('package.index_hanging');
+        Route::get('/packages_activated', [PackageController::class, 'index_activated'])->name('package.index_activated');
+        Route::post('/package_hanging/store', [PackageController::class, 'store_hanging'])->name('package.store_hanging');
+        Route::post('/package-hanging/delete', [PackageController::class, 'delete_hanging'])->name('package.delete_hanging');
+        Route::get('/status/{id}', [PackageController::class, 'changeState'])->name('status');
+        });
     });
     ################################# end Admin #################################
 
@@ -111,7 +119,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 //        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
 
 
-    });
+
 
 });
 
