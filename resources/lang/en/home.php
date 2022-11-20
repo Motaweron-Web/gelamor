@@ -81,6 +81,20 @@ return [
     'components' => 'Components',
 
 
+    // meal Type
+    'meal_type' => 'Meal Type',
+    'details' => 'Details',
+    'protein' => 'Protein',
+    'calories' => 'Calories',
+    'Fats' => 'Fats',
+    'carbohydrates' => 'Carbohydrates',
+    'package_type' => 'Package Type',
+    'meal_type_list' => 'Meal Type List',
+    'add_meal_type_list' => 'Add Meal Type',
+    'edit_meal_type_list' => 'Edit Meal Type',
+    'delete_meal_type_list' => 'Delete Meal Type',
+
+
 
 
 

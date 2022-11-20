@@ -15,7 +15,8 @@
         "laravel/ui": "^3.4",
         "mcamara/laravel-localization": "^1.7",
         "tymon/jwt-auth": "^1.0",
-        "yoeunes/toastr": "^1.2"
+        "yoeunes/toastr": "^1.2",
+        "buglinjo/laravel-webp": "^2.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

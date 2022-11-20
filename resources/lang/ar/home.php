@@ -90,6 +90,23 @@ return [
     'components' => 'المكونات',
 
 
+    // meal Type
+    'meal_type' => 'أنواع الوجبات',
+    'protein' => 'بروتين',
+    'calories' => 'السعرات الحراريه',
+    'Fats' => 'الدهون',
+    'carbohydrates' => 'كربوهيدرات',
+    'meal_type_list' => 'قائمة أنواع الوجبات',
+    'details' => 'التفاصيل',
+    'details_ar' => 'التفاصيل بالعربية',
+    'details_en' => 'التفاصيل بالانجليزية',
+    'package_type' => 'نوع الباقة',
+    'add_meal_type_list' => 'اضافة نوع الواجبة',
+    'edit_meal_type_list' => 'تعديل نوع الواجبة',
+    'delete_meal_type_list' => 'حذف نوع الواجبة',
+
+
+
 
 
 

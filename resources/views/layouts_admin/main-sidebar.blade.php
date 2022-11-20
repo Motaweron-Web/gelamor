@@ -58,7 +58,6 @@
                             </ul>
                         </li>
 
-
                         <!-- Meals -->
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#meal-menu">
@@ -69,6 +68,7 @@
                             </a>
                             <ul id="meal-menu" class="collapse" data-parent="#sidebarnav">
                                 <li><a href="{{ route('meals.index') }}">@lang('home.meals_list')</a></li>
+                                <li><a href="{{ route('meal_type.index') }}">@lang('home.meal_type_list')</a></li>
                             </ul>
                         </li>
 
@@ -103,9 +103,49 @@
                                 <li><a href="{{ route('setting.about') }}">@lang('home.about')</a></li>
                             </ul>
                         </li>
-                    @else
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         {{---------------------CHEF LAyout ---------------}}
+                        {{---------------------CHEF LAyout ---------------}}
+                        {{---------------------CHEF LAyout ---------------}}
+                        {{---------------------CHEF LAyout ---------------}}
+                    @else
                         <li>
                             <a href="{{ route('chef.home') }}">
                                 <div class="pull-left"><i class="ti-home"></i><span
