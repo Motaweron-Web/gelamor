@@ -5,8 +5,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\UserResource;
+use App\Models\ContactUs;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller{
 
@@ -98,6 +101,65 @@ class UserController extends Controller{
             return returnMessageError($exception->getMessage(),500);
 
         }
+
+    }
+
+
+    public function contact_us(Request $request){
+
+
+        try {
+
+            $rules = [
+
+
+                'name' => 'required',
+                'email' => 'required|email',
+                'subject' => 'required',
+                'message' => 'required'
+
+
+            ];
+
+
+            $messages = [
+
+                'name.required' => 'اسم المستخدم مطلوب',
+                'email.required' => 'البريد الالكتروني للمستخدم مطلوب',
+                'email.email' => 'البريد الالكتروني يجب ان يكون ايميل',
+                'subject.required' => 'تفاصيل المشكله',
+                'message.required' => 'سبب المشكله'
+
+
+            ];
+
+            $validator = Validator::make($request->all(),$rules,$messages);
+
+            if($validator->fails()){
+
+                return returnMessageError($validator->errors(),422);
+            }
+
+
+            $contact_us = ContactUs::create([
+
+                'name' => $request->name,
+                'email' => $request->email,
+                'subject' => $request->subject,
+                'message' => $request->message,
+
+            ]);
+
+            return returnDataSuccess("تم تسجيل المشكله بنجاح",201,"contact",$contact_us);
+
+
+        }catch (\Exception $exception){
+
+
+            return returnMessageError($exception->getMessage(),500);
+
+        }
+
 
     }
 

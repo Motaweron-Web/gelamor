@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
      Route::post('user/login',[UserController::class,'login']);
      Route::post('user/register',[UserController::class,'register']);
+     Route::post('user/contact_us',[UserController::class,'contact_us']);
  });
 
 Route::group(['prefix' => 'auth','middleware' => 'check:user-api'], function () {
@@ -48,4 +49,11 @@ Route::group(['prefix' => 'setting'], function () {
 });
 
 
+
+Route::group(['prefix' => 'packages'], function () {
+
+    Route::get('all',[\App\Http\Controllers\Api\PackageController::class,'all']);//كل الباقات
+    Route::get('onePackage/{id}',[\App\Http\Controllers\Api\PackageController::class,'onePackage']);//الباقه بانواع الوجبات التابعه لها
+    Route::get('mealTypeWithMeals/{id}',[\App\Http\Controllers\Api\PackageController::class,'mealTypeWithMeals']);//نوع الوجبه بالوجبات التابعه ليها
+});
 
