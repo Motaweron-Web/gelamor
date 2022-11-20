@@ -68,5 +68,36 @@ return [
     'edit_user' => 'Edit User',
     'delete_user' => 'Delete User',
     'show' => 'Show',
+    'image' => 'Image',
+
+
+
+    // meals
+    'meals' => 'Meals',
+    'meals_list' => 'Meals List',
+    'add_meal' => 'Add Meal',
+    'edit_meal' => 'Edit Meal',
+    'delete_meal' => 'Delete Meal',
+    'components' => 'Components',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Chef
+    'orders' => 'Orders',
+    'order_day' => 'Order of Day',
+    'all_order' => 'All Order',
 
 ];

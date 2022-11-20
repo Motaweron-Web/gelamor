@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\setting;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\SettingStore;
+use App\Http\Requests\Admin\SettingStoreRequest;
 use App\Models\Setting;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Contracts\Validation\ValidatorAwareRule;
@@ -17,7 +17,7 @@ class SettingController extends Controller
         return view('admin.setting.index', compact('setting'));
     } // end index
 
-    public function update(SettingStore $request)
+    public function update(SettingStoreRequest $request)
     {
         try {
 

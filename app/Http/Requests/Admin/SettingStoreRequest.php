@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SettingStore extends FormRequest
+class SettingStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,12 +28,12 @@ class SettingStore extends FormRequest
             'location_en' => 'required',
             'name_ar' => 'required',
             'name_en' => 'required',
-            'about_ar' => 'required',
-            'about_en' => 'required',
-            'privacy_ar' => 'required',
-            'privacy_en' => 'required',
-            'terms_ar' => 'required',
-            'terms_en' => 'required',
+//            'about_ar' => 'required',
+//            'about_en' => 'required',
+//            'privacy_ar' => 'required',
+//            'privacy_en' => 'required',
+//            'terms_ar' => 'required',
+//            'terms_en' => 'required',
             'facebook' => 'nullable|url',
             'whatsapp' => 'required|numeric',
             'snapchat' => 'nullable|url',

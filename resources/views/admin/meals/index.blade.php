@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
     @section('title')
-        @lang('home.admins')
+        @lang('home.meals_list')
     @stop
 @endsection
 @section('page-header')
-    <!-- breadcrumb -->
+    <!--breadcrumb -->
     @section('PageTitle')
-        @lang('home.admins')
+        @lang('home.meals_list')
     @stop
     <!-- breadcrumb -->
 @endsection
@@ -42,7 +42,7 @@
 
                                     <button type="button" class="button x-small" data-toggle="modal"
                                             data-target="#addModal">
-                                        @lang('home.add_admin')
+                                        @lang('home.add_meal')
                                     </button>
                                     <br><br>
 
@@ -60,33 +60,34 @@
                                             </thead>
                                             <tbody>
                                             <?php $i = 0; ?>
-                                            @foreach ($admins as $admin)
+                                            @foreach ($chefs as $chef)
                                                 <tr>
-                                                    <?php $i++; ?>
+                                                        <?php $i++; ?>
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ $admin->name }}</td>
-                                                    <td>{{ $admin->email }}</td>
+                                                    <td>{{ $chef->name }}</td>
+                                                    <td>{{ $chef->email }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#edit{{ $admin->id }}"
+                                                                data-target="#update{{ $chef->id }}"
                                                                 title="{{ trans('home.edit') }}"><i
                                                                 class="fa fa-edit"></i></button>
                                                         <button type="button" class="btn btn-danger btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#delete{{ $admin->id }}"
+                                                                data-target="#delete{{ $chef->id }}"
                                                                 title="{{ trans('home.delete') }}"><i
                                                                 class="fa fa-trash"></i></button>
                                                         <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#update{{ $admin->id }}"
+                                                                data-target="#show{{ $chef->id }}"
                                                                 title="{{ trans('home.update') }}"><i class="fa fa-eye"></i>
                                                         </button>
                                                     </td>
                                                 </tr>
 
-                                                <!-- show_modal_Grade -->
-                                                <div class="modal fade" id="update{{ $admin->id }}" tabindex="-1"
+
+                                                <!-- update_modal_Grade -->
+                                                <div class="modal fade" id="update{{ $chef->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
@@ -95,73 +96,7 @@
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"
                                                                     class="modal-title"
                                                                     id="exampleModalLabel">
-                                                                    {{ trans('home.show_admin') }}
-                                                                </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-
-                                                                    {{--                                                                    {{ method_field('patch') }}--}}
-                                                                    @csrf
-                                                                    <input type="text" hidden name="role_id" value="1">
-                                                                    <div class="row">
-                                                                        <div class="col-6">
-                                                                            <label for="Name"
-                                                                                   class="mr-sm-2">{{ trans('home.name') }}
-                                                                                :</label>
-                                                                            <input id="name" type="text" name="name"
-                                                                                   class="form-control"
-                                                                                   value="{{ $admin->name }}"
-                                                                                   disabled>
-                                                                            <input id="id" type="hidden" name="id"
-                                                                                   class="form-control"
-                                                                                   value="{{ $admin->id }}" disabled>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label for="email"
-                                                                                   class="mr-sm-2">{{ trans('home.email') }}
-                                                                                :</label>
-                                                                            <input type="email" class="form-control"
-                                                                                   value="{{ $admin->email }}"
-                                                                                   name="email" disabled>
-                                                                        </div>
-                                                                        <div class="col-12">
-                                                                            <label for="password"
-                                                                                   class="mr-sm-2">{{ trans('home.password') }}
-                                                                                :</label>
-                                                                            <input type="password" class="form-control"
-                                                                                   placeholder="(optional)"
-                                                                                   name="password" disabled>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <br><br>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                                data-dismiss="modal">{{ trans('home.close') }}</button>
-                                                                    </div>
-
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <!-- edit_modal_Grade -->
-                                                <div class="modal fade" id="edit{{ $admin->id }}" tabindex="-1"
-                                                     role="dialog"
-                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 style="font-family: 'Cairo', sans-serif;"
-                                                                    class="modal-title"
-                                                                    id="exampleModalLabel">
-                                                                    {{ trans('home.edit_admin') }}
+                                                                    {{ trans('home.edit_chef') }}
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
@@ -170,7 +105,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- add_form -->
-                                                                <form action="{{ route('admin.update') }}"
+                                                                <form action="{{ route('chef.update') }}"
                                                                       method="post">
                                                                     {{--                                                                    {{ method_field('patch') }}--}}
                                                                     @csrf
@@ -182,18 +117,18 @@
                                                                                 :</label>
                                                                             <input id="name" type="text" name="name"
                                                                                    class="form-control"
-                                                                                   value="{{ $admin->name }}"
+                                                                                   value="{{ $chef->name }}"
                                                                                    required>
                                                                             <input id="id" type="hidden" name="id"
                                                                                    class="form-control"
-                                                                                   value="{{ $admin->id }}">
+                                                                                   value="{{ $chef->id }}">
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <label for="Name_en"
                                                                                    class="mr-sm-2">{{ trans('home.email') }}
                                                                                 :</label>
                                                                             <input type="email" class="form-control"
-                                                                                   value="{{ $admin->email }}"
+                                                                                   value="{{ $chef->email }}"
                                                                                    name="email" required>
                                                                         </div>
                                                                         <div class="col-12">
@@ -221,8 +156,67 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- show_modal_chefs -->
+                                                <div class="modal fade" id="show{{ $chef->id }}" tabindex="-1"
+                                                     role="dialog"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 style="font-family: 'Cairo', sans-serif;"
+                                                                    class="modal-title"
+                                                                    id="exampleModalLabel">
+                                                                    {{ trans('home.show') }}
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <!-- add_form -->
+                                                                {{--                                                                <form action="{{ route('admin.update') }}"--}}
+                                                                {{--                                                                      method="post">--}}
+                                                                {{--                                                                    {{ method_field('patch') }}--}}
+                                                                @csrf
+                                                                <input type="text" hidden name="role_id" value="1">
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <label for="Name"
+                                                                               class="mr-sm-2">{{ trans('home.name') }}
+                                                                            :</label>
+                                                                        <input id="name" type="text" name="name"
+                                                                               class="form-control"
+                                                                               value="{{ $chef->name }}"
+                                                                               disabled>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <label for="email"
+                                                                               class="mr-sm-2">{{ trans('home.email') }}
+                                                                            :</label>
+                                                                        <input id="name" type="text" name="name"
+                                                                               class="form-control"
+                                                                               value="{{ $chef->email }}"
+                                                                               disabled>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <br><br>
+
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                                </div>
+                                                                {{--                                                                </form>--}}
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <!-- delete_modal_Grade -->
-                                                <div class="modal fade" id="delete{{ $admin->id }}" tabindex="-1"
+                                                <div class="modal fade" id="delete{{ $chef->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -231,7 +225,7 @@
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"
                                                                     class="modal-title"
                                                                     id="exampleModalLabel">
-                                                                    {{ trans('home.delete_admin') }}
+                                                                    {{ trans('home.delete_chef') }}
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
@@ -239,19 +233,19 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="{{ route('admin.delete') }}"
-                                                                      method="post">
-                                                                    {{--                                                                    {{ method_field('Delete') }}--}}
+                                                                <form action="{{ route('chef.delete') }}"
+                                                                      method="POST">
+{{--                                                                    {{ method_field('POST') }}--}}
                                                                     @csrf
                                                                     <h6>{{ trans('home.warning_delete') }}</h6>
                                                                     <input id="id" type="hidden" name="id"
                                                                            class="form-control"
-                                                                           value="{{ $admin->id }}">
+                                                                           value="{{ $chef->id }}">
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                                 data-dismiss="modal">{{ trans('home.close') }}</button>
                                                                         <button type="submit"
-                                                                                class="btn btn-danger">{{ trans('home.delete_admin') }}</button>
+                                                                                class="btn btn-danger">{{ trans('home.delete_chef') }}</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -273,11 +267,11 @@
                              aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
+                                <div class="modal-content ">
                                     <div class="modal-header">
                                         <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                             id="exampleModalLabel">
-                                            {{ trans('home.add_admin') }}
+                                            {{ trans('home.add_chef') }}
                                         </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -285,9 +279,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- add_form -->
-                                        <form action="{{ route('admin.store') }}" method="POST" id="addForm">
+                                        <form action="{{route('chef.store')}}" method="POST" id="addForm">
                                             @csrf
-                                            <input type="text" hidden name="role_id" value="1">
                                             <div class="row">
                                                 <div class="col-6">
                                                     <label for="name"
@@ -312,6 +305,8 @@
                                             </div>
                                             <br><br>
                                     </div>
+
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">{{ trans('home.close') }}</button>
