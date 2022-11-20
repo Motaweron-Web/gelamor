@@ -80,23 +80,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*
     |--------------------------------------------------------------------------
     | Chef Routes
