@@ -82,6 +82,7 @@ class UserController extends Controller{
     }
 
 
+    //logout user
     public function logout(){
 
 
