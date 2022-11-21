@@ -18,6 +18,11 @@ return [
     'logout' => 'تسجيل الخروج',
     'elements' => 'العناصر',
     'copyright' => 'جميع الحقوق محفوظة لـ',
+    'count' => 'عدد',
+    'packages' => 'الباقات',
+    'messages' => 'الرسائل',
+    'more' => 'المزيد',
+
 
     // Admins
     'admin_list' => 'قائمة المشرفين',
@@ -87,6 +92,14 @@ return [
     'add_meal' => 'اضافة وجبة',
     'edit_meal' => 'تعديل وجبة',
     'delete_meal' => 'حذف وجبة',
+
+
+    // custom meals
+    'custom_meals' => 'الوجبات الخاصة',
+    'custom_meals_list' => 'قائمة الوجبات الخاصة',
+    'add_custom_meal' => 'اضافة وجبة خاصة',
+    'edit_custom_meal' => 'تعديل وجبة خاصة',
+    'delete_custom_meal' => 'حذف وجبة خاصة',
 
 
     // components

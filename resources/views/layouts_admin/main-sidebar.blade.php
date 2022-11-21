@@ -67,8 +67,9 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="meal-menu" class="collapse" data-parent="#sidebarnav">
-                                <li><a href="{{ route('meals.index') }}">@lang('home.meals_list')</a></li>
                                 <li><a href="{{ route('meal_type.index') }}">@lang('home.meal_type_list')</a></li>
+                                <li><a href="{{ route('meals.index') }}">@lang('home.meals_list')</a></li>
+                                <li><a href="{{ route('custom_meal.index') }}">@lang('home.custom_meals_list')</a></li>
                             </ul>
                         </li>
 

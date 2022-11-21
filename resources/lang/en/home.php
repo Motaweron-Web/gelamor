@@ -18,6 +18,11 @@ return [
     'logout' => 'Logout',
     'elements' => 'Elements',
     'copyright' => 'All rights reserved',
+    'count' => 'Count',
+    'packages' => 'Packages',
+    'messages' => 'Messages',
+    'more' => 'More',
+
 
     // admins
     'admin_list' => 'Admin List',
@@ -78,6 +83,13 @@ return [
     'add_meal' => 'Add Meal',
     'edit_meal' => 'Edit Meal',
     'delete_meal' => 'Delete Meal',
+
+    // custom meals
+    'custom_meals' => 'Custom Meals',
+    'custom_meals_list' => 'Custom Meals List',
+    'add_custom_meal' => 'Add Custom Meal',
+    'edit_custom_meal' => 'Edit Custom Meal',
+    'delete_custom_meal' => 'Delete Custom Meal',
 
     // components
     'components' => 'Components',
