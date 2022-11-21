@@ -6,15 +6,12 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateComponentsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('components', function (Blueprint $table) {
-            $table->id();
+
+            $table->bigIncrements('id');
             $table->text('img')->nullable();
             $table->string('name_ar');
             $table->string('name_en');
@@ -22,7 +19,11 @@ class CreateComponentsTable extends Migration
             $table->integer('calories')->comment('السعرات');
             $table->integer('fats')->comment('الدهون');
             $table->integer('carbohydrates')->comment('الكربوهيدرات');
+            $table->unsignedBigInteger('meal_id')->comment('تبع انهي وجبه');
             $table->timestamps();
+
+            $table->foreign('meal_id')->references('id')->on('meals')->cascadeOnUpdate()->cascadeOnDelete();
+
         });
     }
 

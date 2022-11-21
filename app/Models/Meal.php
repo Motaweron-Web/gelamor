@@ -30,4 +30,16 @@ class Meal extends Model
         return $this->belongsTo(MealType::class,'meal_type_id','id');
 
     }
+
+
+    public function component(){
+
+        return $this->hasMany(Component::class,'meal_id', 'id');
+    }
+
+
+    public function order_basic(){
+
+        return $this->hasMany(OrderBasic::class,'meal_id', 'id');
+    }
 }

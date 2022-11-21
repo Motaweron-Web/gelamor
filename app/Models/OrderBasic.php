@@ -5,21 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CustomMeal extends Model
-{
+class OrderBasic extends Model{
+
     use HasFactory;
 
     protected $fillable = [
 
-        'name_ar',
-        'name_en',
-        'img',
-        'protein',
-        'calories',
-        'Fats',
-        'carbohydrates',
-        'user_id'
+      'user_id',
+      'meal_id',
+      'protein',
+      'order_date',
     ];
+
 
 
     public function user(){
@@ -29,4 +26,9 @@ class CustomMeal extends Model
 
     }
 
+
+    public function meal(){
+
+        return $this->belongsTo(Meal::class,'meal_id', 'id');
+    }
 }

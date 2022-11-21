@@ -19,7 +19,6 @@ class AdminSeeder extends Seeder
               'name'  => 'admin',
               'email' => 'admin@admin.com',
               'password' => Hash::make('123456'),
-            'role_id' => rand(1,2),
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -29,7 +28,6 @@ class AdminSeeder extends Seeder
               'name'  => 'admin2',
               'email' => 'admin123@gmail.com',
               'password' => Hash::make('123456'),
-               'role_id' => rand(1,2),
                    'created_at' => now(),
                    'updated_at' => now()
             ],
@@ -39,7 +37,6 @@ class AdminSeeder extends Seeder
               'name'  => 'admin',
               'email' => 'admin12345@gmail.com',
               'password' => Hash::make('123456'),
-               'role_id' => rand(1,2),
                    'created_at' => now(),
                    'updated_at' => now()
             ],
