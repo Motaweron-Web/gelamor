@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\setting\SettingController;
 use App\Http\Controllers\Chef\home\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\chef\ChefController;
+use App\Http\Controllers\Admin\package\PackageController;
+use App\Http\Controllers\Admin\contact_us\ContactUsController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -100,6 +102,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/component/update', [ComponentController::class, 'update'])->name('components.update');
 
 
+        #### Packages ####
+        Route::get('/packages_hanging', [PackageController::class, 'index_hanging'])->name('package.index_hanging');
+        Route::get('/packages_activated', [PackageController::class, 'index_activated'])->name('package.index_activated');
+        Route::post('/package_hanging/store', [PackageController::class, 'store_hanging'])->name('package.store_hanging');
+        Route::post('/package-hanging/delete', [PackageController::class, 'delete_hanging'])->name('package.delete_hanging');
+        Route::get('/status/{id}', [PackageController::class, 'changeState'])->name('status');
+
+        #### ContactUs ####
+        Route::get('/contact_us', [ContactUsController::class, 'index'])->name('contact_us.index');
+        Route::post('/contact_us/delete', [ContactUsController::class, 'delete'])->name('contact_us.delete');
+        });
+
     });
     ################################# end Admin #################################
 
@@ -134,7 +148,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 //        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
 
 
-    });
+
 
 });
 

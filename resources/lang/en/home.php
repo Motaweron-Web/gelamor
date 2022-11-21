@@ -75,6 +75,40 @@ return [
     'show' => 'Show',
     'image' => 'Image',
 
+    //chefs
+    'chef' => 'Chef',
+    'chef_list' => 'Chef List',
+    'add_chef' => 'Add Chef',
+    'delete_chef' => 'Delete Chef',
+    'edit_chef' => 'Edit Chef',
+
+    // Packages
+    'packages' => 'Packages',
+    'hanging_bouquets' => 'Hanging Bouquets',
+    'activated_packages' => 'Activated Packages',
+    'add_package' => 'Add Package',
+    'package_type' => 'Package Type',
+    'expiry_date' => 'Expiry Date',
+    'payment' => 'Payment',
+    'activated' => 'Activated',
+    'details' => 'Details',
+    'start' => 'Start',
+    'end' => 'End',
+    'price' => 'Price',
+    'currency' => 'Currency',
+    'status' => 'Status',
+    'paid' => 'Paid',
+    'unpaid' => 'Unpaid',
+    'delete_package' => 'Delete Package',
+
+    // Complaints and Reports
+    'complaints_and_reports' => 'Complaints and Reports',
+    'complaints' => 'Complaints',
+    'subject' => 'Subject',
+    'created_at' => 'Created At',
+    'message' => 'Message',
+    'delete_report' => 'Delete Report',
+
 
 
     // meals
