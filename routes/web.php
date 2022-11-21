@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +29,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
     });
 //});
 
-
+Route::get('stripe', [PaymentController::class , 'stripe']);
+Route::post('stripe', [PaymentController::class, 'stripePost'])->name('stripe.post');
 
 
 
