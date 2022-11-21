@@ -23,7 +23,7 @@ class UpdateComponentRequest extends FormRequest
             'calories' => 'required|numeric',
             'fats' => 'required|numeric',
             'carbohydrates' => 'required|numeric',
-        ];
+            ];
     }
 
     public function messages()

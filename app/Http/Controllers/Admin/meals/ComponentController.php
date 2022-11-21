@@ -15,7 +15,7 @@ class ComponentController extends Controller
 
     public function index()
     {
-        $component = Component::get();
+        $component = Component::get();;
         return view('admin.component.index', compact('component'));
     } // end of index
 

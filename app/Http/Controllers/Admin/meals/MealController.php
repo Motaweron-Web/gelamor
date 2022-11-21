@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\meals;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMealRequest;
 use App\Http\Requests\UpdateMealRequest;
+use App\Models\Component;
 use App\Models\Meal;
 use App\Models\MealType;
 use App\Traits\PhotoTrait;
@@ -18,7 +19,8 @@ class MealController extends Controller
     {
         $meal_type = MealType::get();
         $meals = Meal::get();
-        return view('admin.meals.index', compact('meals', 'meal_type'));
+        $component = Component::get();
+        return view('admin.meals.index', compact('meals', 'meal_type','component'));
     } // end of index
 
     public function store(StoreMealRequest $request)

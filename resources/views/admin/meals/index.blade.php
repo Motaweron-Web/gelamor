@@ -85,9 +85,16 @@
                                                         <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#show{{ $type->id }}"
-                                                                title="{{ trans('home.update') }}"><i
+                                                                title="{{ trans('home.show') }}"><i
                                                                 class="fa fa-eye"></i>
                                                         </button>
+                                                        <form action="{{ route('components.index') }}" method="get" style="display: contents">
+                                                            <input name="id" value="{{ $type->id }}" hidden>
+                                                            <button type="submit" class="btn btn-success btn-sm"
+                                                                    title="{{ trans('home.add') }}"><i
+                                                                    class="fas fa-carrot"> {{ trans('home.add_component') }}</i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                 </tr>
 
@@ -142,7 +149,8 @@
                                                                             <label for="Name_en"
                                                                                    class="mr-sm-2">{{ trans('home.image') }}
                                                                                 :</label>
-                                                                            <input class="form-control" id="fileupload" type="file" name="img">
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
                                                                         </div>
 
                                                                         <div class="col-12" id="dvPreview">
@@ -187,7 +195,8 @@
                                                                                 :</label>
                                                                             <select class="form-control"
                                                                                     name="meal_type_id"
-                                                                                    style="height: calc(4.1rem + 2px);" required>
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
                                                                                 <option value="" disabled
                                                                                         selected>@lang('home.meal_type')</option>
                                                                                 @foreach($meal_type as $package)
@@ -265,8 +274,10 @@
                                                                                class="mr-sm-2">{{ trans('home.image') }}
                                                                             :</label>
                                                                         <img src="{{ getFile($type->img) }}"
-                                                                             onclick="window.open(this.src)" href="javascript:void(0);"
-                                                                             width="80px" height="80px" style="border-radius: 40%; margin: 10px">
+                                                                             onclick="window.open(this.src)"
+                                                                             href="javascript:void(0);"
+                                                                             width="80px" height="80px"
+                                                                             style="border-radius: 40%; margin: 10px">
                                                                     </div>
 
                                                                     <div class="col-6">
@@ -324,7 +335,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <!-- delete_modal_Grade -->
                                                 <div class="modal fade" id="delete{{ $type->id }}" tabindex="-1"
                                                      role="dialog"
@@ -496,8 +506,7 @@
                     if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
                         $("#dvPreview").show();
                         $("#dvPreview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
-                    }
-                    else {
+                    } else {
                         if (typeof (FileReader) != "undefined") {
                             $("#dvPreview").show();
                             $("#dvPreview").append("<img />");

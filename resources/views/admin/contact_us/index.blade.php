@@ -69,7 +69,7 @@
                                                     <td>{{ $contact->name }}</td>
                                                     <td>{{ $contact->email }}</td>
                                                     <td>{{ $contact->subject }}</td>
-                                                    <td>{{ $contact->created_at }}</td>
+                                                    <td>{{ $contact->created_at->diffForHumans() }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
                                                                 data-toggle="modal"

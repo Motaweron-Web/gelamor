@@ -316,9 +316,9 @@
                                                     <label for="status"
                                                            class="mr-sm-2">{{ trans('status') }}
                                                         :</label>
-                                                    <select class="form-control" style="height: 4rem">
-                                                        <option>{{ trans('home.paid') }}</option>
-                                                        <option>{{ trans('home.unpaid') }}</option>
+                                                    <select class="form-control" style="height: 4rem" name="status">
+                                                        <option value="show">{{ trans('home.paid') }}</option>
+                                                        <option value="hide">{{ trans('home.unpaid') }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
