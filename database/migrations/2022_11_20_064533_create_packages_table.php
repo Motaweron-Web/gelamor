@@ -13,8 +13,10 @@ class CreatePackagesTable extends Migration
 
 
             $table->bigIncrements('id');
-            $table->string('name')->comment('اسم الوجبه');
-            $table->string('details')->comment('وصف الوجبه');
+            $table->string('name_ar')->comment('اسم الباقه بالعربي');
+            $table->string('name_en')->comment('اسم الباقه بالانجليزي');
+            $table->string('details_ar')->nullable();
+            $table->string('details_en')->nullable();
             $table->date('start');
             $table->date('end');
             $table->double('price',15,2);

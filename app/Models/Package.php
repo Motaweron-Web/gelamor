@@ -12,8 +12,10 @@ class Package extends Model
 
     protected $fillable = [
 
-        'name',
-        'details',
+        'name_ar',
+        'name_en',
+        'details_ar',
+        'details_en',
         'start',
         'end',
         'price',

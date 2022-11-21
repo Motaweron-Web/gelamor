@@ -14,6 +14,15 @@ class MealTypeResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+
+            'id' => $this->id,
+            'name_ar' => $this->name_ar,
+            'name_en' => $this->name_en,
+            'details_ar' => $this->details_ar,
+            'details_en' => $this->details_en,
+            'package' => new PackageResource($this->package)
+
+        ];
     }
 }

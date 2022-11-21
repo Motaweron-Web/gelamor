@@ -12,8 +12,10 @@ class CreateMealTypesTable extends Migration
         Schema::create('meal_types', function (Blueprint $table) {
 
             $table->bigIncrements('id');
-            $table->string('name')->comment('نوع الوجبه');
-            $table->text('details')->nullable()->comment('تفاصيل نوع الوجبه');
+            $table->string('name_ar')->comment('نوع الوجبه بالعربي');
+            $table->string('name_en')->comment('نوع الوجبه بالانجليزي');
+            $table->text('details_ar')->nullable()->comment('تفاصيل نوع الوجبه بالعربي');
+            $table->text('details_en')->nullable()->comment('تفاصيل نوع الوجبه بالانجليزي');
             $table->unsignedBigInteger('package_id')->comment('نوع الباقه');
             $table->timestamps();
 

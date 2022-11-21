@@ -18,6 +18,11 @@ return [
     'logout' => 'Logout',
     'elements' => 'Elements',
     'copyright' => 'All rights reserved',
+    'count' => 'Count',
+    'packages' => 'Packages',
+    'messages' => 'Messages',
+    'more' => 'More',
+
 
     // admins
     'admin_list' => 'Admin List',
@@ -78,7 +83,40 @@ return [
     'add_meal' => 'Add Meal',
     'edit_meal' => 'Edit Meal',
     'delete_meal' => 'Delete Meal',
+
+    // custom meals
+    'custom_meals' => 'Custom Meals',
+    'custom_meals_list' => 'Custom Meals List',
+    'add_custom_meal' => 'Add Custom Meal',
+    'edit_custom_meal' => 'Edit Custom Meal',
+    'delete_custom_meal' => 'Delete Custom Meal',
+
+    // components
     'components' => 'Components',
+    'components_list' => 'Components List',
+    'add_component' => 'Add Component',
+    'edit_component' => 'Edit Component',
+    'delete_component' => 'Delete Component',
+
+    //chefs
+    'chef' => 'chef',
+    'chef_list' => 'Chef list',
+    'add_chef' => 'Add Chef',
+    'delete_chef' => 'Delete Chef',
+    'edit_chef' => 'Edit Chef',
+
+    // meal Type
+    'meal_type' => 'Meal Type',
+    'details' => 'Details',
+    'protein' => 'Protein',
+    'calories' => 'Calories',
+    'Fats' => 'Fats',
+    'carbohydrates' => 'Carbohydrates',
+    'package_type' => 'Package Type',
+    'meal_type_list' => 'Meal Type List',
+    'add_meal_type_list' => 'Add Meal Type',
+    'edit_meal_type_list' => 'Edit Meal Type',
+    'delete_meal_type_list' => 'Delete Meal Type',
 
 
 
