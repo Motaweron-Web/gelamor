@@ -40,10 +40,10 @@
                                         </div>
                                     @endif
 
-                                    <button type="button" class="button x-small" data-toggle="modal"
-                                            data-target="#addModal">
-                                        @lang('home.add_package')
-                                    </button>
+{{--                                    <button type="button" class="button x-small" data-toggle="modal"--}}
+{{--                                            data-target="#addModal">--}}
+{{--                                        @lang('home.add_package')--}}
+{{--                                    </button>--}}
                                     <br><br>
 
                                     <div class="table-responsive">
@@ -83,7 +83,7 @@
                                                                 data-target="#delete{{ $package->id }}"
                                                                 title="{{ trans('home.delete') }}"><i
                                                                 class="fa fa-trash"></i></button>
-                                                        <button type="button" class="btn btn-success btn-sm"
+                                                        <button type="button" class="btn btn-success btn-sm disabled"
                                                                 data-toggle="modal"
                                                                 data-target="#activated{{ $package->id }}"
                                                                 title="{{ trans('home.activated') }}"><i class="fa fa-check"></i>

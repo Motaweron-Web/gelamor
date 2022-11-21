@@ -99,8 +99,15 @@
                             </ul>
                         </li>
 
-
-
+                        <!-- Complaints and Reports -->
+                        <li>
+                            <a href="{{ route('contact_us.index') }}">
+                                <div class="pull-left"><i class="fas fa-warning"></i><span
+                                        class="right-nav-text">@lang('home.complaints_and_reports')</span></div>
+                                <div class="pull-right"></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
 
                         <!-- Settings -->
                         <li>

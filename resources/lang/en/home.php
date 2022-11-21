@@ -96,6 +96,14 @@ return [
     'unpaid' => 'Unpaid',
     'delete_package' => 'Delete Package',
 
+    // Complaints and Reports
+    'complaints_and_reports' => 'Complaints and Reports',
+    'complaints' => 'Complaints',
+    'subject' => 'Subject',
+    'created_at' => 'Created At',
+    'message' => 'Message',
+    'delete_report' => 'Delete Report',
+
 
 
     // meals

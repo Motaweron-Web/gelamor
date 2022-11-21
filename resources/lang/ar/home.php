@@ -59,7 +59,7 @@ return [
     'add' => 'اضف',
     'edit' => 'اضف',
     'update' => 'تحديث' ,
-    'delete' => 'اضف',
+    'delete' => 'حذف',
     'image' => 'صورة',
     'phone' => 'هاتف',
 
@@ -118,6 +118,17 @@ return [
     'paid' => 'مقبوض',
     'unpaid' => 'غير مقبوض',
     'delete_package' => 'حذف الباقة',
+
+    // Complaints and Reports
+    'complaints_and_reports' => 'الشكاوي والبلاغات',
+    'complaints' => 'بلاغات',
+    'subject' => 'موضوع',
+    'created_at' => 'انشئ في',
+    'message' => 'رسالة',
+    'delete_report' => 'حذف البلاغ',
+
+
+
 
 
 
