@@ -54,15 +54,17 @@ class User extends Authenticatable implements JWTSubject{
 
 
 
-    public function order_basic(){
+    public function meal(){
 
-
-        return $this->hasMany(OrderBasic::class,'user_id','id');
+        return $this->belongsToMany(Meal::class,'orders','user_id','meal_id','id','id');
     }
+
+
 
     public function order_special(){
 
-
         return $this->hasMany(OrderSpecial::class,'user_id','id');
     }
+
+
 }

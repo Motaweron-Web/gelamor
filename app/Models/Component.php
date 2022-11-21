@@ -17,18 +17,19 @@ class Component extends Model
         'calories',
         'fats',
         'carbohydrates',
-        'meal_id'
         ];
+
 
 
     public function meal(){
 
-        return $this->belongsTo(Meal::class,'meal_id', 'id');
+        return $this->belongsToMany(Meal::class,'meal_components','component_id','meal_id','id','id');
     }
-
 
     public function order_special(){
 
-        return $this->hasMany(OrderSpecial::class,'component_id', 'id');
+        return $this->hasMany(OrderSpecial::class,'component_id','id');
     }
+
+
 }

@@ -13,19 +13,19 @@ class CreateOrderSpecialsTable extends Migration
      */
     public function up()
     {
-        //user has many order special
         Schema::create('order_specials', function (Blueprint $table) {
 
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('meal_type_id');
             $table->unsignedBigInteger('component_id');
+            $table->date('date_of_order');
             $table->integer('protein');
-            $table->date('order_date');
             $table->timestamps();
 
-
-            $table->foreign('component_id')->references('id')->on('components')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('meal_type_id')->references('id')->on('meal_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('component_id')->references('id')->on('components')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }

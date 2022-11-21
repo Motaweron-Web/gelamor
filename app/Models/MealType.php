@@ -33,6 +33,13 @@ class MealType extends Model{
         return $this->hasMany(Meal::class,'meal_type_id','id');
 
     }
+
+
+
+    public function order_special(){
+
+        return $this->hasMany(OrderSpecial::class,'meal_type_id','id');
+    }
 }
 
 

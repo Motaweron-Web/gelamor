@@ -31,15 +31,21 @@ class Meal extends Model
 
     }
 
+    //relation many to many
 
     public function component(){
 
-        return $this->hasMany(Component::class,'meal_id', 'id');
+        return $this->belongsToMany(Component::class,'meal_components','meal_id','component_id','id','id');
     }
 
 
-    public function order_basic(){
 
-        return $this->hasMany(OrderBasic::class,'meal_id', 'id');
+    public function user(){
+
+        return $this->belongsToMany(User::class,'orders','meal_id','user_id','id','id');
     }
+
+
+
+
 }

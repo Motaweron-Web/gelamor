@@ -19,19 +19,12 @@ class CreateComponentsTable extends Migration
             $table->integer('calories')->comment('السعرات');
             $table->integer('fats')->comment('الدهون');
             $table->integer('carbohydrates')->comment('الكربوهيدرات');
-            $table->unsignedBigInteger('meal_id')->comment('تبع انهي وجبه');
             $table->timestamps();
-
-            $table->foreign('meal_id')->references('id')->on('meals')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+
     public function down()
     {
         Schema::dropIfExists('components');
