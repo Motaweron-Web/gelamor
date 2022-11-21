@@ -18,7 +18,88 @@
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
-                    <h1>{{ trans('home.main') }}</h1>
+                    <div class="row" >
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                    <span class="text-success">
+                                        <i class="fa fa-users highlight-icon" aria-hidden="true"></i>
+                                    </span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <p class="card-text text-dark">@lang('home.users')</p>
+                                            <h4>{{\App\Models\User::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{ route('users.index') }}" target="_blank"><span class="text-danger">@lang('home.more')</span></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                    <span class="text-warning">
+                                        <i class="fas fa-chalkboard-teacher highlight-icon" aria-hidden="true"></i>
+                                    </span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <p class="card-text text-dark">@lang('home.messages')</p>
+                                            <h4>{{\App\Models\ContactUs::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="#!" target="_blank"><span class="text-danger">@lang('home.more')</span></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                    <span class="text-success">
+                                        <i class="fas fa-hat-chef highlight-icon" aria-hidden="true"></i>
+                                    </span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <p class="card-text text-dark">@lang('home.chef')</p>
+                                            <h4>{{\App\Models\Chef::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="{{route('chef.index')}}" target="_blank"><span class="text-danger">@lang('home.more')</span></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <div class="clearfix">
+                                        <div class="float-left">
+                                    <span class="text-primary">
+                                        <i class="fas fa-chalkboard highlight-icon" aria-hidden="true"></i>
+                                    </span>
+                                        </div>
+                                        <div class="float-right text-right">
+                                            <p class="card-text text-dark">@lang('home.packages')</p>
+                                            <h4>{{\App\Models\Package::count()}}</h4>
+                                        </div>
+                                    </div>
+                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
+                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="#!" target="_blank"><span class="text-danger">@lang('home.more')</span></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

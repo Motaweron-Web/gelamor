@@ -5,6 +5,9 @@
 <!-- plugin_path -->
 <script type="text/javascript">var plugin_path = '{{ asset('assets/js') }}/';</script>
 
+{{-- dropify --}}
+{{--<script src="{{ asset('assets/js/dropify.min.js') }}"></script>--}}
+
 <!-- chart -->
 <script src="{{ URL::asset('assets/js/chart-init.js') }}"></script>
 <!-- calendar -->

@@ -18,6 +18,11 @@ return [
     'logout' => 'تسجيل الخروج',
     'elements' => 'العناصر',
     'copyright' => 'جميع الحقوق محفوظة لـ',
+    'count' => 'عدد',
+    'packages' => 'الباقات',
+    'messages' => 'الرسائل',
+    'more' => 'المزيد',
+
 
     // Admins
     'admin_list' => 'قائمة المشرفين',
@@ -87,7 +92,39 @@ return [
     'add_meal' => 'اضافة وجبة',
     'edit_meal' => 'تعديل وجبة',
     'delete_meal' => 'حذف وجبة',
+
+
+    // custom meals
+    'custom_meals' => 'الوجبات الخاصة',
+    'custom_meals_list' => 'قائمة الوجبات الخاصة',
+    'add_custom_meal' => 'اضافة وجبة خاصة',
+    'edit_custom_meal' => 'تعديل وجبة خاصة',
+    'delete_custom_meal' => 'حذف وجبة خاصة',
+
+
+    // components
     'components' => 'المكونات',
+    'components_list' => 'قائمة المكونات',
+    'add_component' => 'اضافة مكون',
+    'edit_component' => 'تعديل مكون',
+    'delete_component' => 'حذف مكون',
+
+
+    // meal Type
+    'meal_type' => 'أنواع الوجبات',
+    'protein' => 'بروتين',
+    'calories' => 'السعرات الحراريه',
+    'Fats' => 'الدهون',
+    'carbohydrates' => 'كربوهيدرات',
+    'meal_type_list' => 'قائمة أنواع الوجبات',
+    'details' => 'التفاصيل',
+    'details_ar' => 'التفاصيل بالعربية',
+    'details_en' => 'التفاصيل بالانجليزية',
+    'package_type' => 'نوع الباقة',
+    'add_meal_type_list' => 'اضافة نوع الواجبة',
+    'edit_meal_type_list' => 'تعديل نوع الواجبة',
+    'delete_meal_type_list' => 'حذف نوع الواجبة',
+
 
 
 

@@ -2,18 +2,17 @@
 @section('css')
     @toastr_css
     @section('title')
-        @lang('home.meals_list')
+        @lang('home.meal_type_list')
     @stop
 @endsection
 @section('page-header')
     <!--breadcrumb -->
     @section('PageTitle')
-        @lang('home.meals_list')
+        @lang('home.meal_type_list')
     @stop
     <!-- breadcrumb -->
 @endsection
 @section('content')
-
     <!-- row -->
     <div class="row">
         <div class="col-md-12 mb-30">
@@ -43,34 +42,32 @@
 
                                     <button type="button" class="button x-small" data-toggle="modal"
                                             data-target="#addModal">
-                                        @lang('home.add_meal')
+                                        @lang('home.add_meal_type_list')
                                     </button>
                                     <br><br>
 
                                     <div class="table-responsive">
                                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                                data-page-length="50"
-                                               style="text-align: center">
+                                               style="text-align: center" >
                                             <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>{{ trans('home.name') }}</th>
-                                                <th>{{ trans('home.image') }}</th>
+                                                <th>{{ trans('home.details') }}</th>
+                                                <th>{{ trans('home.package_type') }}</th>
                                                 <th>{{ trans('home.actions') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php $i = 0; ?>
-                                            @foreach ($meals as $type)
+                                            @foreach ($meal_type as $type)
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
                                                     <td>{{ (lang() == 'ar') ? $type->name_ar : $type->name_en }}</td>
-                                                    <td>
-                                                        <img src="{{ getFile($type->img) }}"
-                                                             onclick="window.open(this.src)" href="javascript:void(0);"
-                                                             width="80px" height="80px" style="border-radius: 40%;">
-                                                    </td>
+                                                    <td>{{ (lang() == 'ar') ? $type->details_ar : $type->details_en }}</td>
+                                                    <td>{{ (lang() == 'ar') ? $type->package->name_ar : $type->package->name_en }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
                                                                 data-toggle="modal"
@@ -102,7 +99,7 @@
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"
                                                                     class="modal-title"
                                                                     id="exampleModalLabel">
-                                                                    {{ trans('home.edit_meal') }}
+                                                                    {{ trans('home.edit_meal_type_list') }}
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
@@ -111,8 +108,8 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- add_form -->
-                                                                <form action="{{ route('meals.update') }}"
-                                                                      method="post" enctype="multipart/form-data">
+                                                                <form action="{{ route('meal_type.update') }}"
+                                                                      method="post">
                                                                     {{--                                                                    {{ method_field('patch') }}--}}
                                                                     @csrf
                                                                     <input type="text" hidden name="role_id" value="1">
@@ -137,62 +134,34 @@
                                                                                    value="{{ $type->name_en }}"
                                                                                    name="name_en" required>
                                                                         </div>
-
                                                                         <div class="col-12">
                                                                             <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                   class="mr-sm-2">{{ trans('home.details_ar') }}
                                                                                 :</label>
-                                                                            <input class="form-control" id="fileupload" type="file" name="img">
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->details_ar }}"
+                                                                                   name="details_ar">
                                                                         </div>
-
-                                                                        <div class="col-12" id="dvPreview">
-                                                                        </div>
-
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $type->protein }}"
-                                                                                   name="protein" required>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $type->calories }}"
-                                                                                   name="calories" required>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $type->Fats }}"
-                                                                                   name="Fats" required>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $type->carbohydrates }}"
-                                                                                   name="carbohydrates" required>
-                                                                        </div>
-
                                                                         <div class="col-12">
                                                                             <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                   class="mr-sm-2">{{ trans('home.details_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->details_en }}"
+                                                                                   name="details_en">
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.package_type') }}
                                                                                 :</label>
                                                                             <select class="form-control"
-                                                                                    name="meal_type_id"
-                                                                                    style="height: calc(4.1rem + 2px);" required>
+                                                                                    name="package_id"
+                                                                                    style="height: calc(4.1rem + 2px);">
                                                                                 <option value="" disabled
-                                                                                        selected>@lang('home.meal_type')</option>
-                                                                                @foreach($meal_type as $package)
+                                                                                        selected>@lang('home.package_type')</option>
+                                                                                @foreach($packages as $package)
                                                                                     <option
-                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->package->id) ? 'selected' : '' }} >
                                                                                         {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
                                                                                     </option>
                                                                                 @endforeach
@@ -241,75 +210,35 @@
                                                                 <div class="row">
                                                                     <div class="col-6">
                                                                         <label for="Name"
-                                                                               class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                               class="mr-sm-2">{{ trans('home.name') }}
                                                                             :</label>
-                                                                        <input id="name" type="text" name="name_ar"
+                                                                        <input id="name" type="text" name="name"
                                                                                class="form-control"
-                                                                               value="{{ $type->name_ar }}"
-                                                                               required disabled>
-                                                                        <input id="id" type="hidden" name="id"
-                                                                               class="form-control"
-                                                                               value="{{ $type->id }}">
+                                                                               value="{{ (lang() == 'ar') ? $type->name_ar : $type->name_en }}"
+                                                                               disabled>
                                                                     </div>
                                                                     <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                        <label for="email"
+                                                                               class="mr-sm-2">{{ trans('home.package_type') }}
                                                                             :</label>
-                                                                        <input type="text" class="form-control"
-                                                                               value="{{ $type->name_en }}"
-                                                                               name="name_en" required disabled>
+                                                                        <input id="name" type="text" name="name"
+                                                                               class="form-control"
+                                                                               value="{{ (lang() == 'ar') ? $type->package->name_en : $type->package->name_en }}"
+                                                                               disabled>
                                                                     </div>
 
                                                                     <div class="col-12">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.image') }}
+                                                                        <label for="email"
+                                                                               class="mr-sm-2">{{ trans('home.details') }}
                                                                             :</label>
-                                                                        <img src="{{ getFile($type->img) }}"
-                                                                             onclick="window.open(this.src)" href="javascript:void(0);"
-                                                                             width="80px" height="80px" style="border-radius: 40%; margin: 10px">
+                                                                        <textarea id="name" type="text" name="name"
+                                                                                  rows="4"
+                                                                                  class="form-control"
+                                                                                  disabled>
+                                                                            {{ (lang() == 'ar') ? $type->details_ar : $type->details_en }}
+                                                                        </textarea>
                                                                     </div>
 
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.protein') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $type->protein }}"
-                                                                               name="protein" required disabled>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.calories') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $type->calories }}"
-                                                                               name="calories" required disabled>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.Fats') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $type->Fats }}"
-                                                                               name="Fats" required disabled>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.carbohydrates') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $type->carbohydrates }}"
-                                                                               name="carbohydrates" required disabled>
-                                                                    </div>
-
-                                                                    <div class="col-12">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.meal_type') }}
-                                                                            :</label>
-                                                                        <input type="text" class="form-control"
-                                                                               value="{{ (lang() == 'ar') ? $type->meal_type->name_ar : $type->meal_type->name_en }}"
-                                                                               name="name_ar" disabled>
-                                                                    </div>
                                                                 </div>
 
                                                                 <br><br>
@@ -343,7 +272,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="{{ route('meals.delete') }}"
+                                                                <form action="{{ route('meal_type.delete') }}"
                                                                       method="POST">
                                                                     {{--                                                                    {{ method_field('POST') }}--}}
                                                                     @csrf
@@ -355,13 +284,15 @@
                                                                         <button type="button" class="btn btn-secondary"
                                                                                 data-dismiss="modal">{{ trans('home.close') }}</button>
                                                                         <button type="submit"
-                                                                                class="btn btn-danger">{{ trans('home.delete_meal') }}</button>
+                                                                                class="btn btn-danger">{{ trans('home.delete_meal_type_list') }}</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
                                             @endforeach
                                         </table>
                                     </div>
@@ -387,8 +318,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- add_form -->
-                                        <form action="{{ route('meals.store') }}"
-                                              method="post" enctype="multipart/form-data">
+                                        <form action="{{ route('meal_type.store') }}"
+                                              method="post">
                                             {{--                                                                    {{ method_field('patch') }}--}}
                                             @csrf
                                             <div class="row">
@@ -399,8 +330,6 @@
                                                     <input id="name" type="text" name="name_ar"
                                                            class="form-control"
                                                            required>
-                                                    <input id="id" type="hidden" name="id"
-                                                           class="form-control">
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="Name_en"
@@ -409,55 +338,30 @@
                                                     <input type="text" class="form-control"
                                                            name="name_en" required>
                                                 </div>
-
                                                 <div class="col-12">
                                                     <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.image') }}
+                                                           class="mr-sm-2">{{ trans('home.details_ar') }}
                                                         :</label>
-                                                    <input class="form-control" type="file" accept="image/*" name="img">
+                                                    <input type="text" class="form-control"
+                                                           name="details_ar" required>
                                                 </div>
-
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.protein') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="protein" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.calories') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="calories" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.Fats') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="Fats" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.carbohydrates') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="carbohydrates" required>
-                                                </div>
-
                                                 <div class="col-12">
                                                     <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                           class="mr-sm-2">{{ trans('home.details_en') }}
                                                         :</label>
-                                                    <select class="form-control"
-                                                            name="meal_type_id"
-                                                            style="height: calc(4.1rem + 2px);" required>
+                                                    <input type="text" class="form-control"
+                                                           name="details_en" required>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label for="Name_en"
+                                                           class="mr-sm-2">{{ trans('home.package_type') }}
+                                                        :</label>
+                                                    <select class="form-control" name="package_id"
+                                                            style="height: calc(4.1rem + 2px);">
                                                         <option value="" disabled
-                                                                selected>@lang('home.meal_type')</option>
-                                                        @foreach($meal_type as $package)
-                                                            <option
-                                                                value="{{ $package->id }}">
+                                                                selected>@lang('home.package_type')</option>
+                                                        @foreach($packages as $package)
+                                                            <option value="{{ $package->id }}">
                                                                 {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
                                                             </option>
                                                         @endforeach
@@ -471,7 +375,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                         data-dismiss="modal">{{ trans('home.close') }}</button>
                                                 <button type="submit"
-                                                        class="btn btn-success">{{ trans('home.add') }}</button>
+                                                        class="btn btn-success">{{ trans('home.add') }} </button>
                                             </div>
                                         </form>
                                     </div>
@@ -486,36 +390,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script language="javascript" type="text/javascript">
-        $(function () {
-            $("#fileupload").change(function () {
-                $("#dvPreview").html("");
-                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-                if (regex.test($(this).val().toLowerCase())) {
-                    if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
-                        $("#dvPreview").show();
-                        $("#dvPreview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
-                    }
-                    else {
-                        if (typeof (FileReader) != "undefined") {
-                            $("#dvPreview").show();
-                            $("#dvPreview").append("<img />");
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                $("#dvPreview img").attr("src", e.target.result);
-                            }
-                            reader.readAsDataURL($(this)[0].files[0]);
-                        } else {
-                            alert("This browser does not support FileReader.");
-                        }
-                    }
-                } else {
-                    alert("Please upload a valid image file.");
-                }
-            });
-        });
-    </script>
     <!-- row closed -->
 @endsection
 @section('js')

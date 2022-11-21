@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
     @section('title')
-        @lang('home.meals_list')
+        @lang('home.custom_meals')
     @stop
 @endsection
 @section('page-header')
     <!--breadcrumb -->
     @section('PageTitle')
-        @lang('home.meals_list')
+        @lang('home.custom_meals')
     @stop
     <!-- breadcrumb -->
 @endsection
@@ -43,7 +43,7 @@
 
                                     <button type="button" class="button x-small" data-toggle="modal"
                                             data-target="#addModal">
-                                        @lang('home.add_meal')
+                                        @lang('home.add_custom_meal')
                                     </button>
                                     <br><br>
 
@@ -61,7 +61,7 @@
                                             </thead>
                                             <tbody>
                                             <?php $i = 0; ?>
-                                            @foreach ($meals as $type)
+                                            @foreach ($custom_meals as $type)
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
@@ -111,7 +111,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- add_form -->
-                                                                <form action="{{ route('meals.update') }}"
+                                                                <form action="{{ route('custom_meal.update') }}"
                                                                       method="post" enctype="multipart/form-data">
                                                                     {{--                                                                    {{ method_field('patch') }}--}}
                                                                     @csrf
@@ -343,7 +343,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="{{ route('meals.delete') }}"
+                                                                <form action="{{ route('custom_meal.delete') }}"
                                                                       method="POST">
                                                                     {{--                                                                    {{ method_field('POST') }}--}}
                                                                     @csrf
@@ -387,7 +387,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- add_form -->
-                                        <form action="{{ route('meals.store') }}"
+                                        <form action="{{ route('custom_meal.store') }}"
                                               method="post" enctype="multipart/form-data">
                                             {{--                                                                    {{ method_field('patch') }}--}}
                                             @csrf
