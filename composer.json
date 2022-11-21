@@ -7,6 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "ext-json": "*",
+        "digistorm/omnipay-mpgs": "^1.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
@@ -14,6 +15,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "mcamara/laravel-localization": "^1.7",
+        "stripe/stripe-php": "^10.0",
         "tymon/jwt-auth": "^1.0",
         "yoeunes/toastr": "^1.2",
         "buglinjo/laravel-webp": "^2.3"

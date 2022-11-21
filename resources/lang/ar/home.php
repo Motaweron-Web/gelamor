@@ -64,7 +64,7 @@ return [
     'add' => 'اضف',
     'edit' => 'اضف',
     'update' => 'تحديث' ,
-    'delete' => 'اضف',
+    'delete' => 'حذف',
     'image' => 'صورة',
     'phone' => 'هاتف',
 
@@ -136,6 +136,37 @@ return [
     'orders' => 'الطلبات',
     'order_day' => 'طلبات اليوم',
     'all_order' => 'كل الطلبات',
+
+    // Packages
+    'packages' => 'باقات',
+    'hanging_bouquets' => 'باقات معلقة',
+    'activated_packages' => 'باقات مفعلة',
+    'add_package' => 'أضافة باقة',
+    'package_type' => 'نوع الباقة',
+    'expiry_date' => 'تاريخ الانتهاء',
+    'payment' => 'طريقة الدفع',
+    'activated' => 'تفعيل',
+    'details' => 'تفاصيل',
+    'start' => 'يبدأ من',
+    'end' => 'ينتهي في',
+    'price' => 'السعر',
+    'currency' => 'العملة',
+    'status' => 'الحالة',
+    'paid' => 'مقبوض',
+    'unpaid' => 'غير مقبوض',
+    'delete_package' => 'حذف الباقة',
+
+    // Complaints and Reports
+    'complaints_and_reports' => 'الشكاوي والبلاغات',
+    'complaints' => 'بلاغات',
+    'subject' => 'موضوع',
+    'created_at' => 'انشئ في',
+    'message' => 'رسالة',
+    'delete_report' => 'حذف البلاغ',
+
+
+
+
 
 
 

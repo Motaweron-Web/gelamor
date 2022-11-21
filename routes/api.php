@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -49,6 +50,7 @@ Route::group(['prefix' => 'setting'], function () {
 });
 
 
+Route::post('pay-credit-card',[PaymentController::class,'pay']);
 
 Route::group(['prefix' => 'packages'], function () {
 
