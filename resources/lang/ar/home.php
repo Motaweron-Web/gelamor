@@ -87,7 +87,14 @@ return [
     'add_meal' => 'اضافة وجبة',
     'edit_meal' => 'تعديل وجبة',
     'delete_meal' => 'حذف وجبة',
+
+
+    // components
     'components' => 'المكونات',
+    'components_list' => 'قائمة المكونات',
+    'add_component' => 'اضافة مكون',
+    'edit_component' => 'تعديل مكون',
+    'delete_component' => 'حذف مكون',
 
 
     // meal Type

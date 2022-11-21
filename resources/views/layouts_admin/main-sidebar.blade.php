@@ -81,7 +81,7 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="users-menu" class="collapse" data-parent="#sidebarnav">
-                                <li><a href="{{ route('users.index') }}">@lang('home.components')</a></li>
+                                <li><a href="{{ route('components.index') }}">@lang('home.components_list')</a></li>
                             </ul>
                         </li>
 

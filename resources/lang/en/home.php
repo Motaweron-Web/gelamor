@@ -78,8 +78,20 @@ return [
     'add_meal' => 'Add Meal',
     'edit_meal' => 'Edit Meal',
     'delete_meal' => 'Delete Meal',
-    'components' => 'Components',
 
+    // components
+    'components' => 'Components',
+    'components_list' => 'Components List',
+    'add_component' => 'Add Component',
+    'edit_component' => 'Edit Component',
+    'delete_component' => 'Delete Component',
+
+    //chefs
+    'chef' => 'chef',
+    'chef_list' => 'Chef list',
+    'add_chef' => 'Add Chef',
+    'delete_chef' => 'Delete Chef',
+    'edit_chef' => 'Edit Chef',
 
     // meal Type
     'meal_type' => 'Meal Type',

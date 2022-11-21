@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AuthController;
 use App\Http\Controllers\Admin\Auth\SelectLoginController;
+use App\Http\Controllers\Admin\meals\ComponentController;
 use App\Http\Controllers\Admin\meals\MealController;
 use App\Http\Controllers\Admin\meals\MealTypeController;
 use App\Http\Controllers\Admin\user\UserController;
@@ -71,7 +72,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/chef/delete', [ChefController::class, 'delete'])->name('chef.delete');
         Route::post('/chef/update', [ChefController::class, 'update'])->name('chef.update');
 
-        ####### Meals #######
+        ####### Meal Type #######
         Route::get('/meal_type', [MealTypeController::class, 'index'])->name('meal_type.index');
         Route::post('/meal_type/store', [MealTypeController::class, 'store'])->name('meal_type.store');
         Route::post('/meal_type/delete', [MealTypeController::class, 'delete'])->name('meal_type.delete');
@@ -82,6 +83,16 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/meal/store', [MealController::class, 'store'])->name('meals.store');
         Route::post('/meal/delete', [MealController::class, 'delete'])->name('meals.delete');
         Route::post('/meal/update', [MealController::class, 'update'])->name('meals.update');
+
+        ####### Component #######
+        Route::get('/component', [ComponentController::class, 'index'])->name('components.index');
+        Route::post('/component/store', [ComponentController::class, 'store'])->name('components.store');
+        Route::post('/component/delete', [ComponentController::class, 'delete'])->name('components.delete');
+        Route::post('/component/update', [ComponentController::class, 'update'])->name('components.update');
+
+
+
+
 
     });
     ################################# end Admin #################################
