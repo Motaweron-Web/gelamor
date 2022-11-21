@@ -86,6 +86,12 @@
                                     class='form-control card-expiry-year' placeholder='YYYY' size='4'
                                     type='text'>
                             </div>
+
+                            <div class='col-xs-12 col-md-4 form-group expiration required'>
+                                <label class='control-label'></label> <input
+                                    class='form-control' name="amount" placeholder='amount' size='4'
+                                    type='text'>
+                            </div>
                         </div>
 
 
@@ -160,7 +166,6 @@
             } else {
                 /* token contains id, last4, and card type */
                 var token = response['id'];
-
                 $form.find('input[type=text]').empty();
                 $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
                 $form.get(0).submit();
