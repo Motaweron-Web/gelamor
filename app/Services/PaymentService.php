@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Exception;
 use Illuminate\Support\Facades\Validator;
+use IZaL\Knet\KnetBilling;
 use Omnipay\Common\CreditCard;
 use Omnipay\Omnipay;
 use Stripe\Exception\CardException;
@@ -22,6 +23,10 @@ class PaymentService
 
     public function pay($request)
     {
+        if($request->payment_method =="knet_payment"){
+          return   $this->knet_payment();
+
+        }
         $validator = Validator::make($request->all(), [
             'fullName' => 'required',
             'cardNumber' => 'required',
@@ -29,6 +34,7 @@ class PaymentService
             'year' => 'required:',
             'cvv' => 'required'
         ]);
+
 
         if ($validator->fails()) {
             $request->session()->flash('danger', $validator->errors()->first());
@@ -44,7 +50,10 @@ class PaymentService
         }
 
         $charge = $this->createCharge($token['id'], $request->amount);
-        if (!empty($charge) && $charge['status'] == 'succeeded') {
+//        dd($charge);
+        if (!empty($charge) && $charge['error']) {
+            return response()->json(["data"=>'',"errors"=>['error'=>$charge['error']],'message'=>$charge['error']],409);
+        }if (!empty($charge) && $charge['status'] == 'succeeded') {
             return response()->json(["data"=>'',"errors"=>[],'message'=>"Payment Successfully."],200);
         } else {
             return response()->json(["data"=>'',"errors"=>[],'message'=>"Payment failed."],406);
@@ -89,6 +98,43 @@ class PaymentService
             $charge['error'] = $e->getMessage();
         }
         return $charge;
+    }
+
+    public function knet_payment()
+    {
+        $responseURL = 'http://127.0.0.1:8000/api/payment/response.php';
+        $successURL = 'http://127.0.0.1:8000/api/payment/success.php';
+        $errorURL = 'http://127.0.0.1:8000/api/payment/error.php';
+        $knetAlias = 'TEST_ALIAS';
+        $resourcePath = '/home/mywebapp/';
+        $amount = 150;
+        $trackID = 'UNIQUETRACKID';
+
+        try {
+
+            $knetGateway = new KnetBilling([
+                'alias'        => $knetAlias,
+                'resourcePath' => $resourcePath
+            ]);
+
+            $knetGateway->setResponseURL($successURL);
+            $knetGateway->setErrorURL($errorURL);
+            $knetGateway->setAmt($amount);
+            $knetGateway->setTrackId($trackID);
+
+            $knetGateway->requestPayment();
+            $paymentURL = $knetGateway->getPaymentURL();
+
+            // helper function to redirect
+            return header('Location: '.$paymentURL);
+
+        } catch (\Exception $e) {
+
+            // to debug error message
+            // die(var_dump($e->getMessage()));
+            return header('Location: '.$errorURL);
+
+        }
     }
 
 }
