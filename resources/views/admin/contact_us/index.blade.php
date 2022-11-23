@@ -67,7 +67,7 @@
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
                                                     <td>{{ $contact->name }}</td>
-                                                    <td>{{ $contact->email }}</td>
+                                                    <td><a class="btn btn-success" href="mailto:{{ $contact->email }}">{{ $contact->email }}</a></td>
                                                     <td>{{ $contact->subject }}</td>
                                                     <td>{{ $contact->created_at->diffForHumans() }}</td>
                                                     <td>
@@ -218,14 +218,15 @@
                                                                             :</label>
                                                                         <input id="created_at" type="text" name="created_at"
                                                                                class="form-control"
-                                                                               value="{{ $contact->created_at }}"
+                                                                               value="{{ $contact->created_at->diffForHumans() }}"
                                                                                disabled>
                                                                     </div>
                                                                     <div class="col-12">
                                                                         <label for="message"
                                                                                class="mr-sm-2">{{ trans('home.message') }}
                                                                             :</label>
-                                                                        <textarea class="form-control" id="message" name="message" rows="10"></textarea>
+                                                                        <textarea class="form-control" id="message" name="message" rows="10">{{ $contact->message }}</textarea>
+                                                                        <textarea class="form-control" id="message" name="message" rows="10" disabled>{{ $contact->message }}</textarea>
                                                                     </div>
 
 

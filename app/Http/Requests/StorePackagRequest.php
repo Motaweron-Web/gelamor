@@ -32,6 +32,7 @@ class StorePackagRequest extends FormRequest
             'end' => 'required|date',
             'currency_ar' => 'required',
             'currency_en' => 'required',
+            'type' => 'required',
             'status' => 'required',
 
         ];

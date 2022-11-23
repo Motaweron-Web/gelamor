@@ -21,10 +21,15 @@ class Package extends Model
         'price',
         'currency_ar',
         'currency_en',
+        'type',
         'status'
-
-
     ];
+
+    protected $dates = [
+       'start',
+        'end'
+    ];
+
 
     public function meal_type(){
 
