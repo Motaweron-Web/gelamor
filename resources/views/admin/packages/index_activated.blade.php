@@ -70,7 +70,7 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{ lang() == 'ar' ? $package->name_ar : $package->name_en  }}</td>
                                                     <td>{{ $package->status }}</td>
-                                                    <td>{{ $package->end }}</td>
+                                                    <td>{{ $package->end->diffInDays() . ' ' . trans('home.days') }}</td>
                                                     <td>Visa</td>
                                                     <td>
                                                         {{--                                                        <button type="button" class="btn btn-info btn-sm"--}}
@@ -83,11 +83,8 @@
                                                                 data-target="#delete{{ $package->id }}"
                                                                 title="{{ trans('home.delete') }}"><i
                                                                 class="fa fa-trash"></i></button>
-                                                        <button type="button" class="btn btn-success btn-sm disabled"
-                                                                data-toggle="modal"
-                                                                data-target="#activated{{ $package->id }}"
-                                                                title="{{ trans('home.activated') }}"><i class="fa fa-check"></i>
-                                                        </button>
+                                                        <a href="{{route('status',$package->id)}}"> <button type="button" class="btn btn-warning btn-sm" title="تغيير الحاله"><i class="fa fa-minus-circle"></i>
+                                                                تغيير الحاله</button></a>
                                                     </td>
                                                 </tr>
 
@@ -332,8 +329,8 @@
                                                         :</label>
                                                     <select class="form-control" style="height: 4rem" id="name_en" name="name_en">
 
-                                                        <option value="{{ $package->id }}">{{ 'Private Package' }}</option>
-                                                        <option value="0">{{ 'Normal Package' }}</option>
+                                                        <option>{{ 'Private Package' }}</option>
+                                                        <option>{{ 'Normal Package' }}</option>
                                                     </select>
                                                     <label for="details"
                                                            class="mr-sm-2">{{ 'Details' }}
