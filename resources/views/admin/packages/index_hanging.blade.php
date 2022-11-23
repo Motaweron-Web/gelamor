@@ -323,26 +323,26 @@
                                                     <input id="start" type="date" name="start" class="form-control"
                                                            required>
                                                     <label for="currency_ar"
-                                                           class="mr-sm-2">{{ trans('home.currency_ar') }}
+                                                           class="mr-sm-2">{{ trans('home.currency') }}
                                                         :</label>
-                                                    <input id="currency_ar" type="text" name="currency_ar"
-                                                           class="form-control"
-                                                           required>
+                                                    <select class="form-control" style="height: 4rem"
+                                                            name="currency_en">
+                                                        <option value="" disabled
+                                                                selected>{{ trans('home.currency') }}</option>
+                                                        @foreach($currencies as $currency)
+                                                            <option value="{{ $currency->name_en  }}">
+                                                                {{ lang() == 'ar' ? $currency->name_ar : $currency->name_en }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                     <label for="status"
                                                            class="mr-sm-2">{{ trans('home.status') }}
                                                         :</label>
                                                     <select class="form-control" style="height: 4rem" name="status">
+                                                        <option value="" disabled
+                                                                selected>{{ trans('home.status') }}</option>
                                                         <option value="show">{{ trans('home.paid') }}</option>
                                                         <option value="hide">{{ trans('home.unpaid') }}</option>
-                                                    </select>
-                                                    <label for="type"
-                                                           class="mr-sm-2">{{ trans('home.type_package') }}
-                                                        :</label>
-                                                    <select class="form-control" style="height: 4rem" name="type">
-                                                        <option
-                                                            value="basic">{{ trans('home.private_package') }}</option>
-                                                        <option
-                                                            value="special">{{ trans('home.normal_package') }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -361,17 +361,22 @@
                                                         :</label>
                                                     <input id="end" type="date" name="end" class="form-control"
                                                            required>
-                                                    <label for="currency_en"
-                                                           class="mr-sm-2">{{ trans('home.currency_en') }}
-                                                        :</label>
-                                                    <input id="currency_en" type="text" name="currency_en"
-                                                           class="form-control"
-                                                           required>
                                                     <label for="price"
                                                            class="mr-sm-2">{{ trans('home.price') }}
                                                         :</label>
                                                     <input id="price" type="number" name="price" class="form-control"
                                                            required>
+                                                    <label for="type"
+                                                           class="mr-sm-2">{{ trans('home.type_package') }}
+                                                        :</label>
+                                                    <select class="form-control" style="height: 4rem" name="type">
+                                                        <option value="" disabled
+                                                                selected>{{ trans('home.type_package') }}</option>
+                                                        <option
+                                                            value="basic">{{ trans('home.private_package') }}</option>
+                                                        <option
+                                                            value="special">{{ trans('home.normal_package') }}</option>
+                                                    </select>
                                                 </div>
 
                                             </div>

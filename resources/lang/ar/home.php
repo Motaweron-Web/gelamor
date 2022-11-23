@@ -22,6 +22,7 @@ return [
     'packages' => 'الباقات',
     'messages' => 'الرسائل',
     'more' => 'المزيد',
+    'countries' => 'الدول',
 
 
     // Admins

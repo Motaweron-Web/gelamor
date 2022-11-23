@@ -47,12 +47,12 @@
                                     <div class="clearfix">
                                         <div class="float-left">
                                     <span class="text-warning">
-                                        <i class="fas fa-chalkboard-teacher highlight-icon" aria-hidden="true"></i>
+                                        <i class="fas fa-globe highlight-icon" aria-hidden="true"></i>
                                     </span>
                                         </div>
                                         <div class="float-right text-right">
-                                            <p class="card-text text-dark">@lang('home.messages')</p>
-                                            <h4>{{\App\Models\ContactUs::count()}}</h4>
+                                            <p class="card-text text-dark">@lang('home.countries')</p>
+                                            <h4>{{\App\Models\Country::count()}}</h4>
                                         </div>
                                     </div>
                                     <p class="text-muted pt-3 mb-0 mt-2 border-top">
@@ -69,17 +69,17 @@
                                     <div class="clearfix">
                                         <div class="float-left">
                                     <span class="text-success">
-                                        <i class="fas fa-hat-chef highlight-icon" aria-hidden="true"></i>
+                                        <i class="fa fa-shopping-bag highlight-icon" aria-hidden="true"></i>
                                     </span>
                                         </div>
                                         <div class="float-right text-right">
-                                            <p class="card-text text-dark">@lang('home.chef')</p>
-                                            <h4>{{\App\Models\Chef::count()}}</h4>
+                                            <p class="card-text text-dark">@lang('home.orders')</p>
+                                            <h4>{{\App\Models\OrderSpecial::count()}}</h4>
                                         </div>
                                     </div>
                                     <p class="text-muted pt-3 mb-0 mt-2 border-top">
                                         <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a
-                                            href="{{route('chef.index')}}" target="_blank"><span
+                                            href="" target="_blank"><span
                                                 class="text-danger">@lang('home.more')</span></a>
                                     </p>
                                 </div>

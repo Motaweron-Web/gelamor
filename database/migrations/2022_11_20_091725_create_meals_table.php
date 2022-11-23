@@ -19,6 +19,7 @@ class CreateMealsTable extends Migration
             $table->integer('calories')->comment('السعرات');
             $table->integer('Fats')->comment('الدهون');
             $table->integer('carbohydrates')->comment('الكربوهيدرات');
+            $table->text('comment')->nullable()->comment('ملاحظات');
             $table->unsignedBigInteger('meal_type_id')->comment('نوع الوجبه');
             $table->timestamps();
 
