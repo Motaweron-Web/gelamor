@@ -30,8 +30,10 @@ class MealController extends Controller
         if ($request->has('img')) {
             $inputs['img'] = $this->saveImage($request->img, 'assets/uploads/meals');
         }
+            $meal = Meal::create($inputs);
 
-        if (Meal::create($inputs)) {
+        if ($meal) {
+            $meal->component()->attach($request->component_ids);
             toastr()->success(trans('messages.create_message_success'));
             return redirect()->route('meals.index');
         } else {
@@ -51,16 +53,17 @@ class MealController extends Controller
 
     public function update(UpdateMealRequest $request)
     {
-        $meal_type = Meal::find($request->id);
+        $meal = Meal::find($request->id);
 
         $inputs = $request->all();
         if ($request->has('img')) {
-            if (file_exists($meal_type->img)) {
-                unlink($meal_type->img);
+            if (file_exists($meal->img)) {
+                unlink($meal->img);
             }
             $inputs['img'] = $this->saveImage($request->img, 'assets/uploads/meals');
         }
-        if ($meal_type->update($inputs)) {
+        if ($meal->update($inputs)) {
+            $meal->component()->sync($request->component_ids);
             toastr()->success(trans('messages.update_message_success'));
             return redirect()->route('meals.index');
         } else {

@@ -88,13 +88,14 @@
                                                                 title="{{ trans('home.show') }}"><i
                                                                 class="fa fa-eye"></i>
                                                         </button>
-                                                        <form action="{{ route('components.index') }}" method="get" style="display: contents">
-                                                            <input name="id" value="{{ $type->id }}" hidden>
-                                                            <button type="submit" class="btn btn-success btn-sm"
-                                                                    title="{{ trans('home.add') }}"><i
-                                                                    class="fas fa-carrot"> {{ trans('home.add_component') }}</i>
-                                                            </button>
-                                                        </form>
+                                                        {{--                                                        <form action="{{ route('components.index') }}" method="get"--}}
+                                                        {{--                                                              style="display: contents">--}}
+                                                        {{--                                                            <input name="id" value="{{ $type->id }}" hidden>--}}
+                                                        {{--                                                            <button type="submit" class="btn btn-success btn-sm"--}}
+                                                        {{--                                                                    title="{{ trans('home.add') }}"><i--}}
+                                                        {{--                                                                    class="fas fa-carrot"> {{ trans('home.add_component') }}</i>--}}
+                                                        {{--                                                            </button>--}}
+                                                        {{--                                                        </form>--}}
                                                     </td>
                                                 </tr>
 
@@ -203,6 +204,26 @@
                                                                                     <option
                                                                                         value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
                                                                                         {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        selected>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                    <option
+                                                                                        value="{{ $value->id }}">
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
                                                                                     </option>
                                                                                 @endforeach
                                                                             </select>
@@ -469,6 +490,25 @@
                                                             <option
                                                                 value="{{ $package->id }}">
                                                                 {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <label for="Name_en"
+                                                           class="mr-sm-2">{{ trans('home.components_list') }}
+                                                        :</label>
+                                                    <select class="form-control"
+                                                            name="component_ids[]"
+                                                            style="height: calc(10.1rem + 2px);" required
+                                                            multiple="multiple">
+                                                        <option value=""
+                                                                selected>@lang('home.components_list')</option>
+                                                        @foreach($component as $c)
+                                                            <option
+                                                                value="{{ $c->id }}">
+                                                                {{ (lang() == 'ar') ? $c->name_ar : $c->name_en }}
                                                             </option>
                                                         @endforeach
                                                     </select>
