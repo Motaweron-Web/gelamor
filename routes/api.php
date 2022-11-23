@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth','middleware' => 'check:user-api'], function () {
 
     Route::post('user/logout',[UserController::class,'logout']);
+    Route::post('pay-credit-card',[PaymentController::class,'pay']);
+
 });
 
 //end auth user
@@ -48,9 +50,6 @@ Route::group(['prefix' => 'setting'], function () {
 
     Route::get('show',[\App\Http\Controllers\Api\SettingController::class,'setting']);
 });
-
-
-Route::post('pay-credit-card',[PaymentController::class,'pay']);
 
 Route::group(['prefix' => 'packages'], function () {
 
