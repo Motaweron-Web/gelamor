@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ContactUsController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;
@@ -23,14 +24,15 @@ use Illuminate\Support\Facades\Route;
 
      Route::post('user/login',[UserController::class,'login']);
      Route::post('user/register',[UserController::class,'register']);
-     Route::post('user/contact_us',[UserController::class,'contact_us']);
+
  });
 
 Route::group(['prefix' => 'auth','middleware' => 'check:user-api'], function () {
 
     Route::post('user/logout',[UserController::class,'logout']);
     Route::post('pay-credit-card',[PaymentController::class,'pay']);
-
+    Route::post('contact-us',[UserController::class,'contact_us']);
+    Route::post('contact-us-reply',[ContactUsController::class,'contact_us_reply']);
 });
 
 //end auth user
@@ -41,6 +43,7 @@ Route::group(['prefix' => 'auth','middleware' => 'check:user-api'], function () 
 
     Route::post('user/update',[ProfileController::class,'update']);
     Route::get('user/getProfile',[ProfileController::class,'getProfile']);
+
 });
 
 
