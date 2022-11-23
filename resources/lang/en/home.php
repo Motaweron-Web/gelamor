@@ -96,10 +96,19 @@ return [
     'end' => 'End',
     'price' => 'Price',
     'currency' => 'Currency',
+    'currency_ar' => 'Currency Ar',
+    'currency_en' => 'Currency En',
     'status' => 'Status',
     'paid' => 'Paid',
     'unpaid' => 'Unpaid',
     'delete_package' => 'Delete Package',
+    'package_name_ar' => 'Package Name Ar',
+    'package_name_en' => 'Package Name En',
+    'type_package' => 'Package Type',
+    'private_package' => 'Private Package',
+    'normal_package' => 'Normal Package',
+    'days' => 'Days',
+    'change_state' => 'Change State',
 
     // Complaints and Reports
     'complaints_and_reports' => 'Complaints and Reports',
@@ -142,6 +151,8 @@ return [
     // meal Type
     'meal_type' => 'Meal Type',
     'details' => 'Details',
+    'details_ar' => 'Details Ar',
+    'details_en' => 'Details En',
     'protein' => 'Protein',
     'calories' => 'Calories',
     'Fats' => 'Fats',

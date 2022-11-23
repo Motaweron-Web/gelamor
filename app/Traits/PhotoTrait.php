@@ -5,7 +5,7 @@ namespace App\Traits;
 use Buglinjo\LaravelWebp\Webp;
 use Illuminate\Support\Facades\File;
 
-Trait  PhotoTrait
+Trait   PhotoTrait
 {
     function saveImage($photo,$folder,$type = 'image',$quality_ratio = 90){
 
