@@ -33,7 +33,7 @@ class StorePackagRequest extends FormRequest
             'currency_ar' => 'nullable',
             'currency_en' => 'required',
             'type' => 'required',
-            'status' => 'required',
+            'payment_method' => 'required',
 
         ];
     }

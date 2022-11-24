@@ -12,14 +12,14 @@ class PackageController extends Controller
 {
     public function index_hanging()
     {
-        $packages = Package::get();
+        $packages = Package::where('status','hide')->get();
         $currencies = Currency::get();
         return view('admin.packages.index_hanging', compact('packages','currencies'));
     }
 
     public function index_activated()
     {
-        $packages = Package::get();
+        $packages = Package::where('status','show')->get();;
         return view('admin.packages.index_activated', compact('packages'));
     }
 

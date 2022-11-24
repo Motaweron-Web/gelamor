@@ -23,6 +23,11 @@ return [
     'messages' => 'Messages',
     'more' => 'More',
     'countries' => 'Countries',
+    'cash_package' => 'Cash Packages',
+    'visa' => 'Visa',
+    'cash' => 'Cash',
+    'wallet' => 'Wallet',
+
 
 
     // admins

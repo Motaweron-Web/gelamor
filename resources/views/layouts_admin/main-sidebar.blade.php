@@ -95,7 +95,7 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="packages-menu" class="collapse" data-parent="#sidebarnav">
-                                <li><a href="{{ route('package.index_hanging') }}">@lang('home.hanging_bouquets')</a></li>
+                                <li><a href="{{ route('package.index_hanging') }}">@lang('home.cash_package')</a></li>
                                 <li><a href="{{ route('package.index_activated') }}">@lang('home.activated_packages')</a></li>
                             </ul>
                         </li>
