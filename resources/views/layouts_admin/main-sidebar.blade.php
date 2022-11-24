@@ -188,7 +188,7 @@
                             </a>
                             <ul id="classes-menu" class="collapse" data-parent="#sidebarnav">
                                 <li><a href="#!">@lang('home.order_day')</a></li>
-                                <li><a href="#!">@lang('home.all_order')</a></li>
+                                <li><a href="{{ route('chef.orders') }}">@lang('home.all_order')</a></li>
                             </ul>
                         </li>
                     @endif
