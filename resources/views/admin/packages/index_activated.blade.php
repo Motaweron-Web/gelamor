@@ -70,8 +70,8 @@
                                                         <td>{{ $i }}</td>
                                                         <td>{{ lang() == 'ar' ? $package->name_ar : $package->name_en  }}</td>
                                                         <td>{{ ($package->type == 'pasic' ? trans('home.normal_package') : trans('home.private_package')) }}</td>
-                                                        <td>{{ $package->end->format('Y-M-D') }}</td>
-                                                        <td>Visa</td>
+                                                        <td>{{ $package->end->format('Y-m-d') }}</td>
+                                                        <td>{{ (trans('home.'.$package->payment_method)) }}</td>
                                                         <td>
                                                             {{--                                                        <button type="button" class="btn btn-info btn-sm"--}}
                                                             {{--                                                                data-toggle="modal"--}}
@@ -84,7 +84,7 @@
                                                                     title="{{ trans('home.delete') }}"><i
                                                                     class="fa fa-trash"></i></button>
                                                             <a href="{{route('status',$package->id)}}"> <button type="button" class="btn btn-warning btn-sm" title="تغيير الحاله"><i class="fa fa-minus-circle"></i>
-                                                                    تغيير الحاله</button></a>
+                                                                    {{ trans('home.change_state') }}</button></a>
                                                         </td>
                                                     </tr>
 

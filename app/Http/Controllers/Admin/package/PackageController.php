@@ -27,6 +27,13 @@ class PackageController extends Controller
     {
         $inputs = $request->all();
 
+//        if ($request->payment_method == 'cash')
+//        {
+//            $inputs['status'] = 'hide' ;
+//        } else {
+//            $inputs['status'] = 'show' ;
+//        }
+
         if(Package::create($inputs))
         {
             toastr()->success(trans('messages.create_message_success'));
