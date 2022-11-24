@@ -7,6 +7,7 @@ use App\Http\Requests\Password\ResetRequest;
 use App\Models\ResetCodePassword;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class ResetPasswordController extends Controller
@@ -22,11 +23,12 @@ class ResetPasswordController extends Controller
             return helperJson(null, ['message' => trans('passwords.code_is_expire')], 422);
         }
 
+        $password = Hash::make($request->password);
         // find user's email
         $user = User::firstWhere('email', $passwordReset->email);
 
         // update user password
-        $user->update($request->only('password'));
+        $user->update(['password' => $password]);
 
         // delete current code
         $passwordReset->delete();
