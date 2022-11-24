@@ -69,8 +69,8 @@
                                                             <?php $i++; ?>
                                                         <td>{{ $i }}</td>
                                                         <td>{{ lang() == 'ar' ? $package->name_ar : $package->name_en  }}</td>
-                                                        <td>{{ $package->status }}</td>
-                                                        <td>{{ $package->end->diffInDays() . ' ' . trans('home.days') }}</td>
+                                                        <td>{{ ($package->type == 'pasic' ? trans('home.normal_package') : trans('home.private_package')) }}</td>
+                                                        <td>{{ $package->end->format('Y-M-D') }}</td>
                                                         <td>Visa</td>
                                                         <td>
                                                             {{--                                                        <button type="button" class="btn btn-info btn-sm"--}}

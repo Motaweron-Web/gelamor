@@ -23,6 +23,11 @@ return [
     'messages' => 'الرسائل',
     'more' => 'المزيد',
     'countries' => 'الدول',
+    'cash_package' => 'باقات كاش',
+    'visa' => 'فيزا',
+    'cash' => 'كاش',
+    'wallet' => 'محفظة',
+
 
 
     // Admins

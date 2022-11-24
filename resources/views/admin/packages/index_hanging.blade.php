@@ -336,13 +336,14 @@
                                                         @endforeach
                                                     </select>
                                                     <label for="status"
-                                                           class="mr-sm-2">{{ trans('home.status') }}
+                                                           class="mr-sm-2">{{ trans('home.payment') }}
                                                         :</label>
-                                                    <select class="form-control" style="height: 4rem" name="status">
+                                                    <select class="form-control" style="height: 4rem" name="payment_method" required>
                                                         <option value="" disabled
-                                                                selected>{{ trans('home.status') }}</option>
-                                                        <option value="show">{{ trans('home.paid') }}</option>
-                                                        <option value="hide">{{ trans('home.unpaid') }}</option>
+                                                                selected>{{ trans('home.payment') }}</option>
+                                                        <option value="visa">{{ trans('home.visa') }}</option>
+                                                        <option value="cash">{{ trans('home.cash') }}</option>
+                                                        <option value="wallet">{{ trans('home.wallet') }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -373,9 +374,9 @@
                                                         <option value="" disabled
                                                                 selected>{{ trans('home.type_package') }}</option>
                                                         <option
-                                                            value="basic">{{ trans('home.private_package') }}</option>
+                                                            value="basic">{{ trans('home.normal_package') }}</option>
                                                         <option
-                                                            value="special">{{ trans('home.normal_package') }}</option>
+                                                            value="special">{{ trans('home.private_package') }}</option>
                                                     </select>
                                                 </div>
 

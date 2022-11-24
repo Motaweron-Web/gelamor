@@ -13,10 +13,12 @@ class CreateContactUsTable extends Migration
 
 
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email');
+            $table->unsignedBigInteger('user_id');
             $table->string('subject');
             $table->string('message');
+
+
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
 
         });
