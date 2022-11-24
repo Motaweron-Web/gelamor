@@ -366,7 +366,7 @@
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"
                                                                     class="modal-title"
                                                                     id="exampleModalLabel">
-                                                                    {{ trans('home.delete_meal_type_list') }}
+                                                                    {{ trans('home.delete_meal') }}
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
@@ -410,7 +410,7 @@
                                     <div class="modal-header">
                                         <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                             id="exampleModalLabel">
-                                            {{ trans('home.add_meal_type_list') }}
+                                            {{ trans('home.add_meal') }}
                                         </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
