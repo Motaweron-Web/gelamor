@@ -20,7 +20,7 @@ class CreatePackagesTable extends Migration
             $table->date('start');
             $table->date('end');
             $table->double('price',15,2);
-            $table->string('currency_ar');
+            $table->string('currency_ar')->nullable();
             $table->string('currency_en');
             $table->enum('type',['basic','special'])->comment('نوع الباقه');
             $table->enum('status',['show','hide'])->comment('حاله الباقه');

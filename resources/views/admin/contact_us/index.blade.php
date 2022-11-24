@@ -225,7 +225,6 @@
                                                                         <label for="message"
                                                                                class="mr-sm-2">{{ trans('home.message') }}
                                                                             :</label>
-                                                                        <textarea class="form-control" id="message" name="message" rows="10">{{ $contact->message }}</textarea>
                                                                         <textarea class="form-control" id="message" name="message" rows="10" disabled>{{ $contact->message }}</textarea>
                                                                     </div>
 

@@ -70,8 +70,6 @@
                                                         <td>{{ lang() == 'ar' ? $package->name_ar : $package->name_en  }}</td>
                                                         <td>{{ $package->type }}</td>
                                                         <td>{{ $package->end->diffInDays() . " " . trans('home.days') }}</td>
-                                                        <td>{{ $package->status }}</td>
-                                                        <td>{{ $package->end }}</td>
                                                         <td>Visa</td>
                                                         <td>
                                                             {{--                                                        <button type="button" class="btn btn-info btn-sm"--}}
@@ -90,9 +88,6 @@
                                                                     <i class="fa fa-minus-circle"></i>
                                                                     {{ trans('home.change_state') }}
 
-                                                                        title="تغيير الحاله"><i
-                                                                        class="fa fa-minus-circle"></i>
-                                                                    تغيير الحاله
                                                                 </button>
                                                             </a>
                                                         </td>
@@ -295,7 +290,7 @@
                              aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
+                                <v class="modal-content">
                                     <div class="modal-header">
                                         <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                             id="exampleModalLabel">
@@ -319,13 +314,6 @@
                                                            required>
                                                     <label for="details_ar"
                                                            class="mr-sm-2">{{ trans('home.details_ar') }}
-                                                    <select class="form-control" style="height:4rem" id="name_ar"
-                                                            name="name_ar">
-                                                        <option>{{ 'باقة خاصة' }}</option>
-                                                        <option>{{ 'باقة عادية' }}</option>
-                                                    </select>
-                                                    <label for="details"
-                                                           class="mr-sm-2">{{ 'التفاصيل' }}
                                                         :</label>
                                                     <textarea id="details_ar" name="details_ar" class="form-control"
                                                               required></textarea>
@@ -335,26 +323,26 @@
                                                     <input id="start" type="date" name="start" class="form-control"
                                                            required>
                                                     <label for="currency_ar"
-                                                           class="mr-sm-2">{{ trans('home.currency_ar') }}
+                                                           class="mr-sm-2">{{ trans('home.currency') }}
                                                         :</label>
-                                                    <input id="currency_ar" type="text" name="currency_ar"
-                                                           class="form-control"
-                                                           required>
+                                                    <select class="form-control" style="height: 4rem"
+                                                            name="currency_en">
+                                                        <option value="" disabled
+                                                                selected>{{ trans('home.currency') }}</option>
+                                                        @foreach($currencies as $currency)
+                                                            <option value="{{ $currency->name_en  }}">
+                                                                {{ lang() == 'ar' ? $currency->name_ar : $currency->name_en }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                     <label for="status"
                                                            class="mr-sm-2">{{ trans('home.status') }}
                                                         :</label>
                                                     <select class="form-control" style="height: 4rem" name="status">
+                                                        <option value="" disabled
+                                                                selected>{{ trans('home.status') }}</option>
                                                         <option value="show">{{ trans('home.paid') }}</option>
                                                         <option value="hide">{{ trans('home.unpaid') }}</option>
-                                                    </select>
-                                                    <label for="type"
-                                                           class="mr-sm-2">{{ trans('home.type_package') }}
-                                                        :</label>
-                                                    <select class="form-control" style="height: 4rem" name="type">
-                                                        <option
-                                                            value="basic">{{ trans('home.private_package') }}</option>
-                                                        <option
-                                                            value="special">{{ trans('home.normal_package') }}</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6">
@@ -365,15 +353,6 @@
                                                            required>
                                                     <label for="details_en"
                                                            class="mr-sm-2">{{ trans('home.details_en') }}
-                                                    <select class="form-control" style="height: 4rem" id="name_en"
-                                                            name="name_en">
-
-                                                        <option
-                                                            value="{{ $package->id }}">{{ 'Private Package' }}</option>
-                                                        <option value="0">{{ 'Normal Package' }}</option>
-                                                    </select>
-                                                    <label for="details"
-                                                           class="mr-sm-2">{{ 'Details' }}
                                                         :</label>
                                                     <textarea id="details_en" name="details_en" class="form-control"
                                                               required></textarea>
@@ -382,18 +361,24 @@
                                                         :</label>
                                                     <input id="end" type="date" name="end" class="form-control"
                                                            required>
-                                                    <label for="currency_en"
-                                                           class="mr-sm-2">{{ trans('home.currency_en') }}
-                                                        :</label>
-                                                    <input id="currency_en" type="text" name="currency_en"
-                                                           class="form-control"
-                                                           required>
                                                     <label for="price"
                                                            class="mr-sm-2">{{ trans('home.price') }}
                                                         :</label>
                                                     <input id="price" type="number" name="price" class="form-control"
                                                            required>
+                                                    <label for="type"
+                                                           class="mr-sm-2">{{ trans('home.type_package') }}
+                                                        :</label>
+                                                    <select class="form-control" style="height: 4rem" name="type">
+                                                        <option value="" disabled
+                                                                selected>{{ trans('home.type_package') }}</option>
+                                                        <option
+                                                            value="basic">{{ trans('home.private_package') }}</option>
+                                                        <option
+                                                            value="special">{{ trans('home.normal_package') }}</option>
+                                                    </select>
                                                 </div>
+
                                             </div>
 
                                             <br><br>
@@ -407,7 +392,6 @@
                                             </div>
                                         </form>
                                     </div>
-
 
                             </div>
                         </div>

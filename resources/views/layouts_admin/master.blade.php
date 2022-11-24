@@ -19,7 +19,7 @@
  preloader -->
 
         <div id="pre-loader">
-            <img src="{{ URL::asset('assets/images/pre-loader/loader-01.svg') }}" alt="">
+            <img src="{{ URL::asset('assets/images/pre-loader/'. (lang() == 'ar' ? 'loader-ar.svg' : 'loader-en.svg')) }}" alt="">
         </div>
 
         <!--=================================

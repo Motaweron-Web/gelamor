@@ -22,6 +22,7 @@ return [
     'packages' => 'Packages',
     'messages' => 'Messages',
     'more' => 'More',
+    'countries' => 'Countries',
 
 
     // admins
