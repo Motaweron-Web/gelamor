@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $orders = Order::get();
+        $orders = Order::where('date_of_order',$id)->get();
         return view('chef.order.index', compact('orders'));
     }
 }

@@ -14,41 +14,45 @@
 @endsection
 @section('content')
     <!-- row -->
-    <div class="row">
-        <div class="col-md-12 mb-30">
-            <div class="card card-statistics h-100">
-                <div class="card-body">
-                    <h1>التقويم</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+    {{--    <div class="row">--}}
+    {{--        <div class="col-md-12 mb-30">--}}
+    {{--            <div class="card card-statistics h-100">--}}
+    {{--                <div class="card-body">--}}
+    {{--                    <h1>التقويم</h1>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
     <style>
-        .greenCard{
+        .greenCard {
             background: #2fbe21 !important;
             border-radius: 10px !important;
         }
-        .greenCardText h4 , .greenCardText p , .greenCalendar{
+
+        .greenCardText h4, .greenCardText p, .greenCalendar {
             color: #FFFFFF !important;
         }
     </style>
     <div class="row">
         <?php $start = \Carbon\Carbon::now();
         $end = \Carbon\Carbon::now()->addDays(8);
-
         ?>
         @for($i = $start ; $i <= $end ; $i->modify('+1 day'))
             <div class="{{ ($i->isToday()) ? 'col-12 mb-4' : 'col-xl-4 col-lg-6 col-md-6 mb-30'  }} ">
-                <a href="{{ route('chef.orders',$i->format('Y-m-d')) }}">
-                    <div class="card card-statistics h-100 {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'greenCard' : ''}}">
+                <?php $id = $i->format('Y-m-d'); ?>
+                <a href="{{ route('chef.orders',$id) }}">
+                    <div
+                        class="card card-statistics h-100 {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'greenCard' : ''}}">
                         <div class="card-body">
                             <div class="clearfix">
                                 <div class="float-left">
                                     <span class="text-success">
-                                        <i class="fa fa-calendar highlight-icon {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'greenCalendar' : ''}} " aria-hidden="true"></i>
+                                        <i class="fa fa-calendar highlight-icon {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'greenCalendar' : ''}} "
+                                           aria-hidden="true"></i>
                                     </span>
                                 </div>
-                                <div class="float-right text-right {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'greenCardText' : ''}} ">
+                                <div
+                                    class="float-right text-right {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'greenCardText' : ''}} ">
                                     <p class="card-text text-dark">
                                         {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'today' : \Carbon\Carbon::parse($i)->dayName }}
                                     </p>
