@@ -57,7 +57,7 @@ login-->
                 </div>
                 <div class="col-lg-4 col-md-6 bg-white">
                     <div class="login-fancy pb-40 clearfix">
-                        <h3 class="mb-30">تسجيل الدخول</h3>
+                        <h3 class="mb-30">تسجيل الدخول الخاص بالشيف</h3>
 
                         <form method="POST" action="{{ route('chef.login') }}">
                             @csrf

@@ -13,6 +13,10 @@ return [
     |
     */
 
+
+    'login_success' => 'Your Login was successful',
+    'login_error' => 'Your Login was Error Try Again email or password not correct',
+
     'create_message_success' => 'Data Created Successfully',
     'edit_message_success' => 'Data Edit Successfully',
     'update_message_success' => 'Data Updated Successfully',

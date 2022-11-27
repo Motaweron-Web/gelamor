@@ -11,6 +11,7 @@ header start-->
 
 
     </div>
+    @if(Auth::guard('admin')->check())
     <!-- Top bar left -->
     <ul class="nav navbar-nav mr-auto">
         <li class="nav-item">
@@ -29,6 +30,7 @@ header start-->
         </li>
     </ul>
     <!-- top bar right -->
+    @endif
     <ul class="nav navbar-nav ml-auto">
 
         <div class="btn-group mb-1">
