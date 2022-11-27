@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
 use App\Http\Controllers\Chef\home\HomeController;
+use App\Http\Controllers\Chef\order\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\chef\ChefController;
 use App\Http\Controllers\Admin\package\PackageController;
@@ -112,10 +113,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         #### ContactUs ####
         Route::get('/contact_us', [ContactUsController::class, 'index'])->name('contact_us.index');
         Route::post('/contact_us/delete', [ContactUsController::class, 'delete'])->name('contact_us.delete');
-        });
-
     });
-    ################################# end Admin #################################
+
+
+################################# end Admin #################################
 
 
     /*
@@ -130,16 +131,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     */
 
 
-    ##################### Chef Login #################################
+##################### Chef Login #################################
 
     Route::group(['prefix' => 'chef'], function () {
-//        Route::get('/chef-login', [SelectLoginController::class, 'index'])->name('select-login');
         Route::get('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'index'])->name('chef.login');
         Route::POST('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'login'])->name('chef.login');
         Route::post('ch-logout', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'logout'])->name('chef.logout');
     });
 
-    ################## ADMINS ROUTES ##########################
+################## ADMINS ROUTES ##########################
     Route::group(['prefix' => 'chef', 'middleware' => 'Chef'], function () {
 
 
@@ -147,9 +147,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('/', [HomeController::class, 'index'])->name('chef.home');
 //        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
 
+        ###################   Order ##################################
+        Route::get('/order/{id}', [OrderController::class, 'index'])->name('chef.orders');
+        Route::get('/order/{id}/{user_id}/{meal_type_id}', [OrderController::class, 'details'])->name('chef.order.details');
 
-
-
+    });
 });
 
 

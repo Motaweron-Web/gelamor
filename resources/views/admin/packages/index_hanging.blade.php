@@ -68,9 +68,9 @@
                                                             <?php $i++; ?>
                                                         <td>{{ $i }}</td>
                                                         <td>{{ lang() == 'ar' ? $package->name_ar : $package->name_en  }}</td>
-                                                        <td>{{ $package->type }}</td>
-                                                        <td>{{ $package->end->diffInDays() . " " . trans('home.days') }}</td>
-                                                        <td>Visa</td>
+                                                        <td>{{ ($package->type == 'pasic' ? trans('home.normal_package') : trans('home.private_package')) }}</td>
+                                                        <td>{{ $package->end->format('Y-m-d') }}</td>
+                                                        <td>{{ (trans('home.'.$package->payment_method)) }}</td>
                                                         <td>
                                                             {{--                                                        <button type="button" class="btn btn-info btn-sm"--}}
                                                             {{--                                                                data-toggle="modal"--}}
@@ -83,10 +83,10 @@
                                                                     title="{{ trans('home.delete') }}"><i
                                                                     class="fa fa-trash"></i></button>
                                                             <a href="{{route('status',$package->id)}}">
-                                                                <button type="button" class="btn btn-warning btn-sm"
+                                                                <button type="button" class="btn btn-success btn-sm"
                                                                         title="{{ trans('home.change_state') }}">
                                                                     <i class="fa fa-minus-circle"></i>
-                                                                    {{ trans('home.change_state') }}
+                                                                    {{ trans('home.activated') }}
 
                                                                 </button>
                                                             </a>
@@ -304,7 +304,7 @@
                                         <!-- add_form -->
                                         <form action="{{ route('package.store_hanging') }}" method="POST" id="addForm">
                                             @csrf
-                                            <input type="text" hidden name="role_id" value="1">
+
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <label for="name"
@@ -335,16 +335,16 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    <label for="status"
-                                                           class="mr-sm-2">{{ trans('home.payment') }}
-                                                        :</label>
-                                                    <select class="form-control" style="height: 4rem" name="payment_method" required>
-                                                        <option value="" disabled
-                                                                selected>{{ trans('home.payment') }}</option>
-                                                        <option value="visa">{{ trans('home.visa') }}</option>
-                                                        <option value="cash">{{ trans('home.cash') }}</option>
-                                                        <option value="wallet">{{ trans('home.wallet') }}</option>
-                                                    </select>
+{{--                                                    <label for="status"--}}
+{{--                                                           class="mr-sm-2">{{ trans('home.payment') }}--}}
+{{--                                                        :</label>--}}
+{{--                                                    <select class="form-control" style="height: 4rem" name="payment_method" required>--}}
+{{--                                                        <option value="" disabled--}}
+{{--                                                                selected>{{ trans('home.payment') }}</option>--}}
+{{--                                                        <option value="visa">{{ trans('home.visa') }}</option>--}}
+{{--                                                        <option value="cash">{{ trans('home.cash') }}</option>--}}
+{{--                                                        <option value="wallet">{{ trans('home.wallet') }}</option>--}}
+{{--                                                    </select>--}}
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="name"
@@ -367,6 +367,8 @@
                                                         :</label>
                                                     <input id="price" type="number" name="price" class="form-control"
                                                            required>
+                                                </div>
+                                                <div class="col-12">
                                                     <label for="type"
                                                            class="mr-sm-2">{{ trans('home.type_package') }}
                                                         :</label>

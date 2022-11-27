@@ -49,27 +49,30 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>{{ trans('home.user_id') }}</th>
-                                                @foreach($meal_types as $type)
-                                                    <th>{{ ( lang() == 'ar' ) ? $type->name_ar : $type->name_en }}</th>
-                                                @endforeach
+                                                <th>{{ trans('home.user_id') }}</th>
+                                                <th>{{ trans('home.user_id') }}</th>
+                                                <th>{{ trans('home.user_id') }}</th>
+                                                <th>{{ trans('home.user_id') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($orders as $order)
-                                                <tr>
-                                                    <td>{{ $order->id }}</td>
-                                                    <td>#{{ $order->user->id }}</td>
-                                                    <td><a class="btn btn btn-success"
-                                                           href="{{ route('chef.order.details',[$order->id,$order->user_id,'breakfast']) }}">{{ trans('home.breakfast') }}</a>
-                                                    </td>
-                                                    <td><a class="btn btn btn-success"
-                                                           href="{{ route('chef.order.details',[$order->id,$order->user_id,'lunch']) }}">{{ trans('home.lunch') }}</a></td>
-                                                    <td><a class="btn btn btn-success"
-                                                           href="{{ route('chef.order.details',[$order->id,$order->user_id,'dinner']) }}">{{ trans('home.dinner') }}</a></td>
-                                                    <td><a class="btn btn btn-success"
-                                                           href="{{ route('chef.order.details',[$order->id,$order->user_id,'snacks']) }}">{{ trans('home.snacks') }}</a></td>
-                                                </tr>
-                                            @endforeach
+                                            @php
+                                                //
+                                            @endphp
+                                                @foreach($orders as $order)
+                                            <tr>
+                                                <td>#{{ $order->id }}</td>
+                                                <td>#</td>
+                                                <td><a class="btn btn btn-success"
+                                                       href="">{{ trans('home.breakfast') }}</a></td>
+                                                <td><a class="btn btn btn-success"
+                                                       href="#!">{{ trans('home.lunch') }}</a></td>
+                                                <td><a class="btn btn btn-success"
+                                                       href="#!">{{ trans('home.dinner') }}</a></td>
+                                                <td><a class="btn btn btn-success"
+                                                       href="#!">{{ trans('home.snacks') }}</a></td>
+                                            </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
