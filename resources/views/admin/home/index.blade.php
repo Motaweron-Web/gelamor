@@ -33,11 +33,11 @@
                                             <h4>{{\App\Models\User::count()}}</h4>
                                         </div>
                                     </div>
-                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a
-                                            href="{{ route('users.index') }}" target="_blank"><span
-                                                class="text-danger">@lang('home.more')</span></a>
-                                    </p>
+{{--                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">--}}
+{{--                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a--}}
+{{--                                            href="{{ route('users.index') }}" target="_blank"><span--}}
+{{--                                                class="text-danger">@lang('home.more')</span></a>--}}
+{{--                                    </p>--}}
                                 </div>
                             </div>
                         </div>
@@ -55,11 +55,11 @@
                                             <h4>{{\App\Models\Country::count()}}</h4>
                                         </div>
                                     </div>
-                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="#!"
-                                                                                                    target="_blank"><span
-                                                class="text-danger">@lang('home.more')</span></a>
-                                    </p>
+{{--                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">--}}
+{{--                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="#!"--}}
+{{--                                                                                                    target="_blank"><span--}}
+{{--                                                class="text-danger">@lang('home.more')</span></a>--}}
+{{--                                    </p>--}}
                                 </div>
                             </div>
                         </div>
@@ -77,11 +77,11 @@
                                             <h4>{{\App\Models\OrderSpecial::count()}}</h4>
                                         </div>
                                     </div>
-                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a
-                                            href="" target="_blank"><span
-                                                class="text-danger">@lang('home.more')</span></a>
-                                    </p>
+{{--                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">--}}
+{{--                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a--}}
+{{--                                            href="" target="_blank"><span--}}
+{{--                                                class="text-danger">@lang('home.more')</span></a>--}}
+{{--                                    </p>--}}
                                 </div>
                             </div>
                         </div>
@@ -99,11 +99,11 @@
                                             <h4>{{\App\Models\Package::count()}}</h4>
                                         </div>
                                     </div>
-                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="#!"
-                                                                                                    target="_blank"><span
-                                                class="text-danger">@lang('home.more')</span></a>
-                                    </p>
+{{--                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">--}}
+{{--                                        <i class="fas fa-binoculars mr-1" aria-hidden="true"></i><a href="#!"--}}
+{{--                                                                                                    target="_blank"><span--}}
+{{--                                                class="text-danger">@lang('home.more')</span></a>--}}
+{{--                                    </p>--}}
                                 </div>
                             </div>
                         </div>

@@ -149,7 +149,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
         ###################   Order ##################################
         Route::get('/order/{id}', [OrderController::class, 'index'])->name('chef.orders');
-        Route::get('/order/{id}/{user_id}/{meal_type_id}', [OrderController::class, 'details'])->name('chef.order.details');
+        Route::get('/orders', [OrderController::class, 'orders'])->name('chef.all_orders');
+//        Route::get('/order/{id}/{user_id}/{meal_type_id}', [OrderController::class, 'details'])->name('chef.order.details');
 
     });
 });
