@@ -10,10 +10,12 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
+
         'user_id',
         'meal_id',
         'date_of_order',
         'protein'
+
         ];
 
     public function meal()

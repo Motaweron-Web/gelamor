@@ -58,3 +58,8 @@ Route::group(['prefix' => 'packages'], function () {
     Route::get('mealTypeWithMeals/{id}',[\App\Http\Controllers\Api\PackageController::class,'mealTypeWithMeals']);//نوع الوجبه بالوجبات التابعه ليها
 });
 
+Route::group(['prefix' => 'orders','middleware' => 'check:user-api'], function () {
+
+    Route::post('store',[\App\Http\Controllers\Api\OrderController::class,'store']);
+
+});
