@@ -134,7 +134,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 ##################### Chef Login #################################
 
     Route::group(['prefix' => 'chef'], function () {
-//        Route::get('/chef-login', [SelectLoginController::class, 'index'])->name('select-login');
         Route::get('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'index'])->name('chef.login');
         Route::POST('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'login'])->name('chef.login');
         Route::post('ch-logout', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'logout'])->name('chef.logout');
@@ -149,7 +148,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 //        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
 
         ###################   Order ##################################
-        Route::get('/order/{id}',[OrderController::class,'index'])->name('chef.orders');
+        Route::get('/order/{id}', [OrderController::class, 'index'])->name('chef.orders');
+        Route::get('/order/{id}/{user_id}/{meal_type_id}', [OrderController::class, 'details'])->name('chef.order.details');
 
     });
 });
