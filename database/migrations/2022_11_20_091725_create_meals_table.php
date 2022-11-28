@@ -19,7 +19,7 @@ class CreateMealsTable extends Migration
             $table->integer('calories')->comment('السعرات');
             $table->integer('Fats')->comment('الدهون');
             $table->integer('carbohydrates')->comment('الكربوهيدرات');
-            $table->unsignedBigInteger('meal_type_id')->comment('نوع الوجبه');
+            $table->unsignedBigInteger('meal_type_id')->comment('نوع الوجبات');
             $table->timestamps();
 
             $table->foreign('meal_type_id')->references('id')->on('meal_types')->cascadeOnUpdate()->cascadeOnDelete();

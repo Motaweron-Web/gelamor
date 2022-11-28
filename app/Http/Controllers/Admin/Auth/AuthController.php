@@ -28,10 +28,11 @@ class AuthController extends Controller
             'password.required' => 'يرجي ادخال كلمة المرور',
         ]);
         if (Auth::guard('admin')->attempt($data)) {
-            toastr()->success('Your Login was successful');
+            toastr()->success(trans('messages.login_success'));
             return redirect()->route('admin.home');
         } else {
-            return redirect()->back();
+            toastr()->success(trans('messages.login_error'));
+            return redirect()->route('admin.login');
         }
     }
 

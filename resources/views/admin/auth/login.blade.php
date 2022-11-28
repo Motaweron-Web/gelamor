@@ -8,7 +8,7 @@
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title></title>
+    <title>{{ trans('home.admins') }}</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico" />
@@ -57,7 +57,7 @@ login-->
                 </div>
                 <div class="col-lg-4 col-md-6 bg-white">
                     <div class="login-fancy pb-40 clearfix">
-                        <h3 class="mb-30">تسجيل الدخول</h3>
+                        <h3 class="mb-30">تسجيل الدخول الخاص بالادمن</h3>
 
                         <form method="POST" action="{{ route('admin.login') }}">
                             @csrf

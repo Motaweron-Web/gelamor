@@ -22,6 +22,12 @@ return [
     'packages' => 'Packages',
     'messages' => 'Messages',
     'more' => 'More',
+    'countries' => 'Countries',
+    'cash_package' => 'Cash Packages',
+    'visa' => 'Visa',
+    'cash' => 'Cash',
+    'wallet' => 'Wallet',
+
 
 
     // admins
@@ -166,7 +172,9 @@ return [
 
 
 
-
+#############################################
+################ chef #######################
+#############################################
 
 
 
@@ -182,5 +190,13 @@ return [
     'orders' => 'Orders',
     'order_day' => 'Order of Day',
     'all_order' => 'All Order',
+
+    // meals
+    'breakfast' => 'Breakfast',
+    'lunch' => 'Lunch',
+    'dinner' => 'Dinner',
+    'snacks' => 'Snacks',
+    'user_id' => 'User ID',
+    'id' => 'ID',
 
 ];

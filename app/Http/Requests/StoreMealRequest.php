@@ -18,7 +18,7 @@ class StoreMealRequest extends FormRequest
         return [
             'name_ar' => 'required',
             'name_en' => 'required',
-            'img' => 'required|image',
+            'img' => 'required|image|mimes:jpeg,jpg,png,gif',
             'protein' => 'required|numeric',
             'calories' => 'required|numeric',
             'Fats' => 'required|numeric',

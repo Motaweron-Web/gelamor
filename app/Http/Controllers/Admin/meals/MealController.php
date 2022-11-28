@@ -20,7 +20,7 @@ class MealController extends Controller
         $meal_type = MealType::get();
         $meals = Meal::get();
         $component = Component::get();
-        return view('admin.meals.index', compact('meals', 'meal_type','component'));
+        return view('admin.meals.index', compact('meals', 'meal_type', 'component'));
     } // end of index
 
     public function store(StoreMealRequest $request)
@@ -28,9 +28,11 @@ class MealController extends Controller
         $inputs = $request->all();
 
         if ($request->has('img')) {
-            $inputs['img'] = $this->saveImage($request->img, 'assets/uploads/meals');
+            $inputs['img'] = $this->saveImage($request->img, 'assets/uploads/meals','photo');
         }
-            $meal = Meal::create($inputs);
+//        dd($inputs);
+
+        $meal = Meal::create($inputs);
 
         if ($meal) {
             $meal->component()->attach($request->component_ids);
@@ -60,7 +62,7 @@ class MealController extends Controller
             if (file_exists($meal->img)) {
                 unlink($meal->img);
             }
-            $inputs['img'] = $this->saveImage($request->img, 'assets/uploads/meals');
+            $inputs['img'] = $this->saveImage($request->img, 'assets/uploads/meals','photo');
         }
         if ($meal->update($inputs)) {
             $meal->component()->sync($request->component_ids);

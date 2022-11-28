@@ -18,7 +18,7 @@ class UpdateMealRequest extends FormRequest
         return [
             'name_ar' => 'required',
             'name_en' => 'required',
-            'img' => 'nullable|image',
+            'img' => 'nullable|image|mimes:jpeg,jpg,png,gif',
             'protein' => 'required|numeric',
             'calories' => 'required|numeric',
             'Fats' => 'required|numeric',

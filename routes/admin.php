@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
 use App\Http\Controllers\Chef\home\HomeController;
+use App\Http\Controllers\Chef\order\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\chef\ChefController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -73,8 +74,39 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         ####### Meals #######
         Route::get('/meals', [MealController::class, 'index'])->name('meals.index');
 
+        Route::post('/meal/store', [MealController::class, 'store'])->name('meals.store');
+        Route::post('/meal/delete', [MealController::class, 'delete'])->name('meals.delete');
+        Route::post('/meal/update', [MealController::class, 'update'])->name('meals.update');
+
+        ####### custom Meals #######
+        Route::group(['prefix' => 'meals'], function () {
+            Route::get('/custom', [CustomMealController::class, 'index'])->name('custom_meal.index');
+            Route::post('/custom/store', [CustomMealController::class, 'store'])->name('custom_meal.store');
+            Route::post('/custom/delete', [CustomMealController::class, 'delete'])->name('custom_meal.delete');
+            Route::post('/custom/update', [CustomMealController::class, 'update'])->name('custom_meal.update');
+        });
+
+        ####### Component #######
+        Route::get('/component', [ComponentController::class, 'index'])->name('components.index');
+        Route::post('/component/store', [ComponentController::class, 'store'])->name('components.store');
+        Route::post('/component/delete', [ComponentController::class, 'delete'])->name('components.delete');
+        Route::post('/component/update', [ComponentController::class, 'update'])->name('components.update');
+
+
+        #### Packages ####
+        Route::get('/packages_hanging', [PackageController::class, 'index_hanging'])->name('package.index_hanging');
+        Route::get('/packages_activated', [PackageController::class, 'index_activated'])->name('package.index_activated');
+        Route::post('/package_hanging/store', [PackageController::class, 'store_hanging'])->name('package.store_hanging');
+        Route::post('/package-hanging/delete', [PackageController::class, 'delete_hanging'])->name('package.delete_hanging');
+        Route::get('/status/{id}', [PackageController::class, 'changeState'])->name('status');
+
+        #### ContactUs ####
+        Route::get('/contact_us', [ContactUsController::class, 'index'])->name('contact_us.index');
+        Route::post('/contact_us/delete', [ContactUsController::class, 'delete'])->name('contact_us.delete');
     });
-    ################################# end Admin #################################
+
+
+################################# end Admin #################################
 
 
 
@@ -92,16 +124,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     */
 
 
-    ##################### Chef Login #################################
+##################### Chef Login #################################
 
     Route::group(['prefix' => 'chef'], function () {
-//        Route::get('/chef-login', [SelectLoginController::class, 'index'])->name('select-login');
         Route::get('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'index'])->name('chef.login');
         Route::POST('ch-login', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'login'])->name('chef.login');
         Route::post('ch-logout', [\App\Http\Controllers\Chef\Auth\AuthController::class, 'logout'])->name('chef.logout');
     });
 
-    ################## ADMINS ROUTES ##########################
+################## ADMINS ROUTES ##########################
     Route::group(['prefix' => 'chef', 'middleware' => 'Chef'], function () {
 
 
@@ -110,6 +141,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::get('/', [HomeController::class, 'index' ])->name('chef.home');
 //        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
 
+        ###################   Order ##################################
+        Route::get('/order/{id}', [OrderController::class, 'index'])->name('chef.orders');
+        Route::get('/orders', [OrderController::class, 'orders'])->name('chef.all_orders');
+//        Route::get('/order/{id}/{user_id}/{meal_type_id}', [OrderController::class, 'details'])->name('chef.order.details');
 
     });
 

@@ -22,7 +22,8 @@ class Package extends Model
         'currency_ar',
         'currency_en',
         'type',
-        'status'
+        'status',
+        'payment_method',
     ];
 
     protected $dates = [
