@@ -45,7 +45,9 @@ class Meal extends Model
         return $this->belongsToMany(User::class,'orders','meal_id','user_id','id','id');
     }
 
-
-
+    public function comments()
+    {
+        $this->hasMany(Comment::class);
+    }
 
 }
