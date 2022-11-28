@@ -8,7 +8,7 @@
 @section('page-header')
     <!--breadcrumb -->
     @section('PageTitle')
-        @lang('home.orders')
+        {{ trans('home.all_order') }}
     @stop
     <!-- breadcrumb -->
 @endsection
@@ -20,13 +20,6 @@
             <div class="card card-statistics h-100">
                 <div class="card-body">
                     <div class="row">
-
-
-                        @if ($errors->any())
-                            <div class="error">{{ $errors->first('Name') }}</div>
-                        @endif
-
-
                         <div class="col-xl-12 mb-30">
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
@@ -49,30 +42,27 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>{{ trans('home.user_id') }}</th>
-                                                <th>{{ trans('home.user_id') }}</th>
-                                                <th>{{ trans('home.user_id') }}</th>
-                                                <th>{{ trans('home.user_id') }}</th>
-                                                <th>{{ trans('home.user_id') }}</th>
+                                                @foreach($meal_types as $meal_type)
+                                                <th>{{ (lang() == 'ar') ? $meal_type->name_ar :  $meal_type->name_en }}</th>
+                                                @endforeach
+                                                <th>{{ trans('home.created_at')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @php
-                                                //
-                                            @endphp
-                                                @foreach($orders as $order)
-                                            <tr>
-                                                <td>#{{ $order->id }}</td>
-                                                <td>#</td>
-                                                <td><a class="btn btn btn-success"
-                                                       href="">{{ trans('home.breakfast') }}</a></td>
-                                                <td><a class="btn btn btn-success"
-                                                       href="#!">{{ trans('home.lunch') }}</a></td>
-                                                <td><a class="btn btn btn-success"
-                                                       href="#!">{{ trans('home.dinner') }}</a></td>
-                                                <td><a class="btn btn btn-success"
-                                                       href="#!">{{ trans('home.snacks') }}</a></td>
-                                            </tr>
-                                                @endforeach
+                                            @foreach($orders as $order)
+                                                @php
+
+                                                @endphp
+                                                <tr>
+                                                    <td>#{{ $order->id }}</td>
+                                                    <td>#{{ $order->user_id }}</td>
+                                                    <td>{{ ($order->meal->meal_type_id == 3) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
+                                                    <td>{{ ($order->meal->meal_type_id == 4) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
+                                                    <td>{{ ($order->meal->meal_type_id == 5) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
+                                                    <td>{{ ($order->meal->meal_type_id == 6) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
+                                                    <td>{{ $order->date_of_order }}</td>
+                                                </tr>
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>

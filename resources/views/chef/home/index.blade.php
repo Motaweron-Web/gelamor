@@ -29,7 +29,7 @@
             border-radius: 10px !important;
         }
 
-        .greenCardText h4, .greenCardText p, .greenCalendar {
+        .greenCardText h4, .greenCardText p, .greenCalendar, .greenCardText h1 {
             color: #FFFFFF !important;
         }
     </style>
@@ -64,6 +64,28 @@
                 </a>
             </div>
         @endfor
+        <div class="col-4 mb-4">
+            <?php $id = $i->format('Y-m-d'); ?>
+            <a href="{{ route('chef.all_orders') }}">
+                <div
+                    class="card card-statistics h-100 greenCard">
+                    <div class="card-body">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                    <span class="text-success">
+                                        <i class="fa fa-calendar highlight-icon greenCalendar"
+                                           aria-hidden="true"></i>
+                                    </span>
+                            </div>
+                            <div
+                                class="float-right text-right greenCardText" style="text-align: center">
+                                <h1>{{ trans('home.all_order') }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
         {{--        <div class="col-xl-3 col-lg-6 col-md-6 mb-30">--}}
         {{--            <div class="card card-statistics h-100">--}}
         {{--                <div class="card-body">--}}
