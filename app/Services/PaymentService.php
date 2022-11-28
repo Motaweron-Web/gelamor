@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Payment;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use IZaL\Knet\KnetBilling;
@@ -54,6 +55,14 @@ class PaymentService
         if (!empty($charge) && $charge['error']) {
             return response()->json(["data"=>'',"errors"=>['error'=>$charge['error']],'message'=>$charge['error']],409);
         }if (!empty($charge) && $charge['status'] == 'succeeded') {
+           $payment = new Payment;
+            $payment->user_id = auth()->user()->id;
+            $payment->payment_id = $charge->id;
+            $payment->payer_email = $charge->billing_details->email;
+            $payment->amount = $charge->amount;
+            $payment->currency = $charge->currency;
+            $payment->payment_status = $charge->status;
+            $payment->save();
             return response()->json(["data"=>'',"errors"=>[],'message'=>"Payment Successfully."],200);
         } else {
             return response()->json(["data"=>'',"errors"=>[],'message'=>"Payment failed."],406);
