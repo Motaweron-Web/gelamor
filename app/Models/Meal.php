@@ -40,9 +40,10 @@ class Meal extends Model
 
 
 
-    public function user(){
+    //meal has many invoices // الوجبه تابعه لاكتر من فاتوره
+    public function invoices(){
 
-        return $this->belongsToMany(User::class,'orders','meal_id','user_id','id','id');
+        return $this->belongsToMany(Invoice::class,'orders','meal_id','invoice_id','id','id');
     }
 
 

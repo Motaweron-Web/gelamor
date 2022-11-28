@@ -15,14 +15,13 @@ class CreateOrdersTable extends Migration{
 
 
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('meal_id');
-            $table->date('date_of_order');
-            $table->integer('protein');
+            $table->integer('protein')->nullable();
             $table->timestamps();
 
             $table->foreign('meal_id')->references('id')->on('meals')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('invoice_id')->references('id')->on('invoices')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }
