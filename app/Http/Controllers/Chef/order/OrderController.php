@@ -11,11 +11,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index($id)
+    public function index($date)
     {
-        $meal_types = MealType::get();
-        $orders = Order::where('date_of_order', $id)->groupBy('user_id')->get();
-        return view('chef.order.index', compact('orders','meal_types'));
+        $data['meal_types'] = MealType::get();
+         $users_orders = Order::where('date_of_order', $date)->groupBy('user_id')->pluck('user_id')->toArray();
+         $data['users'] = User::whereIn('id', $users_orders)->get();
+        return view('chef.order.index', $data);
     } // end of index
 
     public function orders()
