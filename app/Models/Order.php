@@ -9,15 +9,6 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-
-        'user_id',
-        'meal_id',
-        'date_of_order',
-        'protein'
-
-        ];
-
     public function meal()
     {
         return $this->belongsTo(Meal::class,'meal_id','id');
@@ -26,6 +17,11 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class,'invoice_id','id');
     }
 
 }

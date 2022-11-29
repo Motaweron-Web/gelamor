@@ -46,9 +46,4 @@ class Meal extends Model
         return $this->belongsToMany(Invoice::class,'orders','meal_id','invoice_id','id','id');
     }
 
-    public function comments()
-    {
-        $this->hasMany(Comment::class);
-    }
-
 }

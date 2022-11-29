@@ -197,6 +197,10 @@ return [
     'dinner' => 'Dinner',
     'snacks' => 'Snacks',
     'user_id' => 'User ID',
-    'id' => 'ID',
+
+    'total' => 'Total',
+    'basic_orders' => 'Basic Orders',
+    'special_orders' => 'Special Orders',
+
 
 ];

@@ -14,7 +14,7 @@ class Comment extends Model
         $this->belongsTo(User::class, 'user_id','id');
     }
 
-    public function meal()
+    public function meals()
     {
         $this->belongsTo(Meal::class, 'meal_id','id');
     }

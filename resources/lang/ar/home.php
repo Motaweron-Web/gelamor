@@ -201,4 +201,10 @@ return [
     'user_id' => 'ID العميل',
 
 
+    'total' => 'المجموع',
+    'basic_orders' => 'الطلبات العادية',
+    'special_orders' => 'الطلبات الخاصة',
+
+
+
 ];
