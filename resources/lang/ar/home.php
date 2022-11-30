@@ -95,6 +95,7 @@ return [
     'add_meal' => 'اضافة وجبة',
     'edit_meal' => 'تعديل وجبة',
     'delete_meal' => 'حذف وجبة',
+    'date_meal' => 'موعد الوجبة',
 
 
     // custom meals
@@ -164,6 +165,7 @@ return [
     'created_at' => 'انشئ في',
     'message' => 'رسالة',
     'delete_report' => 'حذف البلاغ',
+
 
 
 

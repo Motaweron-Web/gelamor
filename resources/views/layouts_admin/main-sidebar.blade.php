@@ -86,7 +86,7 @@
                             </ul>
                         </li>
 
-                    <!-- Packages -->
+                        <!-- Packages -->
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#packages-menu">
                                 <div class="pull-left"><i class="fas fa-credit-card"></i><span
@@ -98,6 +98,16 @@
                                 <li><a href="{{ route('package.index_hanging') }}">@lang('home.cash_package')</a></li>
                                 <li><a href="{{ route('package.index_activated') }}">@lang('home.activated_packages')</a></li>
                             </ul>
+                        </li>
+
+                        <!-- Orders -->
+                        <li>
+                            <a href="{{ route('orders.index') }}">
+                                <div class="pull-left"><i class="fas fa-warning"></i><span
+                                        class="right-nav-text">@lang('home.orders')</span></div>
+                                <div class="pull-right"></div>
+                                <div class="clearfix"></div>
+                            </a>
                         </li>
 
                         <!-- Complaints and Reports -->
@@ -199,5 +209,3 @@
 
 
         <!-- Left Sidebar End-->
-
-        <!--=================================

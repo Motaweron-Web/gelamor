@@ -132,6 +132,7 @@ return [
     'add_meal' => 'Add Meal',
     'edit_meal' => 'Edit Meal',
     'delete_meal' => 'Delete Meal',
+    'date_meal' => 'Date Meal',
 
     // custom meals
     'custom_meals' => 'Custom Meals',
