@@ -77,7 +77,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/chef/update', [ChefController::class, 'update'])->name('chef.update');
 
 
-        ####### Meal Type #######
+        ####### Meal Type ########
         Route::get('/meal_type', [MealTypeController::class, 'index'])->name('meal_type.index');
         Route::post('/meal_type/store', [MealTypeController::class, 'store'])->name('meal_type.store');
         Route::post('/meal_type/delete', [MealTypeController::class, 'delete'])->name('meal_type.delete');
