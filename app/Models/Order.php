@@ -23,5 +23,4 @@ class Order extends Model
     {
         return $this->belongsTo(Invoice::class,'invoice_id','id');
     }
-
 }
