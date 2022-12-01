@@ -37,14 +37,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('home.name_ar') : <span class="text-danger">*</span></label>
-                                    <input  type="text" name="name_ar" value="{{ $setting->name_ar }}"  class="form-control">
+                                    <input  type="text" name="name_ar" value="{{ $setting->name_ar }}"  class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('home.name_en') : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" name="name_en" value="{{ $setting->name_en }}" type="text" >
+                                    <input  class="form-control" name="name_en" value="{{ $setting->name_en }}" type="text" required>
                                 </div>
                             </div>
                         </div>
@@ -53,14 +53,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('home.location_ar') : <span class="text-danger">*</span></label>
-                                    <input  type="text" name="location_ar" value="{{ $setting->location_ar }}" class="form-control">
+                                    <input  type="text" name="location_ar" value="{{ $setting->location_ar }}" class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>@lang('home.location_en') : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" name="location_en" value="{{ $setting->location_en }}" type="text" >
+                                    <input  class="form-control" name="location_en" value="{{ $setting->location_en }}" type="text" required>
                                 </div>
                             </div>
                         </div>
@@ -117,21 +117,21 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>@lang('home.facebook') : <span class="text-danger">*</span></label>
-                                    <input  type="url" name="facebook" value="{{ $setting->facebook }}"   class="form-control">
+                                    <input  type="url" name="facebook" value="{{ $setting->facebook }}"   class="form-control" required>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>@lang('home.whatsapp') : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" value="{{ $setting->whatsapp }}"  name="whatsapp" type="tel" >
+                                    <input  class="form-control" value="{{ $setting->whatsapp }}"  name="whatsapp" type="tel" required >
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>@lang('home.snapchat') : <span class="text-danger">*</span></label>
-                                    <input  class="form-control" value="{{ $setting->snapchat }}"  name="snapchat" type="url" >
+                                    <input  class="form-control" value="{{ $setting->snapchat }}"  name="snapchat" type="url" required >
                                 </div>
                             </div>
                         </div>

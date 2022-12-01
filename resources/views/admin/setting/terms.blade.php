@@ -38,7 +38,7 @@
                                 <div class="form-group">
                                     <label>@lang('home.terms_ar') : <span class="text-danger">*</span></label>
                                     <textarea type="text" name="terms_ar" id="editor1"
-                                              class="form-control">{{ $setting->terms_ar }}</textarea>
+                                              class="form-control" required>{{ $setting->terms_ar }}</textarea>
                                 </div>
                             </div>
 
@@ -46,7 +46,7 @@
                                 <div class="form-group">
                                     <label>@lang('home.terms_en') : <span class="text-danger">*</span></label>
                                     <textarea class="form-control" name="terms_en" id="editor2"
-                                              type="text">{{ $setting->terms_en }}</textarea>
+                                              type="text" required>{{ $setting->terms_en }}</textarea>
                                 </div>
                             </div>
                         </div>

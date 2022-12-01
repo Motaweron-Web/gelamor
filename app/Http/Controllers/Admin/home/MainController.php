@@ -10,7 +10,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $data['contact_us'] = ContactUs::get();
+        $data['contact_us'] = ContactUs::latest()->limit(4)->get();
         return view('admin.home.index')->with($data);
     }
 }

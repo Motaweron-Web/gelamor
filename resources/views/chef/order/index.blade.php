@@ -71,7 +71,7 @@
                                     <br><br>
                                     <div class="table-bordeblue">
                                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                               data-page-length="50"
+                                               data-page -length="50"
                                                style="text-align: center">
                                             <thead>
                                             <tr>
@@ -82,39 +82,86 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <?php $orders = \App\Models\Order::get(); ?>
-                                            <tr>
-                                                <td>#</td>
-                                                <td>
-                                                    @foreach($orders as $order)
-                                                        @if($invoices == null)
-                                                            @if($order->invoice->invoice_date == $invoice->invoice_date)
+                                            @if($invoices != null)
+                                                @foreach($orders as $order)
+                                                        <?php $meal_count = \App\Models\Order::where('meal_id', $order->meal_id)->groupBy('meal_id')->count(); ?>
+                                                    <tr>
+                                                        <td>#{{  $order->meal_id }}</td>
+                                                        @if($order->invoice->invoice_date == $invoice->invoice_date)
+                                                            <td>
                                                                 <div
                                                                     style="display: grid">{{ (lang() == 'ar') ? $order->meal->name_ar : $order->meal->name_en }}</div>
-                                                            @endif
+                                                            </td>
                                                         @endif
-                                                    @endforeach
-                                                </td>
-                                                <?php $commnets = \App\Models\Comment::where('meal_id', $order->meal->id)->get(); ?>
-                                                <td>
-                                                    <div style="display: grid">X{{ $invoices->count() }}</div>
-                                                </td>
-                                                <td>
-                                                    <div style="display: grid; border: 1px solid #2FBE21">
-                                                        @foreach($commnets as $comment)
-                                                            {{ trans('home.user_id') .' [ ' . $comment->user_id .' ] ' }}
-                                                            <br>
-                                                            @if($invoices == null)
-                                                            {{  'اسم الوجبة' .' [ '}} {{(lang() == 'ar') ? $meal->meal->name_ar : $meal->meal->name_en}}  {{' ] ' }}
-                                                            @endif
-                                                            <br>
-                                                            <h6 style="margin: 0px">Comments</h6>
-                                                            {{ $comment->comment }}
-                                                        @endforeach
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                        <td>
+                                                            <div style="display: grid">X{{ $meal_count }}</div>
+                                                        </td>
+                                                        <td>
+                                                            @php
+                                                                $comments = \App\Models\Comment::where('meal_id', $order->meal->id)
+                                                                ->where('created_at', 'LIKE', '%' . $invoice->invoice_date . '%')
+                                                                ->get();
+                                                            @endphp
+                                                            <button type="button" class="btn btn-info btn-sm"
+                                                                    data-toggle="modal"
+                                                                    data-target="#comment{{ $order->meal->id }}"
+                                                                    title="{{ trans('home.show') }}"><i
+                                                                    class="fa fa-comment"></i> {{ trans('home.special_orders') }}
+                                                            </button>
+                                                        </td>
+                                                    </tr>
                                             </tbody>
+                                            <!-- show order comments -->
+                                            <div class="modal fade" id="comment{{ $order->meal->id }}"
+                                                 tabindex="-1"
+                                                 role="dialog"
+                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 style="font-family: 'Cairo', sans-serif;"
+                                                                class="modal-title"
+                                                                id="exampleModalLabel">
+                                                                {{ trans('home.show') }}
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-12" style="margin: 10px 31px;
+                                                                flex: 0px">
+                                                                    <div class="form-control">
+                                                                        @foreach($comments as $comment)
+                                                                            @if($comment != null)
+                                                                                <h5> {{ trans('home.user_id') .' [ ' . $comment->user_id .' ] ' }}</h5>
+                                                                                <br>
+                                                                                <h5>{{  'اسم الوجبة' .' [ '}} {{(lang() == 'ar') ? $meal->meal->name_ar : $meal->meal->name_en}}  {{' ] ' }}</h5>
+                                                                                <br>
+                                                                                <h6 style="margin: 0px">Comments:</h6>
+                                                                                <h5>{{ ($order->meal->id == $comment->meal_id) ? $comment->comment : 'no comments' }}</h5>
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <br><br>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                            </div>
+                                                            {{--                                                                </form>--}}
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            @endif
                                         </table>
                                     </div>
                                 </div>

@@ -29,7 +29,8 @@ class UpdateComponentRequest extends FormRequest
     public function messages()
     {
         return [
-           //
+            'img.required' => trans('validation.image_required'),
+            'img.image' => trans('validation.image_required'),
         ];
     }
 }
