@@ -167,9 +167,9 @@ return [
     'delete_report' => 'حذف البلاغ',
 
 
+    'need_help' => 'هل تحتاج مساعدة',
 
-
-
+    'read_massage' => 'قراة الرسالة',
 
 
 

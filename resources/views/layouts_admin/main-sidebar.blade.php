@@ -103,7 +103,7 @@
                         <!-- Orders -->
                         <li>
                             <a href="{{ route('orders.index') }}">
-                                <div class="pull-left"><i class="fas fa-warning"></i><span
+                                <div class="pull-left"><i class="fas fa-shopping-bag"></i><span
                                         class="right-nav-text">@lang('home.orders')</span></div>
                                 <div class="pull-right"></div>
                                 <div class="clearfix"></div>

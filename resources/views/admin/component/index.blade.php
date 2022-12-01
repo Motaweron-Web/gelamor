@@ -67,7 +67,7 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{ (lang() == 'ar') ? $type->name_ar : $type->name_en }}</td>
                                                     <td>
-                                                        <img src="{{ getFile($type->img) }}"
+                                                        <img src="{{ ($type->img == null) ? asset('img_default/default_food.jpg') : asset($type->img) }}"
                                                              onclick="window.open(this.src)" href="javascript:void(0);"
                                                              width="80px" height="80px" style="border-radius: 40%;">
                                                     </td>
@@ -245,7 +245,7 @@
                                                                         <label for="Name_en"
                                                                                class="mr-sm-2">{{ trans('home.image') }}
                                                                             :</label>
-                                                                        <img src="{{ getFile($type->img) }}"
+                                                                        <img src="{{ ($type->img == null) ? asset('img_default/default_food.jpg') : asset($type->img) }}"
                                                                              onclick="window.open(this.src)" href="javascript:void(0);"
                                                                              width="80px" height="80px" style="border-radius: 40%; margin: 10px">
                                                                     </div>

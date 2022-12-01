@@ -116,7 +116,7 @@ header start-->
 
 
             </a>
-            <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-menu dropdown-menu-right" style="width: 200px;">
                 <div class="dropdown-header">
                     <div class="media">
                         <div class="media-body">
@@ -132,7 +132,7 @@ header start-->
                     </div>
                 </div>
                 <div class="dropdown-divider"></div>
-{{--                <a class="dropdown-item" href="#"><i class="text-secondary ti-reload"></i>Activity</a>--}}
+                <a class="dropdown-item" href="https://topbusiness.io/contact3.html"><i class="text-warning ti-user"></i>{{ trans('home.need_help') }}</a>
 {{--                <a class="dropdown-item" href="#"><i class="text-success ti-email"></i>Messages</a>--}}
 {{--                <a class="dropdown-item" href="#"><i class="text-warning ti-user"></i>Profile</a>--}}
 {{--                <a class="dropdown-item" href="#"><i class="text-dark ti-layers-alt"></i>Projects <span--}}

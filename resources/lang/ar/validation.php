@@ -4,6 +4,33 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Validation custom
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines contain the default error messages used by
+    | the validator class. Some of these rules have multiple versions such
+    | as the size rules. Feel free to tweak each of these messages here.
+    |
+    */
+
+    'whatsapp_numeric' => 'الواتساب يجب ان يكون رقما',
+    'privacy_ar_required' => 'الحقل بالعربية مطلوب',
+    'privacy_en_required' => 'الحقل بالانجليزية مطلوب',
+    'about_ar_required' => 'الحقل بالعربية مطلوب',
+    'about_en_required' => 'الحقل بالانجليزية مطلوب',
+    'terms_ar_required' => 'الحقل بالعربية مطلوب',
+    'terms_en_required' => 'الحقل بالانجليزية مطلوب',
+    'image_required' => 'حقل الصورة مطلوب',
+    'component_ids' => 'اختر مكون واحد علي الاقل ',
+
+
+
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Validation Language Lines
     |--------------------------------------------------------------------------
     |

@@ -148,6 +148,8 @@ return [
     'edit_component' => 'Edit Component',
     'delete_component' => 'Delete Component',
 
+    'read_massage' => 'Read Massage',
+
     //chefs
     'chef' => 'chef',
     'chef_list' => 'Chef list',
@@ -172,6 +174,7 @@ return [
 
 
 
+    'need_help' => 'Need Help !',
 
 #############################################
 ################ chef #######################

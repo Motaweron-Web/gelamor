@@ -4,6 +4,42 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Validation custom
+    |--------------------------------------------------------------------------
+    |
+    | The following language lines contain the default error messages used by
+    | the validator class. Some of these rules have multiple versions such
+    | as the size rules. Feel free to tweak each of these messages here.
+    |
+    */
+
+    'whatsapp_numeric' => 'whatsapp must be an number',
+    'privacy_ar_required' => 'Privacy [ar] Required',
+    'privacy_en_required' => 'Privacy [en] Required',
+    'about_ar_required' => 'About [ar] Required',
+    'about_en_required' => 'About [en] Required',
+    'terms_ar_required' => 'Terms [ar] Required',
+    'terms_en_required' => 'Terms [en] Required',
+    'image_required' => 'Image Required',
+    'component_ids' =>'Choose at least one component',
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Validation Language Lines
     |--------------------------------------------------------------------------
     |

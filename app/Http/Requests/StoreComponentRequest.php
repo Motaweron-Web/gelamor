@@ -29,7 +29,8 @@ class StoreComponentRequest extends FormRequest
     public function messages()
     {
         return [
-           //
+            'img.required' => trans('validation.image_required'),
+
         ];
     }
 }
