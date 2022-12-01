@@ -24,13 +24,15 @@ class StoreMealRequest extends FormRequest
             'Fats' => 'required|numeric',
             'carbohydrates' => 'required|numeric',
             'meal_type_id' => 'required',
+            'component_ids' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-           //
+           'img.required' => trans('validation.image_required'),
+            'component_ids.required' => trans('validation.component_ids'),
         ];
     }
 }

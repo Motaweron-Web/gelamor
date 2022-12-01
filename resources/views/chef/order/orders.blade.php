@@ -23,18 +23,13 @@
                         <div class="col-xl-12 mb-30">
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
-
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                    <h1 style="text-align: center;
+                                    font-weight: bolder;
+                                    margin-top: 28px;
+                                    margin-bottom: 0px;">{{ trans('home.all_order') }}
+                                        <small>({{ trans('home.basic_orders') }})</small></h1>
                                     <br><br>
-                                    <div class="table-responsive">
+                                    <div class="table-bordeblue">
                                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                                data-page-length="50"
                                                style="text-align: center">
@@ -42,25 +37,81 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>{{ trans('home.user_id') }}</th>
-                                                @foreach($meal_types as $meal_type)
-                                                <th>{{ (lang() == 'ar') ? $meal_type->name_ar :  $meal_type->name_en }}</th>
-                                                @endforeach
-                                                <th>{{ trans('home.created_at')}}</th>
+                                                <th colspan="4" align="center">{{ trans('home.all_order') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($orders as $order)
-                                                @php
-
-                                                @endphp
+                                            @foreach($invoices as $invoice)
                                                 <tr>
-                                                    <td>#{{ $order->id }}</td>
-                                                    <td>#{{ $order->user_id }}</td>
-                                                    <td>{{ ($order->meal->meal_type_id == 3) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
-                                                    <td>{{ ($order->meal->meal_type_id == 4) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
-                                                    <td>{{ ($order->meal->meal_type_id == 5) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
-                                                    <td>{{ ($order->meal->meal_type_id == 6) ? (lang() == 'ar') ? $order->meal->name_ar : '' : '---' }}</td>
-                                                    <td>{{ $order->date_of_order }}</td>
+                                                    <td>#{{ $invoice->id }}<br><small>({{ $invoice->invoice_date }})</small></td>
+                                                    <td>#{{ $invoice->user->id }}</td>
+                                                    @foreach($invoice->details as $meal)
+                                                        <td>
+                                                            <div>{{ lang() == 'ar' ? $meal->meal->meal_type->name_ar : $meal->meal->meal_type->name_en}}</div>
+                                                            <div>{{ lang() == 'ar' ? $meal->meal->name_ar : $meal->meal->name_en}}</div>
+                                                            <div>{{ trans('home.protein'). ' ' . $meal->protein }}</div>
+                                                        </td>
+                                                    @endforeach
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 mb-30">
+                            <div class="card card-statistics h-100">
+                                <div class="card-body">
+                                    <h1 style="text-align: center;
+                                    font-weight: bolder;
+                                    margin-top: 28px;
+                                    margin-bottom: 0px;">{{ trans('home.all_order') }}
+                                        <small>({{ trans('home.special_orders') }})</small></h1>
+                                    <br><br>
+                                    <div class="table-bordeblue">
+                                        <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
+                                               data-page-length="50"
+                                               style="text-align: center">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>{{ trans('home.user_id') }}</th>
+                                                <th>{{ trans('home.breakfast') }} <small>({{ trans('home.components') }}
+                                                        )</small></th>
+                                                <th>{{ trans('home.lunch') }} <small>({{ trans('home.components') }}
+                                                        )</small></th>
+                                                <th>{{ trans('home.dinner') }} <small>({{ trans('home.components') }}
+                                                        )</small></th>
+                                                <th>{{ trans('home.snacks') }} <small>({{ trans('home.components') }}
+                                                        )</small></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($orders_special as $special)
+                                                <tr>
+                                                    <td>#{{ $special->id }}</td>
+                                                    <td>#{{ $special->user->id }}</td>
+                                                    @if($special->meal_type_id == 1)
+                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                    @else
+                                                        <td>---</td>
+                                                    @endif
+                                                    @if($special->meal_type_id == 2)
+                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                    @else
+                                                        <td>---</td>
+                                                    @endif
+                                                    @if($special->meal_type_id == 3)
+                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                    @else
+                                                        <td>---</td>
+                                                    @endif
+                                                    @if($special->meal_type_id == 4)
+                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                    @else
+                                                        <td>---</td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                             </tbody>

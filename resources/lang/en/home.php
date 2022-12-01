@@ -132,6 +132,7 @@ return [
     'add_meal' => 'Add Meal',
     'edit_meal' => 'Edit Meal',
     'delete_meal' => 'Delete Meal',
+    'date_meal' => 'Date Meal',
 
     // custom meals
     'custom_meals' => 'Custom Meals',
@@ -146,6 +147,8 @@ return [
     'add_component' => 'Add Component',
     'edit_component' => 'Edit Component',
     'delete_component' => 'Delete Component',
+
+    'read_massage' => 'Read Massage',
 
     //chefs
     'chef' => 'chef',
@@ -171,6 +174,7 @@ return [
 
 
 
+    'need_help' => 'Need Help !',
 
 #############################################
 ################ chef #######################
