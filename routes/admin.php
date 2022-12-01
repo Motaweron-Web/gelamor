@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\package\PackageController;
 use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
+use App\Http\Controllers\Admin\all_Orders\AllOrdersController;
 use App\Http\Controllers\Chef\home\HomeController;
 use App\Http\Controllers\Chef\order\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -115,6 +116,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         #### ContactUs ####
         Route::get('/contact_us', [ContactUsController::class, 'index'])->name('contact_us.index');
         Route::post('/contact_us/delete', [ContactUsController::class, 'delete'])->name('contact_us.delete');
+
+        #### Orders ####
+        Route::get('/all_orders', [AllOrdersController::class, 'index'])->name('orders.index');
     });
 
 

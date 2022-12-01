@@ -231,7 +231,7 @@
                                                                         <label for="email"
                                                                                class="mr-sm-2">{{ trans('home.details') }}
                                                                             :</label>
-                                                                        <textarea id="name" type="text" name="name"
+                                                                        <textarea id="details" type="text" name="details"
                                                                                   rows="4"
                                                                                   class="form-control"
                                                                                   disabled>

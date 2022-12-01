@@ -128,14 +128,6 @@
                                                                                    value="{{ $admin->email }}"
                                                                                    name="email" disabled>
                                                                         </div>
-                                                                        <div class="col-12">
-                                                                            <label for="password"
-                                                                                   class="mr-sm-2">{{ trans('home.password') }}
-                                                                                :</label>
-                                                                            <input type="password" class="form-control"
-                                                                                   placeholder="(optional)"
-                                                                                   name="password" disabled>
-                                                                        </div>
                                                                     </div>
 
                                                                     <br><br>
