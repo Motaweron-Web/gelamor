@@ -39,8 +39,8 @@
         ?>
         @for($i = $start ; $i <= $end ; $i->modify('+1 day'))
             <div class="{{ ($i->isToday()) ? 'col-12 mb-4' : 'col-xl-4 col-lg-6 col-md-6 mb-30'  }} ">
-                <?php $id = $i->format('Y-m-d'); ?>
-                <a href="{{ route('chef.orders',$id) }}">
+                    <?php $date = $i->format('Y-m-d'); ?>
+                <a href="{{ route('chef.orders',$date) }}">
                     <div
                         class="card card-statistics h-100 {{ ($i->isToday() == \Carbon\Carbon::today() ) ? 'greenCard' : ''}}">
                         <div class="card-body">

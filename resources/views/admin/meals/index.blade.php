@@ -230,6 +230,748 @@
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name_ar"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->name_ar }}"
+                                                                                   required>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->id }}">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->name_en }}"
+                                                                                   name="name_en" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                :</label>
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
+                                                                        </div>
+
+                                                                        <div class="col-12" id="dvPreview">
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->protein }}"
+                                                                                   name="protein" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->calories }}"
+                                                                                   name="calories" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->Fats }}"
+                                                                                   name="Fats" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   name="carbohydrates" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="meal_type_id"
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
+                                                                                <option value="" disabled
+                                                                                        selected>@lang('home.meal_type')</option>
+                                                                                @foreach($meal_type as $package)
+                                                                                    <option
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        disabled>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name_ar"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->name_ar }}"
+                                                                                   required>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->id }}">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->name_en }}"
+                                                                                   name="name_en" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                :</label>
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
+                                                                        </div>
+
+                                                                        <div class="col-12" id="dvPreview">
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->protein }}"
+                                                                                   name="protein" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->calories }}"
+                                                                                   name="calories" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->Fats }}"
+                                                                                   name="Fats" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   name="carbohydrates" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="meal_type_id"
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
+                                                                                <option value="" disabled
+                                                                                        selected>@lang('home.meal_type')</option>
+                                                                                @foreach($meal_type as $package)
+                                                                                    <option
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        disabled>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name_ar"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->name_ar }}"
+                                                                                   required>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->id }}">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->name_en }}"
+                                                                                   name="name_en" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                :</label>
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
+                                                                        </div>
+
+                                                                        <div class="col-12" id="dvPreview">
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->protein }}"
+                                                                                   name="protein" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->calories }}"
+                                                                                   name="calories" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->Fats }}"
+                                                                                   name="Fats" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   name="carbohydrates" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="meal_type_id"
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
+                                                                                <option value="" disabled
+                                                                                        selected>@lang('home.meal_type')</option>
+                                                                                @foreach($meal_type as $package)
+                                                                                    <option
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        disabled>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name_ar"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->name_ar }}"
+                                                                                   required>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->id }}">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->name_en }}"
+                                                                                   name="name_en" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                :</label>
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
+                                                                        </div>
+
+                                                                        <div class="col-12" id="dvPreview">
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->protein }}"
+                                                                                   name="protein" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->calories }}"
+                                                                                   name="calories" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->Fats }}"
+                                                                                   name="Fats" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   name="carbohydrates" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="meal_type_id"
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
+                                                                                <option value="" disabled
+                                                                                        selected>@lang('home.meal_type')</option>
+                                                                                @foreach($meal_type as $package)
+                                                                                    <option
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        disabled>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name_ar"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->name_ar }}"
+                                                                                   required>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->id }}">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->name_en }}"
+                                                                                   name="name_en" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                :</label>
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
+                                                                        </div>
+
+                                                                        <div class="col-12" id="dvPreview">
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->protein }}"
+                                                                                   name="protein" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->calories }}"
+                                                                                   name="calories" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->Fats }}"
+                                                                                   name="Fats" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   name="carbohydrates" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="meal_type_id"
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
+                                                                                <option value="" disabled
+                                                                                        selected>@lang('home.meal_type')</option>
+                                                                                @foreach($meal_type as $package)
+                                                                                    <option
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        disabled>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name_ar"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->name_ar }}"
+                                                                                   required>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->id }}">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->name_en }}"
+                                                                                   name="name_en" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                :</label>
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
+                                                                        </div>
+
+                                                                        <div class="col-12" id="dvPreview">
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->protein }}"
+                                                                                   name="protein" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->calories }}"
+                                                                                   name="calories" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->Fats }}"
+                                                                                   name="Fats" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   name="carbohydrates" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="meal_type_id"
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
+                                                                                <option value="" disabled
+                                                                                        selected>@lang('home.meal_type')</option>
+                                                                                @foreach($meal_type as $package)
+                                                                                    <option
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        disabled>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                :</label>
+                                                                            <input id="name" type="text" name="name_ar"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->name_ar }}"
+                                                                                   required>
+                                                                            <input id="id" type="hidden" name="id"
+                                                                                   class="form-control"
+                                                                                   value="{{ $type->id }}">
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                :</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   value="{{ $type->name_en }}"
+                                                                                   name="name_en" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.image') }}
+                                                                                :</label>
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
+                                                                        </div>
+
+                                                                        <div class="col-12" id="dvPreview">
+                                                                        </div>
+
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->protein }}"
+                                                                                   name="protein" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->calories }}"
+                                                                                   name="calories" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->Fats }}"
+                                                                                   name="Fats" required>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
+                                                                                :</label>
+                                                                            <input type="number" class="form-control"
+                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   name="carbohydrates" required>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="meal_type_id"
+                                                                                    style="height: calc(4.1rem + 2px);"
+                                                                                    required>
+                                                                                <option value="" disabled
+                                                                                        selected>@lang('home.meal_type')</option>
+                                                                                @foreach($meal_type as $package)
+                                                                                    <option
+                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->meal_type->id) ? 'selected' : '' }} >
+                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.components_list') }}
+                                                                                :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
+                                                                            <select class="form-control"
+                                                                                    name="component_ids[]"
+                                                                                    style="height: calc(10.1rem + 2px);"
+                                                                                    required
+                                                                                    multiple="multiple">
+                                                                                <option value=""
+                                                                                        disabled>@lang('home.components_list')</option>
+                                                                                @foreach($component as $value)
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                        {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                     <br><br>
 

@@ -42,19 +42,25 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($invoices as $invoice)
+                                            @if($invoices->count() > 0)
+                                                @foreach($invoices as $invoice)
+                                                    <tr>
+                                                        <td>#{{ $invoice->id }}</td>
+                                                        <td>#{{ $invoice->user->id }}</td>
+                                                        @foreach($invoice->details as $meal)
+                                                            <td>
+                                                                <div>{{ lang() == 'ar' ? $meal->meal->meal_type->name_ar : $meal->meal->meal_type->name_en}}</div>
+                                                                <div>{{ lang() == 'ar' ? $meal->meal->name_ar : $meal->meal->name_en}}</div>
+                                                                <div>{{ trans('home.protein'). ' ' . $meal->protein }}</div>
+                                                            </td>
+                                                        @endforeach
+                                                    </tr>
+                                                @endforeach
+                                            @else
                                                 <tr>
-                                                    <td>#{{ $invoice->id }}</td>
-                                                    <td>#{{ $invoice->user->id }}</td>
-                                                    @foreach($invoice->details as $meal)
-                                                        <td>
-                                                            <div>{{ lang() == 'ar' ? $meal->meal->meal_type->name_ar : $meal->meal->meal_type->name_en}}</div>
-                                                            <div>{{ lang() == 'ar' ? $meal->meal->name_ar : $meal->meal->name_en}}</div>
-                                                            <div>{{ trans('home.protein'). ' ' . $meal->protein }}</div>
-                                                        </td>
-                                                    @endforeach
+                                                    <td colspan="4" align="center">{{ trans('home.no_data') }}</td>
                                                 </tr>
-                                            @endforeach
+                                            @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -82,7 +88,7 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if($invoices != null)
+                                            @if($invoices->count() > 0)
                                                 @foreach($orders as $order)
                                                         <?php $meal_count = \App\Models\Order::where('meal_id', $order->meal_id)->groupBy('meal_id')->count(); ?>
                                                     <tr>
@@ -110,57 +116,63 @@
                                                             </button>
                                                         </td>
                                                     </tr>
-                                            </tbody>
-                                            <!-- show order comments -->
-                                            <div class="modal fade" id="comment{{ $order->meal->id }}"
-                                                 tabindex="-1"
-                                                 role="dialog"
-                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 style="font-family: 'Cairo', sans-serif;"
-                                                                class="modal-title"
-                                                                id="exampleModalLabel">
-                                                                {{ trans('home.show') }}
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="row">
-                                                                <div class="col-12" style="margin: 10px 31px;
+                                                    <!-- show order comments -->
+                                                    <div class="modal fade" id="comment{{ $order->meal->id }}"
+                                                         tabindex="-1"
+                                                         role="dialog"
+                                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 style="font-family: 'Cairo', sans-serif;"
+                                                                        class="modal-title"
+                                                                        id="exampleModalLabel">
+                                                                        {{ trans('home.show') }}
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal"
+                                                                            aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-12" style="margin: 10px 31px;
                                                                 flex: 0px">
-                                                                    <div class="form-control">
-                                                                        @foreach($comments as $comment)
-                                                                            @if($comment != null)
-                                                                                <h5> {{ trans('home.user_id') .' [ ' . $comment->user_id .' ] ' }}</h5>
-                                                                                <br>
-                                                                                <h5>{{  'اسم الوجبة' .' [ '}} {{(lang() == 'ar') ? $meal->meal->name_ar : $meal->meal->name_en}}  {{' ] ' }}</h5>
-                                                                                <br>
-                                                                                <h6 style="margin: 0px">Comments:</h6>
-                                                                                <h5>{{ ($order->meal->id == $comment->meal_id) ? $comment->comment : 'no comments' }}</h5>
-                                                                            @endif
-                                                                        @endforeach
+                                                                            <div class="form-control">
+                                                                                @foreach($comments as $comment)
+                                                                                    @if($comment != null)
+                                                                                        <h5> {{ trans('home.user_id') .' [ ' . $comment->user_id .' ] ' }}</h5>
+                                                                                        <br>
+                                                                                        <h5>{{  'اسم الوجبة' .' [ '}} {{(lang() == 'ar') ? $meal->meal->name_ar : $meal->meal->name_en}}  {{' ] ' }}</h5>
+                                                                                        <br>
+                                                                                        <h6 style="margin: 0px">
+                                                                                            Comments:</h6>
+                                                                                        <h5>{{ ($order->meal->id == $comment->meal_id) ? $comment->comment : 'no comments' }}</h5>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
+
+                                                                    <br><br>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                                    </div>
+                                                                    {{--                                                                </form>--}}
+
                                                                 </div>
                                                             </div>
-
-                                                            <br><br>
-
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">{{ trans('home.close') }}</button>
-                                                            </div>
-                                                            {{--                                                                </form>--}}
-
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            @endforeach
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td colspan="4" align="center">{{ trans('home.no_data') }}</td>
+                                                </tr>
                                             @endif
                                         </table>
                                     </div>
@@ -184,43 +196,52 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>{{ trans('home.user_id') }}</th>
-                                                <th>{{ trans('home.breakfast') }} <small>({{ trans('home.components') }}
+                                                <th>{{ trans('home.breakfast') }}
+                                                    <small>({{ trans('home.components') }}
                                                         )</small></th>
                                                 <th>{{ trans('home.lunch') }} <small>({{ trans('home.components') }}
                                                         )</small></th>
-                                                <th>{{ trans('home.dinner') }} <small>({{ trans('home.components') }}
+                                                <th>{{ trans('home.dinner') }}
+                                                    <small>({{ trans('home.components') }}
                                                         )</small></th>
-                                                <th>{{ trans('home.snacks') }} <small>({{ trans('home.components') }}
+                                                <th>{{ trans('home.snacks') }}
+                                                    <small>({{ trans('home.components') }}
                                                         )</small></th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($orders_special as $special)
+                                            @if($orders_special->count() > 0)
+                                                @foreach($orders_special as $special)
+                                                    <tr>
+                                                        <td>#{{ $special->id }}</td>
+                                                        <td>#{{ $special->user->id }}</td>
+                                                        @if($special->meal_type_id == 1)
+                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                        @else
+                                                            <td>---</td>
+                                                        @endif
+                                                        @if($special->meal_type_id == 2)
+                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                        @else
+                                                            <td>---</td>
+                                                        @endif
+                                                        @if($special->meal_type_id == 3)
+                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                        @else
+                                                            <td>---</td>
+                                                        @endif
+                                                        @if($special->meal_type_id == 4)
+                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
+                                                        @else
+                                                            <td>---</td>
+                                                        @endif
+                                                    </tr>
+                                                @endforeach
+                                            @else
                                                 <tr>
-                                                    <td>#{{ $special->id }}</td>
-                                                    <td>#{{ $special->user->id }}</td>
-                                                    @if($special->meal_type_id == 1)
-                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                    @else
-                                                        <td>---</td>
-                                                    @endif
-                                                    @if($special->meal_type_id == 2)
-                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                    @else
-                                                        <td>---</td>
-                                                    @endif
-                                                    @if($special->meal_type_id == 3)
-                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                    @else
-                                                        <td>---</td>
-                                                    @endif
-                                                    @if($special->meal_type_id == 4)
-                                                        <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                    @else
-                                                        <td>---</td>
-                                                    @endif
+                                                    <td colspan="10" align="center">{{ trans('home.no_data') }}</td>
                                                 </tr>
-                                            @endforeach
+                                            @endif
                                             </tbody>
                                         </table>
                                     </div>

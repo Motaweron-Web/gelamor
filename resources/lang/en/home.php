@@ -149,6 +149,7 @@ return [
     'delete_component' => 'Delete Component',
 
     'read_massage' => 'Read Massage',
+    'no_data' => 'No Data',
 
     //chefs
     'chef' => 'chef',

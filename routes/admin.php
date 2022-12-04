@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\package\PackageController;
 use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
+use App\Http\Controllers\Admin\all_Orders\AllOrdersController;
 use App\Http\Controllers\Chef\home\HomeController;
 use App\Http\Controllers\Chef\order\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -77,7 +78,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/chef/update', [ChefController::class, 'update'])->name('chef.update');
 
 
-        ####### Meal Type ########
+        ####### Meal Type #######
         Route::get('/meal_type', [MealTypeController::class, 'index'])->name('meal_type.index');
         Route::post('/meal_type/store', [MealTypeController::class, 'store'])->name('meal_type.store');
         Route::post('/meal_type/delete', [MealTypeController::class, 'delete'])->name('meal_type.delete');
@@ -115,6 +116,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         #### ContactUs ####
         Route::get('/contact_us', [ContactUsController::class, 'index'])->name('contact_us.index');
         Route::post('/contact_us/delete', [ContactUsController::class, 'delete'])->name('contact_us.delete');
+
+        #### Orders ####
+        Route::get('/all_orders', [AllOrdersController::class, 'index'])->name('orders.index');
     });
 
 
@@ -154,14 +158,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 //        Route::get('/order', [\App\Http\Controllers\Chef\home\HomeController::class, 'order'])->name('chef.orders');
 
         ###################   Order ##################################
-        Route::get('/order/{id}', [OrderController::class, 'index'])->name('chef.orders');
-        Route::get('/orders', [OrderController::class, 'orders'])->name('chef.all_orders');
+        Route::get('/order/{date}', [OrderController::class, 'index'])->name('chef.orders');
+        Route::get('/orders', [OrderController::class, 'allOrders'])->name('chef.all_orders');
 //        Route::get('/order/{id}/{user_id}/{meal_type_id}', [OrderController::class, 'details'])->name('chef.order.details');
 
     });
 
 });
-
 
 
 

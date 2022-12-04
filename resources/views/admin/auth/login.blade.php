@@ -40,22 +40,16 @@ preloader -->
 login-->
 
     <section class="height-100vh d-flex align-items-center page-section-ptb login"
-             style="background-image: url(public/assets/images/login-bg.jpg);">
+             style="background-image: url('{{ asset('assets/images/sativa.png')}}');">
         <div class="container">
             <div class="row justify-content-center no-gutters vertical-align">
-                <div class="col-lg-4 col-md-6 login-fancy-bg bg"
-                     style="background-image: url(public/assets/images/login-inner-bg.jpg);">
-                    <div class="login-fancy">
-                        <h2 class="text-white mb-20">Glamor system</h2>
-                        <p class="mb-20 text-white">Create tailor-cut websites with the exclusive multi-purpose
-                            responsive template along with powerful features.</p>
-                        <ul class="list-unstyled  pos-bot pb-30">
-                            <li class="list-inline-item"><a class="text-white" href="#"> Terms of Use</a> </li>
-                            <li class="list-inline-item"><a class="text-white" href="#"> Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 bg-white">
+{{--                <div class="col-lg-4 col-md-6 login-fancy-bg bg"--}}
+{{--                     style="background-image: url(public/assets/images/login-inner-bg.jpg);">--}}
+{{--                    <div class="login-fancy" style="padding: 0px">--}}
+{{--                        <img src="{{ asset('') }}">--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <div class="col-lg-6 col-md-12 bg-white">
                     <div class="login-fancy pb-40 clearfix">
                         <h3 class="mb-30">تسجيل الدخول الخاص بالادمن</h3>
 
