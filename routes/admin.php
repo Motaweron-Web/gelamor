@@ -107,18 +107,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
 
         #### Packages ####
-        Route::get('/packages_hanging', [PackageController::class, 'index_hanging'])->name('package.index_hanging');
-        Route::get('/packages_activated', [PackageController::class, 'index_activated'])->name('package.index_activated');
-        Route::post('/package_hanging/store', [PackageController::class, 'store_hanging'])->name('package.store_hanging');
-        Route::post('/package-hanging/delete', [PackageController::class, 'delete_hanging'])->name('package.delete_hanging');
-        Route::get('/status/{id}', [PackageController::class, 'changeState'])->name('status');
+        Route::get('/myPackages', [PackageController::class, 'index'])->name('package.index');
+        Route::post('/myPackages/store', [PackageController::class, 'store'])->name('package.store');
+        Route::post('/myPackages/delete', [PackageController::class, 'delete'])->name('package.delete');
+        Route::post('/statusPackage', [PackageController::class, 'changeStatus'])->name('packageStatus');
+        Route::get('/packageActive', [PackageController::class, 'activePackage'])->name('activePackage');
+        Route::get('/packageHanging', [PackageController::class, 'hangingPackage'])->name('hangingPackage');
 
         #### ContactUs ####
         Route::get('/contact_us', [ContactUsController::class, 'index'])->name('contact_us.index');
         Route::post('/contact_us/delete', [ContactUsController::class, 'delete'])->name('contact_us.delete');
 
         #### Orders ####
-        Route::get('/all_orders', [AllOrdersController::class, 'index'])->name('orders.index');
+        Route::get('/orders', [AllOrdersController::class, 'index'])->name('orders.index');
+        Route::post('/orderActivation',[AllOrdersController::class, 'status'])->name('orders.status');
     });
 
 

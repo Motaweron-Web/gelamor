@@ -8,7 +8,7 @@
 @section('page-header')
     <!-- breadcrumb -->
     @section('PageTitle')
-        @lang('home.hanging_bouquets')
+        @lang('home.packages')
     @stop
     <!-- breadcrumb -->
 @endsection
@@ -19,17 +19,9 @@
             <div class="card card-statistics h-100">
                 <div class="card-body">
                     <div class="row">
-
-
-                        @if ($errors->any())
-                            <div class="error">{{ $errors->first('Name') }}</div>
-                        @endif
-
-
                         <div class="col-xl-12 mb-30">
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
-
                                     @if ($errors->any())
                                         <div class="alert alert-danger">
                                             <ul>
@@ -39,7 +31,6 @@
                                             </ul>
                                         </div>
                                     @endif
-
                                     <button type="button" class="button x-small" data-toggle="modal"
                                             data-target="#addModal">
                                         @lang('home.add_package')
@@ -55,46 +46,35 @@
                                                 <th>#</th>
                                                 <th>{{ trans('home.name') }}</th>
                                                 <th>{{ trans('home.package_type') }}</th>
+                                                <th>{{ trans('home.start') }}</th>
                                                 <th>{{ trans('home.expiry_date') }}</th>
-                                                <th>{{ trans('home.payment') }}</th>
                                                 <th>{{ trans('home.actions') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php $i = 0; ?>
+
                                             @foreach ($packages as $package)
-                                                @if($package->status == 'hide')
+                                                @if($package->status == 'show')
                                                     <tr>
                                                             <?php $i++; ?>
                                                         <td>{{ $i }}</td>
                                                         <td>{{ lang() == 'ar' ? $package->name_ar : $package->name_en  }}</td>
-                                                        <td>{{ ($package->type == 'pasic' ? trans('home.normal_package') : trans('home.private_package')) }}</td>
-                                                        <td>{{ $package->end->format('Y-m-d') }}</td>
-                                                        <td>{{ (trans('home.'.$package->payment_method)) }}</td>
+                                                        <td>{{ $package->type  }}</td>
+                                                        <td>{{ $package->start->format('Y-m-d')  }}</td>
+                                                        <td>{{ $package->end->format('Y-m-d')  }}</td>
                                                         <td>
-                                                            {{--                                                        <button type="button" class="btn btn-info btn-sm"--}}
-                                                            {{--                                                                data-toggle="modal"--}}
-                                                            {{--                                                                data-target="#edit--}}{{-- $admin->id --}}{{--"--}}
-                                                            {{--                                                                title="{{ trans('home.edit') }}"><i--}}
-                                                            {{--                                                                class="fa fa-edit"></i></button>--}}
                                                             <button type="button" class="btn btn-danger btn-sm"
                                                                     data-toggle="modal"
                                                                     data-target="#delete{{ $package->id }}"
                                                                     title="{{ trans('home.delete') }}"><i
-                                                                    class="fa fa-trash"></i></button>
-                                                            <a href="{{route('status',$package->id)}}">
-                                                                <button type="button" class="btn btn-success btn-sm"
-                                                                        title="{{ trans('home.change_state') }}">
-                                                                    <i class="fa fa-minus-circle"></i>
-                                                                    {{ trans('home.activated') }}
-
-                                                                </button>
-                                                            </a>
+                                                                    class="fa fa-trash"></i>
+                                                            </button>
                                                         </td>
                                                     </tr>
 
-                                                    <!-- active_modal_Grade -->
-                                                    <div class="modal fade" id="activated{{ $package->id }}"
+                                                    <!-- show_modal_Grade -->
+                                                    <div class="modal fade" id="update{{-- $admin->id --}}"
                                                          tabindex="-1"
                                                          role="dialog"
                                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -104,7 +84,7 @@
                                                                     <h5 style="font-family: 'Cairo', sans-serif;"
                                                                         class="modal-title"
                                                                         id="exampleModalLabel">
-                                                                        {{ trans('home.activated') }}
+                                                                        {{ trans('home.show_admin') }}
                                                                     </h5>
                                                                     <button type="button" class="close"
                                                                             data-dismiss="modal"
@@ -255,7 +235,7 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="{{ route('package.delete_hanging') }}"
+                                                                    <form action="{{ route('package.delete') }}"
                                                                           method="post">
                                                                         {{--                                                                    {{ method_field('Delete') }}--}}
                                                                         @csrf
@@ -278,6 +258,7 @@
 
                                             @endif
                                             @endforeach
+
                                         </table>
                                     </div>
                                 </div>
@@ -302,7 +283,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- add_form -->
-                                        <form action="{{ route('package.store_hanging') }}" method="POST" id="addForm">
+                                        <form action="{{ route('package.store') }}" method="POST" id="addForm">
                                             @csrf
 
                                             <div class="row">
@@ -335,16 +316,16 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-{{--                                                    <label for="status"--}}
-{{--                                                           class="mr-sm-2">{{ trans('home.payment') }}--}}
-{{--                                                        :</label>--}}
-{{--                                                    <select class="form-control" style="height: 4rem" name="payment_method" required>--}}
-{{--                                                        <option value="" disabled--}}
-{{--                                                                selected>{{ trans('home.payment') }}</option>--}}
-{{--                                                        <option value="visa">{{ trans('home.visa') }}</option>--}}
-{{--                                                        <option value="cash">{{ trans('home.cash') }}</option>--}}
-{{--                                                        <option value="wallet">{{ trans('home.wallet') }}</option>--}}
-{{--                                                    </select>--}}
+                                                    {{--                                                    <label for="status"--}}
+                                                    {{--                                                           class="mr-sm-2">{{ trans('home.payment') }}--}}
+                                                    {{--                                                        :</label>--}}
+                                                    {{--                                                    <select class="form-control" style="height: 4rem" name="payment_method" required>--}}
+                                                    {{--                                                        <option value="" disabled--}}
+                                                    {{--                                                                selected>{{ trans('home.payment') }}</option>--}}
+                                                    {{--                                                        <option value="visa">{{ trans('home.visa') }}</option>--}}
+                                                    {{--                                                        <option value="cash">{{ trans('home.cash') }}</option>--}}
+                                                    {{--                                                        <option value="wallet">{{ trans('home.wallet') }}</option>--}}
+                                                    {{--                                                    </select>--}}
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="name"

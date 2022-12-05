@@ -150,6 +150,13 @@ return [
 
     'read_massage' => 'Read Massage',
     'no_data' => 'No Data',
+    'hanging' => 'Hanging',
+    'has_send' => 'Has Send',
+    'comments' => 'comments',
+    'meal_name' => 'Meal Name',
+    'meal_type_' => 'Meal Type',
+    'user_package' => 'User Package',
+    'package_list' => 'Package List',
 
     //chefs
     'chef' => 'chef',

@@ -14,7 +14,7 @@
 @endsection
 @section('content')
     <!-- row -->
-    <div class="row">
+    <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
@@ -47,7 +47,7 @@
                                     <br><br>
 
                                     <div class="table-responsive">
-                                        <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
+                                        <table id="datatable" class="table  table-hover table-sm table-bordeblue p-0"
                                                data-page-length="50"
                                                style="text-align: center">
                                             <thead>
@@ -55,21 +55,108 @@
                                                 <th>#</th>
                                                 <th>{{ trans('home.name') }}</th>
                                                 <th>{{ trans('home.date_meal') }}</th>
+                                                <th>{{ trans('home.details') }}</th>
+                                                <th>{{ trans('home.comments') }}</th>
+                                                <th>@lang('home.actions')</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php $i = 0; ?>
                                             @foreach ($invoices as $invoice)
                                                 <tr>
-
                                                     <td>{{ $invoice->id }}</td>
                                                     <td>{{ lang() == 'ar' ? $invoice->user->name_ar : $invoice->user->name_en }}</td>
                                                     <td>{{ $invoice->invoice_date }}</td>
-
+                                                    <td>
+                                                        <button type="button" class="btn btn-success btn-sm"
+                                                                data-toggle="modal"
+                                                                data-target="#details{{ $invoice->id }}"
+                                                                title="{{ trans('home.details') }}"><i
+                                                                class="fa fa-eye"></i> {{trans('home.details')}}
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        @if($invoice->comment !== null)
+                                                            <button type="button" class="btn btn-info btn-sm"
+                                                                    data-toggle="modal"
+                                                                    data-target="#comment{{ $invoice->id }}"
+                                                                    title="{{ trans('home.show') }}"><i
+                                                                    class="fa fa-comment"></i> {{trans('home.show')}}
+                                                            </button>
+                                                        @else
+                                                            <button type="button" class="btn btn-info btn-sm"
+                                                                    data-toggle="modal"
+                                                                    disabled
+                                                                    data-target="#comment{{ $invoice->id }}"
+                                                                    title="{{ trans('home.show') }}"><i
+                                                                    class="fa fa-comment"></i> {{ trans('home.no_data') }}
+                                                            </button>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if($invoice->status == 0)
+                                                            <button style="cursor: pointer" data-id="{{$invoice->id}}"
+                                                                    class="btn btn-sm btn-danger statusSpan"
+                                                                    title="Hints : click to send to chef">{{ trans('home.hanging') }}</button>
+                                                        @else
+                                                            <button style="cursor: pointer" data-id="{{$invoice->id}}"
+                                                                    class="btn btn-sm btn-success statusSpan"> {{ trans('home.has_send') }}
+                                                            </button>
+                                                        @endif
+                                                    </td>
                                                 </tr>
 
-                                                <!-- show_modal_users -->
-                                                <div class="modal fade" id="show{{ $invoice->id }}" tabindex="-1"
+                                                <!-- details invoice -->
+                                                <div class="modal fade" id="details{{ $invoice->id }}" tabindex="-1"
+                                                     role="dialog"
+                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <?php $orders = \App\Models\Order::where('invoice_id', $invoice->id)->get(); ?>
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 style="font-family: 'Cairo', sans-serif;"
+                                                                    class="modal-title"
+                                                                    id="exampleModalLabel">
+                                                                    {{ trans('home.show') }}
+                                                                </h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <label>تفاصيل الوجبات</label>
+                                                                        @foreach($orders as $order)
+                                                                            <div class="card card-statistics"
+                                                                                 style="margin: 10px">
+                                                                                <div style="margin: 10px">
+                                                                                    <label>#{{ $loop->iteration }}</label><br/>
+                                                                                    <lable>{{ trans('home.meal_type_') }}</lable>
+                                                                                    <h3>{{ (lang() == 'ar') ? $order->meal->meal_type->name_ar : $order->meal->meal_type->name_en  }}</h3>
+                                                                                    <lable>{{ trans('home.meal_name') }}</lable>
+                                                                                    <h3>{{ (lang() == 'ar') ? $order->meal->name_ar : $order->meal->name_en  }}</h3>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endforeach
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <br><br>
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                            </div>
+                                                            {{--                                                                </form>--}}
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- comment invoice -->
+                                                <div class="modal fade" id="comment{{ $invoice->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
@@ -86,58 +173,15 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <!-- add_form -->
-                                                                {{--                                                                <form action="{{ route('admin.update') }}"--}}
-                                                                {{--                                                                      method="post">--}}
-                                                                {{--                                                                    {{ method_field('patch') }}--}}
-                                                                {{--                                                                    @csrf--}}
-                                                                <input type="text" hidden name="role_id" value="1">
                                                                 <div class="row">
                                                                     <div class="col-12">
-                                                                        <img
-                                                                            src="{{ asset('assets/images/user1.jpg') }}"
-                                                                            class="form-control" style="border-radius: 150px;   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <label for="Name"
-                                                                               class="mr-sm-2">{{ trans('home.name') }}
-                                                                            :</label>
-                                                                        <input id="name" type="text" name="name"
-                                                                               class="form-control"
-{{--                                                                               value="{{  lang() == 'ar' ? $invoice->name_ar : $invoice->name_en }}"--}}
-                                                                               disabled>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <label for="email"
-                                                                               class="mr-sm-2">{{ trans('home.email') }}
-                                                                            :</label>
-                                                                        <input id="name" type="text" name="name"
-                                                                               class="form-control"
-{{--                                                                               value="{{ $user->email }}"--}}
-                                                                               disabled>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <label for="phone"
-                                                                               class="mr-sm-2">{{ trans('home.phone') }}
-                                                                            :</label>
-                                                                        <input id="phone" type="text" name="phone"
-                                                                               class="form-control"
-{{--                                                                               value="{{ $user->phone }}"--}}
-                                                                               disabled>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <label for="location"
-                                                                               class="mr-sm-2">{{ trans('home.location') }}
-                                                                            :</label>
-                                                                        <input id="location" type="text" name="location"
-                                                                               class="form-control"
-{{--                                                                               value="{{ lang() == 'ar' ? $user->location_ar : $user->location_en }}"--}}
-                                                                               disabled>
+                                                                        <div class="card card-statistics"
+                                                                             style="margin: 10px">
+                                                                            <div style="margin: 10px">
+                                                                                <label>{{ trans('home.comments') }}</label>
+                                                                                <h3>{{ $invoice->comment }}</h3>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -153,121 +197,44 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                            @endforeach
+                                        </table>
                                     </div>
-
-
-                                    <!-- delete_modal_Grade -->
-                                    <div class="modal fade" id="delete{{ $invoice->id }}" tabindex="-1"
-                                         role="dialog"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 style="font-family: 'Cairo', sans-serif;"
-                                                        class="modal-title"
-                                                        id="exampleModalLabel">
-                                                        {{ trans('home.delete_admin') }}
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form action="{{ route('user.delete') }}"
-                                                          method="post">
-                                                        {{--                                                                    {{ method_field('Delete') }}--}}
-                                                        @csrf
-                                                        <h6>{{ trans('home.warning_delete') }}</h6>
-                                                        <input id="id" type="hidden" name="id"
-                                                               class="form-control"
-                                                               value="{{ $invoice->id }}">
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">{{ trans('home.close') }}</button>
-                                                            <button type="submit"
-                                                                    class="btn btn-danger">{{ trans('home.delete_admin') }}</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    @endforeach
-                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <!-- add_modal_Grade -->
-                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
-                                        id="exampleModalLabel">
-                                        {{ trans('home.add_admin') }}
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <!-- add_form -->
-                                    <form action="{{ route('admin.store') }}" method="POST" id="addForm">
-                                        @csrf
-                                        <input type="text" hidden name="role_id" value="1">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label for="name"
-                                                       class="mr-sm-2">{{ trans('home.name') }}
-                                                    :</label>
-                                                <input id="name" type="text" name="name" class="form-control"
-                                                       required maxlength="120">
-                                            </div>
-                                            <div class="col-6">
-                                                <label for="Name_en"
-                                                       class="mr-sm-2">{{ trans('home.email') }}
-                                                    :</label>
-                                                <input type="email" class="form-control" name="email" required>
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="Name_en"
-                                                       class="mr-sm-2">{{ trans('home.password') }}
-                                                    :</label>
-                                                <input type="password" class="form-control"
-                                                       name="password" required maxlength="60">
-                                            </div>
-                                        </div>
-                                        <br><br>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">{{ trans('home.close') }}</button>
-                                    <button type="submit" class="btn btn-success"
-                                            id="addBtn">{{ trans('home.add') }}</button>
-                                </div>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <!-- row closed -->
 @endsection
 @section('js')
     @toastr_js
     @toastr_render
+
+    <script>
+        // change users status
+        $(document).on('click', '.statusSpan', function (event) {
+            var id = $(this).data("id")
+            $.ajax({
+                type: 'POST',
+                url: "{{route('orders.status')}}",
+                data: {
+                    '_token': "{{csrf_token()}}",
+                    'id': id,
+                },
+                success: function (data) {
+                    if (data.success === true) {
+                        // toastr.success(data.message)
+                        location.reload();
+                    } else {
+                        toastr.error('هناك خطأ ما ...')
+                    }
+                }
+            })
+        });
+    </script>
 
 @endsection

@@ -24,7 +24,7 @@ class CreatePackagesTable extends Migration
             $table->string('currency_en');
             $table->enum('type',['basic','special'])->comment('نوع الباقه');
             $table->enum('status',['show','hide'])->comment('حاله الباقه');
-            $table->enum('payment_method',['visa','cash','wallet'])->comment('حاله الدفع');
+//            $table->enum('payment_method',['visa','cash','wallet'])->comment('حاله الدفع');
             $table->timestamps();
 
         });

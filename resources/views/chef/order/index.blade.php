@@ -122,11 +122,6 @@
                                                             <div style="display: grid">X{{ $meal_count }}</div>
                                                         </td>
                                                         <td>
-                                                            @php
-                                                                $comments = \App\Models\Comment::where('meal_id', $order->meal->id)
-                                                                ->where('created_at', 'LIKE', '%' . $invoice->invoice_date . '%')
-                                                                ->get();
-                                                            @endphp
                                                             <button type="button" class="btn btn-info btn-sm"
                                                                     data-toggle="modal"
                                                                     data-target="#comment{{ $order->meal->id }}"
@@ -159,17 +154,7 @@
                                                                         <div class="col-12" style="margin: 10px 31px;
                                                                 flex: 0px">
                                                                             <div class="form-control">
-                                                                                @foreach($comments as $comment)
-                                                                                    @if($comment != null)
-                                                                                        <h5> {{ trans('home.user_id') .' [ ' . $comment->user_id .' ] ' }}</h5>
-                                                                                        <br>
-                                                                                        <h5>{{  'اسم الوجبة' .' [ '}} {{(lang() == 'ar') ? $meal->meal->name_ar : $meal->meal->name_en}}  {{' ] ' }}</h5>
-                                                                                        <br>
-                                                                                        <h6 style="margin: 0px">
-                                                                                            Comments:</h6>
-                                                                                        <h5>{{ ($order->meal->id == $comment->meal_id) ? $comment->comment : 'no comments' }}</h5>
-                                                                                    @endif
-                                                                                @endforeach
+
                                                                             </div>
                                                                         </div>
                                                                     </div>
