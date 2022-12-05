@@ -171,6 +171,13 @@ return [
 
     'read_massage' => 'قراة الرسالة',
     'no_data' => 'لا يوجد بيانات',
+    'hanging'=> 'معلق',
+    'comments'=> 'تعليق',
+    'has_send'=> 'تم الارسال',
+    'meal_type_'=> 'نوع الوجبة',
+    'meal_name'=> 'اسم الوجبة',
+    'user_package'=> 'باقات المستخدمين',
+    'package_list'=> 'قائمة الباقات',
 
 
 

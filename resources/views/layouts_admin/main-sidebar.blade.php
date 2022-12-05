@@ -95,8 +95,21 @@
                                 <div class="clearfix"></div>
                             </a>
                             <ul id="packages-menu" class="collapse" data-parent="#sidebarnav">
-                                <li><a href="{{ route('package.index_hanging') }}">@lang('home.cash_package')</a></li>
-                                <li><a href="{{ route('package.index_activated') }}">@lang('home.activated_packages')</a></li>
+                                <li><a href="{{ route('package.index') }}">@lang('home.package_list')</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- User Packages -->
+                        <li>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#user-packages-menu">
+                                <div class="pull-left"><i class="fas fa-credit-card"></i><span
+                                        class="right-nav-text">@lang('home.user_package')</span></div>
+                                <div class="pull-right"><i class="ti-plus"></i></div>
+                                <div class="clearfix"></div>
+                            </a>
+                            <ul id="user-packages-menu" class="collapse" data-parent="#sidebarnav">
+                                <li><a href="{{ route('hangingPackage') }}">@lang('home.hanging_bouquets')</a></li>
+                                <li><a href="{{ route('activePackage') }}">@lang('home.activated_packages')</a></li>
                             </ul>
                         </li>
 

@@ -18,7 +18,7 @@ class CreateUserPackagesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('package_id');
             $table->enum('payment_method',['cash','visa','wallet']);
-
+            $table->enum('status',['0','1'])->default('0')->comment('لو اليوزر اختار كاش هتبقي 0');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreign('package_id')->references('id')->on('packages')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
