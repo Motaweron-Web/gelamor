@@ -18,6 +18,7 @@ class CreateInvoicesTable extends Migration
             $table->bigIncrements('id');
             $table->date('invoice_date');
             $table->unsignedBigInteger('user_id');
+            $table->enum('status',['0','1']);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
