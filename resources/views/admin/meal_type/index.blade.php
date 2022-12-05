@@ -39,10 +39,10 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <button type="button" class="button x-small" data-toggle="modal"
-                                            data-target="#addModal">
-                                        @lang('home.add_meal_type_list')
-                                    </button>
+{{--                                    <button type="button" class="button x-small" data-toggle="modal"--}}
+{{--                                            data-target="#addModal">--}}
+{{--                                        @lang('home.add_meal_type_list')--}}
+{{--                                    </button>--}}
                                     <br><br>
 
                                     <div class="table-responsive">
@@ -73,11 +73,11 @@
                                                                 data-target="#update{{ $type->id }}"
                                                                 title="{{ trans('home.edit') }}"><i
                                                                 class="fa fa-edit"></i></button>
-                                                        <button type="button" class="btn btn-danger btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#delete{{ $type->id }}"
-                                                                title="{{ trans('home.delete') }}"><i
-                                                                class="fa fa-trash"></i></button>
+{{--                                                        <button type="button" class="btn btn-danger btn-sm"--}}
+{{--                                                                data-toggle="modal"--}}
+{{--                                                                data-target="#delete{{ $type->id }}"--}}
+{{--                                                                title="{{ trans('home.delete') }}"><i--}}
+{{--                                                                class="fa fa-trash"></i></button>--}}
                                                         <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#show{{ $type->id }}"

@@ -3,13 +3,21 @@
 @section('css')
     @toastr_css
     @section('title')
+        @if(\Carbon\Carbon::now()->format('Y-m-d') == $date)
         @lang('home.order_day')
+        @else
+            {{ \Carbon\Carbon::parse($date)->dayName }}
+        @endif
     @stop
 @endsection
 @section('page-header')
     <!--breadcrumb -->
     @section('PageTitle')
-        @lang('home.order_day')
+        @if(\Carbon\Carbon::now()->format('Y-m-d') == $date)
+            @lang('home.order_day')
+        @else
+            {{ \Carbon\Carbon::parse($date)->dayName }}
+        @endif
     @stop
     <!-- breadcrumb -->
 @endsection
@@ -24,11 +32,21 @@
                         <div class="col-xl-12 mb-30">
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
+                                    @if(\Carbon\Carbon::now()->format('Y-m-d') == $date)
                                     <h1 style="text-align: center;
                                     font-weight: bolder;
                                     margin-top: 28px;
                                     margin-bottom: 0px;">{{ trans('home.order_day') }}
-                                        <small>({{ trans('home.basic_orders') }})</small></h1>
+                                        <small>({{ trans('home.basic_orders') }})</small>
+                                    </h1>
+                                    @else
+                                        <h1 style="text-align: center;
+                                    font-weight: bolder;
+                                    margin-top: 28px;
+                                    margin-bottom: 0px;">{{ \Carbon\Carbon::parse($date)->dayName }}
+                                            <small>({{ trans('home.basic_orders') }})</small>
+                                        </h1>
+                                    @endif
                                     <br><br>
                                     <div class="table-bordeblue">
                                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
@@ -67,6 +85,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if(\Carbon\Carbon::now()->format('Y-m-d') == $date)
                         <div class="col-xl-12 mb-30">
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
@@ -179,14 +198,25 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                         <div class="col-xl-12 mb-30">
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
-                                    <h1 style="text-align: center;
+                                    @if(\Carbon\Carbon::now()->format('Y-m-d') == $date)
+                                        <h1 style="text-align: center;
                                     font-weight: bolder;
                                     margin-top: 28px;
                                     margin-bottom: 0px;">{{ trans('home.order_day') }}
-                                        <small>({{ trans('home.special_orders') }})</small></h1>
+                                            <small>({{ trans('home.basic_orders') }})</small>
+                                        </h1>
+                                    @else
+                                        <h1 style="text-align: center;
+                                    font-weight: bolder;
+                                    margin-top: 28px;
+                                    margin-bottom: 0px;">{{ \Carbon\Carbon::parse($date)->dayName }}
+                                            <small>({{ trans('home.basic_orders') }})</small>
+                                        </h1>
+                                    @endif
                                     <br><br>
                                     <div class="table-bordeblue">
                                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
@@ -212,29 +242,41 @@
                                             <tbody>
                                             @if($orders_special->count() > 0)
                                                 @foreach($orders_special as $special)
+                                                    @php
+                                                        $orders_specials = \App\Models\OrderSpecial::where('date_of_order', $invoice->invoice_date)
+                                                        ->where('user_id',$special->user_id)->get();
+                                                    @endphp
                                                     <tr>
                                                         <td>#{{ $special->id }}</td>
                                                         <td>#{{ $special->user->id }}</td>
-                                                        @if($special->meal_type_id == 1)
-                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                        @else
-                                                            <td>---</td>
-                                                        @endif
-                                                        @if($special->meal_type_id == 2)
-                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                        @else
-                                                            <td>---</td>
-                                                        @endif
-                                                        @if($special->meal_type_id == 3)
-                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                        @else
-                                                            <td>---</td>
-                                                        @endif
-                                                        @if($special->meal_type_id == 4)
-                                                            <td>{{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</td>
-                                                        @else
-                                                            <td>---</td>
-                                                        @endif
+                                                        <td>
+                                                            @foreach($orders_specials as $value)
+                                                                @if($value->meal_type_id == 1)
+                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                        <td>
+                                                            @foreach($orders_specials as $value)
+                                                                @if($value->meal_type_id == 2)
+                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                        <td>
+                                                            @foreach($orders_specials as $value)
+                                                                @if($value->meal_type_id == 3)
+                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                        <td>
+                                                            @foreach($orders_specials as $value)
+                                                                @if($value->meal_type_id == 4)
+                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             @else
