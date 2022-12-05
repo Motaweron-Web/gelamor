@@ -207,14 +207,14 @@
                                     font-weight: bolder;
                                     margin-top: 28px;
                                     margin-bottom: 0px;">{{ trans('home.order_day') }}
-                                            <small>({{ trans('home.basic_orders') }})</small>
+                                            <small>({{ trans('home.special_orders') }})</small>
                                         </h1>
                                     @else
                                         <h1 style="text-align: center;
                                     font-weight: bolder;
                                     margin-top: 28px;
                                     margin-bottom: 0px;">{{ \Carbon\Carbon::parse($date)->dayName }}
-                                            <small>({{ trans('home.basic_orders') }})</small>
+                                            <small>({{ trans('home.special_orders') }})</small>
                                         </h1>
                                     @endif
                                     <br><br>
