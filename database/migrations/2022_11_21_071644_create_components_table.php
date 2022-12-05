@@ -19,6 +19,9 @@ class CreateComponentsTable extends Migration
             $table->integer('calories')->comment('السعرات');
             $table->integer('fats')->comment('الدهون');
             $table->integer('carbohydrates')->comment('الكربوهيدرات');
+            $table->unsignedBigInteger('component_categories_id');
+
+            $table->foreign('component_categories_id')->references('id')->on('component_categories')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
 
         });
