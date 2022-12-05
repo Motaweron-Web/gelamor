@@ -46,7 +46,7 @@ login-->
 {{--                <div class="col-lg-4 col-md-6 login-fancy-bg bg"--}}
 {{--                     style="background-image: url(public/assets/images/login-inner-bg.jpg);">--}}
 {{--                    <div class="login-fancy" style="padding: 0px">--}}
-{{--                        <img src="{{ asset('') }}">--}}
+{{--                        <img src="{{ asset('img_default/gelamor14.jpg') }}">--}}
 {{--                    </div>--}}
 {{--                </div>--}}
                 <div class="col-lg-6 col-md-12 bg-white">
