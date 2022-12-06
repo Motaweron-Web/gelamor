@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ChefSeeder::class);
         $this->call(ContactUsSeeder::class);
         $this->call(CountrySeeder::class);
-//        $this->call(SettingSeeder::class);
+        $this->call(SettingSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CurrencySeeder::class);
 
