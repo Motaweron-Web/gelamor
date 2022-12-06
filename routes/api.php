@@ -30,13 +30,15 @@ use Illuminate\Support\Facades\Route;
      Route::post('password/email',  ForgotPasswordController::class);
      Route::post('password/code/check', CodeCheckController::class);
      Route::post('password/reset', ResetPasswordController::class);
+     Route::post('contact-us',[UserController::class,'contact_us']);
+
+
  });
 
 Route::group(['prefix' => 'auth','middleware' => 'check:user-api'], function () {
 
     Route::post('user/logout',[UserController::class,'logout']);
     Route::post('pay-credit-card',[PaymentController::class,'pay']);
-    Route::post('contact-us',[UserController::class,'contact_us']);
     Route::post('contact-us-reply',[ContactUsController::class,'contact_us_reply']);
 });
 
