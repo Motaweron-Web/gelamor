@@ -178,6 +178,7 @@ return [
     'meal_name'=> 'اسم الوجبة',
     'user_package'=> 'باقات المستخدمين',
     'package_list'=> 'قائمة الباقات',
+    'type'=> 'النوع',
 
 
 

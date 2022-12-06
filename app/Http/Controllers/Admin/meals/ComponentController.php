@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreComponentRequest;
 use App\Http\Requests\UpdateComponentRequest;
 use App\Models\Component;
+use App\Models\ComponentCategory;
 use App\Traits\PhotoTrait;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,9 @@ class ComponentController extends Controller
 
     public function index()
     {
-        $component = Component::get();;
-        return view('admin.component.index', compact('component'));
+        $components = Component::get();
+        $component_categories = ComponentCategory::get();
+        return view('admin.component.index', compact('components','component_categories'));
     } // end of index
 
     public function store(StoreComponentRequest $request)
