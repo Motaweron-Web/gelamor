@@ -212,8 +212,8 @@
                                                                             <label for="Name_en"
                                                                                    class="mr-sm-2">{{ trans('home.components_list') }}
                                                                                 :</label>
-                                                                            @foreach($type->component as $cc)
-                                                                            @endforeach
+                                                                            @foreach($type->component as $component_meal)
+
                                                                             <select class="form-control"
                                                                                     name="component_ids[]"
                                                                                     style="height: calc(10.1rem + 2px);"
@@ -224,8 +224,9 @@
                                                                                 @foreach($component as $value)
                                                                                         <option
                                                                                         value="{{$value->id}}"
-                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
+                                                                                            {{ ($value->id == $component_meal->id) ?  'selected' : '' }}>
                                                                                         {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
+                                                                                @endforeach
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>

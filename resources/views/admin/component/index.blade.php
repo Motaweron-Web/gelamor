@@ -61,30 +61,31 @@
                                             </thead>
                                             <tbody>
                                             <?php $i = 0; ?>
-                                            @foreach ($component as $type)
+                                            @foreach ($components as $component)
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ (lang() == 'ar') ? $type->name_ar : $type->name_en }}</td>
+                                                    <td>{{ (lang() == 'ar') ? $component->name_ar : $component->name_en }}</td>
                                                     <td>
-                                                        <img src="{{ ($type->img == null) ? asset('img_default/default_food.jpg') : asset($type->img) }}"
-                                                             onclick="window.open(this.src)" href="javascript:void(0);"
-                                                             width="80px" height="80px" style="border-radius: 40%;">
+                                                        <img
+                                                            src="{{ ($component->img == null) ? asset('img_default/default_food.jpg') : asset($component->img) }}"
+                                                            onclick="window.open(this.src)" href="javascript:void(0);"
+                                                            width="80px" height="80px" style="border-radius: 40%;">
                                                     </td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#update{{ $type->id }}"
+                                                                data-target="#update{{ $component->id }}"
                                                                 title="{{ trans('home.edit') }}"><i
                                                                 class="fa fa-edit"></i></button>
                                                         <button type="button" class="btn btn-danger btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#delete{{ $type->id }}"
+                                                                data-target="#delete{{ $component->id }}"
                                                                 title="{{ trans('home.delete') }}"><i
                                                                 class="fa fa-trash"></i></button>
                                                         <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#show{{ $type->id }}"
+                                                                data-target="#show{{ $component->id }}"
                                                                 title="{{ trans('home.update') }}"><i
                                                                 class="fa fa-eye"></i>
                                                         </button>
@@ -93,7 +94,7 @@
 
 
                                                 <!-- update_modal_meal Type -->
-                                                <div class="modal fade" id="update{{ $type->id }}" tabindex="-1"
+                                                <div class="modal fade" id="update{{ $component->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
@@ -122,18 +123,18 @@
                                                                                 :</label>
                                                                             <input id="name" type="text" name="name_ar"
                                                                                    class="form-control"
-                                                                                   value="{{ $type->name_ar }}"
+                                                                                   value="{{ $component->name_ar }}"
                                                                                    required>
                                                                             <input id="id" type="hidden" name="id"
                                                                                    class="form-control"
-                                                                                   value="{{ $type->id }}">
+                                                                                   value="{{ $component->id }}">
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <label for="Name_en"
                                                                                    class="mr-sm-2">{{ trans('home.name_en') }}
                                                                                 :</label>
                                                                             <input type="text" class="form-control"
-                                                                                   value="{{ $type->name_en }}"
+                                                                                   value="{{ $component->name_en }}"
                                                                                    name="name_en" required>
                                                                         </div>
 
@@ -141,7 +142,8 @@
                                                                             <label for="Name_en"
                                                                                    class="mr-sm-2">{{ trans('home.image') }}
                                                                                 :</label>
-                                                                            <input class="form-control" id="fileupload" type="file" name="img">
+                                                                            <input class="form-control" id="fileupload"
+                                                                                   type="file" name="img">
                                                                         </div>
 
                                                                         <div class="col-12" id="dvPreview">
@@ -152,7 +154,7 @@
                                                                                    class="mr-sm-2">{{ trans('home.protein') }}
                                                                                 :</label>
                                                                             <input type="number" class="form-control"
-                                                                                   value="{{ $type->protein }}"
+                                                                                   value="{{ $component->protein }}"
                                                                                    name="protein" required>
                                                                         </div>
                                                                         <div class="col-6">
@@ -160,7 +162,7 @@
                                                                                    class="mr-sm-2">{{ trans('home.calories') }}
                                                                                 :</label>
                                                                             <input type="number" class="form-control"
-                                                                                   value="{{ $type->calories }}"
+                                                                                   value="{{ $component->calories }}"
                                                                                    name="calories" required>
                                                                         </div>
                                                                         <div class="col-6">
@@ -168,7 +170,7 @@
                                                                                    class="mr-sm-2">{{ trans('home.Fats') }}
                                                                                 :</label>
                                                                             <input type="number" class="form-control"
-                                                                                   value="{{ $type->fats }}"
+                                                                                   value="{{ $component->fats }}"
                                                                                    name="fats" required>
                                                                         </div>
                                                                         <div class="col-6">
@@ -176,8 +178,24 @@
                                                                                    class="mr-sm-2">{{ trans('home.carbohydrates') }}
                                                                                 :</label>
                                                                             <input type="number" class="form-control"
-                                                                                   value="{{ $type->carbohydrates }}"
+                                                                                   value="{{ $component->carbohydrates }}"
                                                                                    name="carbohydrates" required>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <label for="Name_en"
+                                                                                   class="mr-sm-2">{{ trans('home.component_categories') }}
+                                                                                :</label>
+                                                                            <select class="form-control"
+                                                                                    name="component_categories_id"
+                                                                                    required>
+                                                                                <option value="" disabled></option>
+                                                                                @foreach($component_categories as $category)
+                                                                                    <option
+                                                                                        value="component_categories_id" {{ ($category->id == $component->component_categories_id) ? 'selected' : '' }}>
+                                                                                        {{ lang() == 'ar' ? $category->name_ar : $category->name_en }}
+                                                                                    </option>
+                                                                                @endforeach
+                                                                            </select>
                                                                         </div>
                                                                     </div>
 
@@ -197,7 +215,7 @@
                                                 </div>
 
                                                 <!-- show_modal_meal type -->
-                                                <div class="modal fade" id="show{{ $type->id }}" tabindex="-1"
+                                                <div class="modal fade" id="show{{ $component->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-lg" role="document">
@@ -226,18 +244,18 @@
                                                                             :</label>
                                                                         <input id="name" type="text" name="name_ar"
                                                                                class="form-control"
-                                                                               value="{{ $type->name_ar }}"
+                                                                               value="{{ $component->name_ar }}"
                                                                                required disabled>
                                                                         <input id="id" type="hidden" name="id"
                                                                                class="form-control"
-                                                                               value="{{ $type->id }}">
+                                                                               value="{{ $component->id }}">
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <label for="Name_en"
                                                                                class="mr-sm-2">{{ trans('home.name_en') }}
                                                                             :</label>
                                                                         <input type="text" class="form-control"
-                                                                               value="{{ $type->name_en }}"
+                                                                               value="{{ $component->name_en }}"
                                                                                name="name_en" required disabled>
                                                                     </div>
 
@@ -245,9 +263,12 @@
                                                                         <label for="Name_en"
                                                                                class="mr-sm-2">{{ trans('home.image') }}
                                                                             :</label>
-                                                                        <img src="{{ ($type->img == null) ? asset('img_default/default_food.jpg') : asset($type->img) }}"
-                                                                             onclick="window.open(this.src)" href="javascript:void(0);"
-                                                                             width="80px" height="80px" style="border-radius: 40%; margin: 10px">
+                                                                        <img
+                                                                            src="{{ ($component->img == null) ? asset('img_default/default_food.jpg') : asset($component->img) }}"
+                                                                            onclick="window.open(this.src)"
+                                                                            href="javascript:void(0);"
+                                                                            width="80px" height="80px"
+                                                                            style="border-radius: 40%; margin: 10px">
                                                                     </div>
 
                                                                     <div class="col-6">
@@ -255,7 +276,7 @@
                                                                                class="mr-sm-2">{{ trans('home.protein') }}
                                                                             :</label>
                                                                         <input type="number" class="form-control"
-                                                                               value="{{ $type->protein }}"
+                                                                               value="{{ $component->protein }}"
                                                                                name="protein" required disabled>
                                                                     </div>
                                                                     <div class="col-6">
@@ -263,7 +284,7 @@
                                                                                class="mr-sm-2">{{ trans('home.calories') }}
                                                                             :</label>
                                                                         <input type="number" class="form-control"
-                                                                               value="{{ $type->calories }}"
+                                                                               value="{{ $component->calories }}"
                                                                                name="calories" required disabled>
                                                                     </div>
                                                                     <div class="col-6">
@@ -271,7 +292,7 @@
                                                                                class="mr-sm-2">{{ trans('home.Fats') }}
                                                                             :</label>
                                                                         <input type="number" class="form-control"
-                                                                               value="{{ $type->fats }}"
+                                                                               value="{{ $component->fats }}"
                                                                                name="Fats" required disabled>
                                                                     </div>
                                                                     <div class="col-6">
@@ -279,7 +300,7 @@
                                                                                class="mr-sm-2">{{ trans('home.carbohydrates') }}
                                                                             :</label>
                                                                         <input type="number" class="form-control"
-                                                                               value="{{ $type->carbohydrates }}"
+                                                                               value="{{ $component->carbohydrates }}"
                                                                                name="carbohydrates" required disabled>
                                                                     </div>
                                                                 </div>
@@ -298,7 +319,7 @@
                                                 </div>
 
                                                 <!-- delete_modal_Grade -->
-                                                <div class="modal fade" id="delete{{ $type->id }}" tabindex="-1"
+                                                <div class="modal fade" id="delete{{ $component->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
@@ -322,7 +343,7 @@
                                                                     <h6>{{ trans('home.warning_delete') }}</h6>
                                                                     <input id="id" type="hidden" name="id"
                                                                            class="form-control"
-                                                                           value="{{ $type->id }}">
+                                                                           value="{{ $component->id }}">
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary"
                                                                                 data-dismiss="modal">{{ trans('home.close') }}</button>
@@ -417,6 +438,24 @@
                                                     <input type="number" class="form-control"
                                                            name="carbohydrates" required>
                                                 </div>
+                                                <div class="col-12">
+                                                    <label for="Name_en"
+                                                           class="mr-sm-2">{{ trans('home.type') }}
+                                                        :</label>
+                                                    <select class="form-control"
+                                                            name="component_categories_id"
+                                                            style="height: calc(4.1rem + 2px);"
+                                                            required>
+                                                        <option value="" disabled selected>---</option>
+                                                            @foreach($component_categories as $category)
+                                                                <option
+                                                                    class="form-control"
+                                                                    value="{{ $category->id }}">
+                                                                    {{ lang() == 'ar' ? $category->name_ar : $category->name_en }}
+                                                                </option>
+                                                            @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
 
                                             <br><br>
@@ -450,8 +489,7 @@
                     if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
                         $("#dvPreview").show();
                         $("#dvPreview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
-                    }
-                    else {
+                    } else {
                         if (typeof (FileReader) != "undefined") {
                             $("#dvPreview").show();
                             $("#dvPreview").append("<img />");

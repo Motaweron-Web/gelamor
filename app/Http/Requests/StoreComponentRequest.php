@@ -23,6 +23,7 @@ class StoreComponentRequest extends FormRequest
             'calories' => 'required|numeric',
             'fats' => 'required|numeric',
             'carbohydrates' => 'required|numeric',
+            'component_categories_id' => 'required',
         ];
     }
 
