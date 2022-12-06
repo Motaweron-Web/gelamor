@@ -132,6 +132,7 @@ return [
     'add_meal' => 'Add Meal',
     'edit_meal' => 'Edit Meal',
     'delete_meal' => 'Delete Meal',
+    'date_meal' => 'Date Meal',
 
     // custom meals
     'custom_meals' => 'Custom Meals',
@@ -146,6 +147,16 @@ return [
     'add_component' => 'Add Component',
     'edit_component' => 'Edit Component',
     'delete_component' => 'Delete Component',
+
+    'read_massage' => 'Read Massage',
+    'no_data' => 'No Data',
+    'hanging' => 'Hanging',
+    'has_send' => 'Has Send',
+    'comments' => 'comments',
+    'meal_name' => 'Meal Name',
+    'meal_type_' => 'Meal Type',
+    'user_package' => 'User Package',
+    'package_list' => 'Package List',
 
     //chefs
     'chef' => 'chef',
@@ -171,6 +182,7 @@ return [
 
 
 
+    'need_help' => 'Need Help !',
 
 #############################################
 ################ chef #######################
@@ -197,6 +209,10 @@ return [
     'dinner' => 'Dinner',
     'snacks' => 'Snacks',
     'user_id' => 'User ID',
-    'id' => 'ID',
+
+    'total' => 'Total',
+    'basic_orders' => 'Basic Orders',
+    'special_orders' => 'Special Orders',
+
 
 ];

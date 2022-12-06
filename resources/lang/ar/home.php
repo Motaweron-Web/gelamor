@@ -95,6 +95,7 @@ return [
     'add_meal' => 'اضافة وجبة',
     'edit_meal' => 'تعديل وجبة',
     'delete_meal' => 'حذف وجبة',
+    'date_meal' => 'موعد الوجبة',
 
 
     // custom meals
@@ -166,8 +167,17 @@ return [
     'delete_report' => 'حذف البلاغ',
 
 
+    'need_help' => 'هل تحتاج مساعدة',
 
-
+    'read_massage' => 'قراة الرسالة',
+    'no_data' => 'لا يوجد بيانات',
+    'hanging'=> 'معلق',
+    'comments'=> 'تعليق',
+    'has_send'=> 'تم الارسال',
+    'meal_type_'=> 'نوع الوجبة',
+    'meal_name'=> 'اسم الوجبة',
+    'user_package'=> 'باقات المستخدمين',
+    'package_list'=> 'قائمة الباقات',
 
 
 
@@ -199,6 +209,12 @@ return [
     'dinner' => 'العشاء',
     'snacks' => 'سناكس',
     'user_id' => 'ID العميل',
+
+
+    'total' => 'المجموع',
+    'basic_orders' => 'الطلبات العادية',
+    'special_orders' => 'الطلبات الخاصة',
+
 
 
 ];

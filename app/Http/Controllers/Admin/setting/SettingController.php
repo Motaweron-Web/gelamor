@@ -45,8 +45,8 @@ class SettingController extends Controller
                 'privacy_ar' => 'required',
                 'privacy_en' => 'required',
             ],[
-                'privacy_ar.required' => trans('validation.privacy_ar.required'),
-                'privacy_en.required' => trans('validation.privacy_en.required'),
+                'privacy_ar.required' => trans('validation.privacy_ar_required'),
+                'privacy_en.required' => trans('validation.privacy_en_required'),
             ]);
 
             $privacy = Setting::findOrFail($request->id);
@@ -73,8 +73,8 @@ class SettingController extends Controller
                 'about_ar' => 'required',
                 'about_en' => 'required',
             ],[
-                'about_ar.required' => trans('validation.about_ar.required'),
-                'about_en.required' => trans('validation.about_en.required'),
+                'about_ar.required' => trans('validation.about_ar_required'),
+                'about_en.required' => trans('validation.about_en_required'),
             ]);
 
             $about = Setting::findOrFail($request->id);
@@ -103,8 +103,8 @@ class SettingController extends Controller
                 'terms_ar' => 'required',
                 'terms_en' => 'required',
             ],[
-                'terms_ar.required' => trans('validation.terms_ar.required'),
-                'terms_en.required' => trans('validation.terms_en.required'),
+                'terms_ar.required' => trans('validation.terms_ar_required'),
+                'terms_en.required' => trans('validation.terms_en_required'),
             ]);
 
             $terms = Setting::findOrFail($request->id);

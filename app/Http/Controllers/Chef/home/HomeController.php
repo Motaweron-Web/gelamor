@@ -11,4 +11,8 @@ class HomeController extends Controller
     {
         return view('chef.home.index');
     }
+    public function calendar()
+    {
+        return view('chef.order.calendar');
+    }
 }

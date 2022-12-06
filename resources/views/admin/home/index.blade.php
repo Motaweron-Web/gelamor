@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="float-right text-right">
                                             <p class="card-text text-dark">@lang('home.orders')</p>
-                                            <h4>{{\App\Models\OrderSpecial::count()}}</h4>
+                                            <h4>{{\App\Models\Invoice::count()}}</h4>
                                         </div>
                                     </div>
 {{--                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">--}}
@@ -138,10 +138,10 @@
                                     <tr>
                                             <?php $i++; ?>
                                         <td>{{ $i }}</td>
-                                        <td>{{ $contact->name }}</td>
-                                        <td>{{ $contact->email }}</td>
+                                        <td>{{ lang() == 'ar' ? $contact->user->name_ar : $contact->user->name_en }}</td>
+                                        <td>{{ $contact->user->email }}</td>
                                         <td>{{ $contact->subject }}</td>
-                                        <td>{{ $contact->created_at->diffForHumans() }}</td>
+                                        <td>{{ $contact->created_at->format('Y-m-d') }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -105,6 +105,9 @@ class UserController extends Controller{
     }
 
 
+
+
+
     public function contact_us(Request $request){
 
 

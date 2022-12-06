@@ -123,7 +123,6 @@
                                                                       method="post" enctype="multipart/form-data">
                                                                     {{--                                                                    {{ method_field('patch') }}--}}
                                                                     @csrf
-                                                                    <input type="text" hidden name="role_id" value="1">
                                                                     <div class="row">
                                                                         <div class="col-6">
                                                                             <label for="Name"
@@ -213,23 +212,24 @@
                                                                             <label for="Name_en"
                                                                                    class="mr-sm-2">{{ trans('home.components_list') }}
                                                                                 :</label>
+                                                                            @foreach($type->component as $cc)
+                                                                            @endforeach
                                                                             <select class="form-control"
                                                                                     name="component_ids[]"
                                                                                     style="height: calc(10.1rem + 2px);"
                                                                                     required
                                                                                     multiple="multiple">
                                                                                 <option value=""
-                                                                                        selected>@lang('home.components_list')</option>
+                                                                                        disabled>@lang('home.components_list')</option>
                                                                                 @foreach($component as $value)
-                                                                                    <option
-                                                                                        value="{{ $value->id }}">
+                                                                                        <option
+                                                                                        value="{{$value->id}}"
+                                                                                            {{ ($value->id == $cc->id) ?  'selected' : '' }}>
                                                                                         {{ (lang() == 'ar') ? $value->name_ar : $value->name_en }}
-                                                                                    </option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
                                                                     </div>
-
                                                                     <br><br>
 
                                                                     <div class="modal-footer">
