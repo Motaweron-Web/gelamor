@@ -157,6 +157,7 @@ return [
     'meal_type_' => 'Meal Type',
     'user_package' => 'User Package',
     'package_list' => 'Package List',
+    'type' => 'Type',
 
     //chefs
     'chef' => 'chef',

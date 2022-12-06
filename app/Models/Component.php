@@ -17,6 +17,7 @@ class Component extends Model
         'calories',
         'fats',
         'carbohydrates',
+        'component_categories_id'
         ];
 
 
@@ -30,6 +31,5 @@ class Component extends Model
 
         return $this->hasMany(OrderSpecial::class,'component_id','id');
     }
-
 
 }
