@@ -43,7 +43,7 @@ class Meal extends Model
     //meal has many invoices // الوجبه تابعه لاكتر من فاتوره
     public function invoices(){
 
-        return $this->belongsToMany(Invoice::class,'orders','meal_id','invoice_id','id','id');
+        return $this->belongsToMany(Invoice::class,'orders','meal_id','invoice_id','id','id')->withTimestamps();
     }
 
     public function comments()

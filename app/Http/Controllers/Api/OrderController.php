@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\InvoiceResource;
+use App\Models\Invoice;
 use App\Models\Meal;
 use App\Models\Order;
 use App\Models\User;
@@ -19,27 +21,21 @@ class OrderController extends Controller{
 
             $rules = [
 
-                'meal_id' => 'required|exists:meals,id',
-                'date_of_order' => 'required|date|date_format:Y-m-d',
-                'protein'  => 'required'
-
+                'invoice_date'  => 'required|date|date_format:Y-m-d',
+                'details'       => 'array|min:1'
 
             ];
 
             $messages = [
 
-                'meal_id.required' => 'رقم الوجبه مطلوب',
-                'date_of_order.required' => 'تاريخ الوجبه مطلوب',
-                'date_of_order.date' => 'تاريخ الوجبه يجب ان يكون تاريخ',
-                'date_of_order.date_format' => 'تاريخ الوجبه يجب ان يكون سنه وشهر ويوم',
-                'protein.required' => 'نسبه بروتين الوجبه مطلوبه',
-
+                'invoice_date.required'    => 'تاريخ الوجبه مطلوب',
+                'invoice_date.date'        => 'تاريخ الوجبه يجب ان يكون تاريخ',
+                'invoice_date.date_format' => 'تاريخ الوجبه يجب ان يكون سنه وشهر ويوم',
 
             ];
 
 
             $validator = Validator::make($request->all(),$rules,$messages);
-
 
             if($validator->fails()){
 
@@ -47,17 +43,15 @@ class OrderController extends Controller{
 
             }
 
+            $data['invoice_date'] = $request->invoice_date;
+            $data['user_id'] = auth()->guard('user-api')->id();
+            $invoice = Invoice::create($data);
 
-            Order::create([
+            $invoice_id = Invoice::find($invoice->id);
 
-                'user_id' => auth('user-api')->id(),
-                'meal_id' => $request->meal_id,
-                'date_of_order' => $request->date_of_order,
-                'protein'  => $request->protein
+            $invoice_id->meals()->sync($request->details);
 
-            ]);
-
-            return returnMessageError("meal created successfully",201);
+            return returnDataSuccess("invoice created successfully",201,"invoice",new InvoiceResource($invoice));
 
 
         }catch (\Exception $e){
@@ -65,7 +59,6 @@ class OrderController extends Controller{
             return returnMessageError($e->getMessage(),500);
 
         }
-
 
 
     }

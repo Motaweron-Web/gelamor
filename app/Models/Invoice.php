@@ -19,14 +19,14 @@ class Invoice extends Model
 
     public function user(){
 
-        return $this->hasMany(User::class,'user_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
 
 
     //الفاتوره لها كذه وجبه
     public function meals(){
 
-        return $this->belongsToMany(Meal::class,'orders','invoice_id','meal_id','id','id');
+        return $this->belongsToMany(Meal::class,'orders','invoice_id','meal_id','id','id')->withTimestamps();
     }
 
 }
