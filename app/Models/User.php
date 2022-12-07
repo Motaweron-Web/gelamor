@@ -18,8 +18,7 @@ class User extends Authenticatable implements JWTSubject{
 
 
         'name',
-        'location_ar',
-        'location_en',
+        'location',
         'img',
         'is_active',
         'country_id',
