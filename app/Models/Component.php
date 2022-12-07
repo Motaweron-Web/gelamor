@@ -32,4 +32,9 @@ class Component extends Model
         return $this->hasMany(OrderSpecial::class,'component_id','id');
     }
 
+    public function type()
+    {
+        return $this->belongsTo(ComponentCategory::class,'component_categories_id','id');
+    }
+
 }

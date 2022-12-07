@@ -22,6 +22,7 @@ return [
     'terms_en_required' => 'Terms [en] Required',
     'image_required' => 'Image Required',
     'component_ids' =>'Choose at least one component',
+    'type' => 'Type Required',
 
 
 

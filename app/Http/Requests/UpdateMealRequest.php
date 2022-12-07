@@ -24,7 +24,7 @@ class UpdateMealRequest extends FormRequest
             'Fats' => 'required|numeric',
             'carbohydrates' => 'required|numeric',
             'meal_type_id' => 'required',
-            'component_ids' => 'required',
+            'component_ids' => 'required|array',
         ];
     }
 

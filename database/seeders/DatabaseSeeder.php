@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SettingSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CurrencySeeder::class);
+        $this->call(MealTypeSeeder::class);
 
 
     }

@@ -16,10 +16,7 @@ class CreateMealTypesTable extends Migration
             $table->string('name_en')->comment('نوع الوجبه بالانجليزي');
             $table->text('details_ar')->nullable()->comment('تفاصيل نوع الوجبه بالعربي');
             $table->text('details_en')->nullable()->comment('تفاصيل نوع الوجبه بالانجليزي');
-            $table->unsignedBigInteger('package_id')->comment('نوع الباقه');
             $table->timestamps();
-
-            $table->foreign('package_id')->references('id')->on('packages')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

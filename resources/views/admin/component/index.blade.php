@@ -2,13 +2,13 @@
 @section('css')
     @toastr_css
     @section('title')
-        @lang('home.components_list')
+        @lang('home.type')
     @stop
 @endsection
 @section('page-header')
     <!--breadcrumb -->
     @section('PageTitle')
-        @lang('home.components_list')
+        @lang('home.type')
     @stop
     <!-- breadcrumb -->
 @endsection
@@ -43,7 +43,7 @@
 
                                     <button type="button" class="button x-small" data-toggle="modal"
                                             data-target="#addModal">
-                                        @lang('home.add_component')
+                                        @lang('home.add') @lang('home.type')
                                     </button>
                                     <br><br>
 
@@ -54,23 +54,28 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>{{ trans('home.name') }}</th>
-                                                <th>{{ trans('home.image') }}</th>
+                                                <th>{{ trans('home.type') }}</th>
+                                                <th>{{ trans('home.components_list') }}</th>
                                                 <th>{{ trans('home.actions') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             <?php $i = 0; ?>
-                                            @foreach ($components as $component)
+                                            @foreach ($component_categories as $component)
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
                                                     <td>{{ (lang() == 'ar') ? $component->name_ar : $component->name_en }}</td>
                                                     <td>
-                                                        <img
-                                                            src="{{ ($component->img == null) ? asset('img_default/default_food.jpg') : asset($component->img) }}"
-                                                            onclick="window.open(this.src)" href="javascript:void(0);"
-                                                            width="80px" height="80px" style="border-radius: 40%;">
+                                                        <form action="{{ route('components.details') }}" method="get">
+                                                            @csrf
+                                                            <input hidden type="text" name="id"
+                                                                   value="{{ $component->id }}">
+                                                            <button type="submit" class="btn btn-warning btn-sm"
+                                                                    title="{{ trans('home.components_list') }}"><i
+                                                                    class="fa fa-eye"> {{ trans('home.components_list') }}</i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
@@ -83,12 +88,6 @@
                                                                 data-target="#delete{{ $component->id }}"
                                                                 title="{{ trans('home.delete') }}"><i
                                                                 class="fa fa-trash"></i></button>
-                                                        <button type="button" class="btn btn-warning btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#show{{ $component->id }}"
-                                                                title="{{ trans('home.update') }}"><i
-                                                                class="fa fa-eye"></i>
-                                                        </button>
                                                     </td>
                                                 </tr>
 
@@ -112,7 +111,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <!-- add_form -->
-                                                                <form action="{{ route('components.update') }}"
+                                                                <form action="{{ route('updateCategory') }}"
                                                                       method="post" enctype="multipart/form-data">
                                                                     {{--                                                                    {{ method_field('patch') }}--}}
                                                                     @csrf
@@ -137,66 +136,6 @@
                                                                                    value="{{ $component->name_en }}"
                                                                                    name="name_en" required>
                                                                         </div>
-
-                                                                        <div class="col-12">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.image') }}
-                                                                                :</label>
-                                                                            <input class="form-control" id="fileupload"
-                                                                                   type="file" name="img">
-                                                                        </div>
-
-                                                                        <div class="col-12" id="dvPreview">
-                                                                        </div>
-
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.protein') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $component->protein }}"
-                                                                                   name="protein" required>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.calories') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $component->calories }}"
-                                                                                   name="calories" required>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.Fats') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $component->fats }}"
-                                                                                   name="fats" required>
-                                                                        </div>
-                                                                        <div class="col-6">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.carbohydrates') }}
-                                                                                :</label>
-                                                                            <input type="number" class="form-control"
-                                                                                   value="{{ $component->carbohydrates }}"
-                                                                                   name="carbohydrates" required>
-                                                                        </div>
-                                                                        <div class="col-12">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.component_categories') }}
-                                                                                :</label>
-                                                                            <select class="form-control"
-                                                                                    name="component_categories_id"
-                                                                                    required>
-                                                                                <option value="" disabled></option>
-                                                                                @foreach($component_categories as $category)
-                                                                                    <option
-                                                                                        value="component_categories_id" {{ ($category->id == $component->component_categories_id) ? 'selected' : '' }}>
-                                                                                        {{ lang() == 'ar' ? $category->name_ar : $category->name_en }}
-                                                                                    </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
                                                                     </div>
 
                                                                     <br><br>
@@ -213,111 +152,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!-- show_modal_meal type -->
-                                                <div class="modal fade" id="show{{ $component->id }}" tabindex="-1"
-                                                     role="dialog"
-                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 style="font-family: 'Cairo', sans-serif;"
-                                                                    class="modal-title"
-                                                                    id="exampleModalLabel">
-                                                                    {{ trans('home.show') }}
-                                                                </h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <!-- add_form -->
-                                                                {{--                                                                <form action="{{ route('admin.update') }}"--}}
-                                                                {{--                                                                      method="post">--}}
-                                                                {{--                                                                    {{ method_field('patch') }}--}}
-                                                                @csrf
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <label for="Name"
-                                                                               class="mr-sm-2">{{ trans('home.name_ar') }}
-                                                                            :</label>
-                                                                        <input id="name" type="text" name="name_ar"
-                                                                               class="form-control"
-                                                                               value="{{ $component->name_ar }}"
-                                                                               required disabled>
-                                                                        <input id="id" type="hidden" name="id"
-                                                                               class="form-control"
-                                                                               value="{{ $component->id }}">
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.name_en') }}
-                                                                            :</label>
-                                                                        <input type="text" class="form-control"
-                                                                               value="{{ $component->name_en }}"
-                                                                               name="name_en" required disabled>
-                                                                    </div>
-
-                                                                    <div class="col-12">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.image') }}
-                                                                            :</label>
-                                                                        <img
-                                                                            src="{{ ($component->img == null) ? asset('img_default/default_food.jpg') : asset($component->img) }}"
-                                                                            onclick="window.open(this.src)"
-                                                                            href="javascript:void(0);"
-                                                                            width="80px" height="80px"
-                                                                            style="border-radius: 40%; margin: 10px">
-                                                                    </div>
-
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.protein') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $component->protein }}"
-                                                                               name="protein" required disabled>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.calories') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $component->calories }}"
-                                                                               name="calories" required disabled>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.Fats') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $component->fats }}"
-                                                                               name="Fats" required disabled>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <label for="Name_en"
-                                                                               class="mr-sm-2">{{ trans('home.carbohydrates') }}
-                                                                            :</label>
-                                                                        <input type="number" class="form-control"
-                                                                               value="{{ $component->carbohydrates }}"
-                                                                               name="carbohydrates" required disabled>
-                                                                    </div>
-                                                                </div>
-
-                                                                <br><br>
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                            data-dismiss="modal">{{ trans('home.close') }}</button>
-                                                                </div>
-                                                                {{--                                                                </form>--}}
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                                 <!-- delete_modal_Grade -->
                                                 <div class="modal fade" id="delete{{ $component->id }}" tabindex="-1"
                                                      role="dialog"
@@ -328,7 +162,7 @@
                                                                 <h5 style="font-family: 'Cairo', sans-serif;"
                                                                     class="modal-title"
                                                                     id="exampleModalLabel">
-                                                                    {{ trans('home.delete_component') }}
+                                                                    {{ trans('home.type') }}
                                                                 </h5>
                                                                 <button type="button" class="close" data-dismiss="modal"
                                                                         aria-label="Close">
@@ -336,7 +170,7 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <form action="{{ route('components.delete') }}"
+                                                                <form action="{{ route('deleteCategory') }}"
                                                                       method="POST">
                                                                     {{--                                                                    {{ method_field('POST') }}--}}
                                                                     @csrf
@@ -348,7 +182,7 @@
                                                                         <button type="button" class="btn btn-secondary"
                                                                                 data-dismiss="modal">{{ trans('home.close') }}</button>
                                                                         <button type="submit"
-                                                                                class="btn btn-danger">{{ trans('home.delete_component') }}</button>
+                                                                                class="btn btn-danger">{{ trans('home.delete') . ' ' .trans('home.type') }}</button>
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -372,7 +206,7 @@
                                     <div class="modal-header">
                                         <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
                                             id="exampleModalLabel">
-                                            {{ trans('home.add_component') }}
+                                            {{ trans('home.add') . ' ' . trans('home.type') }}
                                         </h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
@@ -380,9 +214,8 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- add_form -->
-                                        <form action="{{ route('components.store') }}"
+                                        <form action="{{ route('storeCategory') }}"
                                               method="post" enctype="multipart/form-data">
-                                            {{--                                                                    {{ method_field('patch') }}--}}
                                             @csrf
                                             <div class="row">
                                                 <div class="col-6">
@@ -392,8 +225,6 @@
                                                     <input id="name" type="text" name="name_ar"
                                                            class="form-control"
                                                            required>
-                                                    <input id="id" type="hidden" name="id"
-                                                           class="form-control">
                                                 </div>
                                                 <div class="col-6">
                                                     <label for="Name_en"
@@ -401,60 +232,6 @@
                                                         :</label>
                                                     <input type="text" class="form-control"
                                                            name="name_en" required>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.image') }}
-                                                        :</label>
-                                                    <input class="form-control" type="file" accept="image/*" name="img">
-                                                </div>
-
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.protein') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="protein" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.calories') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="calories" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.Fats') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="fats" required>
-                                                </div>
-                                                <div class="col-6">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.carbohydrates') }}
-                                                        :</label>
-                                                    <input type="number" class="form-control"
-                                                           name="carbohydrates" required>
-                                                </div>
-                                                <div class="col-12">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.type') }}
-                                                        :</label>
-                                                    <select class="form-control"
-                                                            name="component_categories_id"
-                                                            style="height: calc(4.1rem + 2px);"
-                                                            required>
-                                                        <option value="" disabled selected>---</option>
-                                                            @foreach($component_categories as $category)
-                                                                <option
-                                                                    class="form-control"
-                                                                    value="{{ $category->id }}">
-                                                                    {{ lang() == 'ar' ? $category->name_ar : $category->name_en }}
-                                                                </option>
-                                                            @endforeach
-                                                    </select>
                                                 </div>
                                             </div>
 

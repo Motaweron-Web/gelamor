@@ -15,6 +15,7 @@ class StoreMealRequest extends FormRequest
 
     public function rules()
     {
+//        dd(request()->all());
         return [
             'name_ar' => 'required',
             'name_en' => 'required',
@@ -24,7 +25,7 @@ class StoreMealRequest extends FormRequest
             'Fats' => 'required|numeric',
             'carbohydrates' => 'required|numeric',
             'meal_type_id' => 'required',
-            'component_ids' => 'required'
+            'component_ids' => 'required|array|min:1',
         ];
     }
 

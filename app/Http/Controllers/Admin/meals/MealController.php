@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMealRequest;
 use App\Http\Requests\UpdateMealRequest;
 use App\Models\Component;
+use App\Models\ComponentCategory;
 use App\Models\Meal;
 use App\Models\MealType;
 use App\Traits\PhotoTrait;
@@ -19,8 +20,9 @@ class MealController extends Controller
     {
         $meal_type = MealType::get();
         $meals = Meal::get();
+        $types = ComponentCategory::get();
         $component = Component::get();
-        return view('admin.meals.index', compact('meals', 'meal_type', 'component'));
+        return view('admin.meals.index', compact('meals', 'meal_type', 'component','types'));
     } // end of index
 
     public function store(StoreMealRequest $request)
