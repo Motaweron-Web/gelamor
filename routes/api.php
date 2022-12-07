@@ -73,3 +73,5 @@ Route::group(['prefix' => 'orders','middleware' => 'check:user-api'], function (
     Route::post('store',[\App\Http\Controllers\Api\OrderController::class,'store']);
 
 });
+
+    Route::get('countries',[\App\Http\Controllers\Api\CountryController::class,'index']);
