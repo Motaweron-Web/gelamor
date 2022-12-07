@@ -34,7 +34,7 @@ class Package extends Model
 
     public function meal_type(){
 
-        return $this->belongsToMany(MealType::class,'meal_type_packages','meal_type_id','package_id ','id','id');
+        return $this->belongsToMany(MealType::class,'meal_type_packages','package_id','meal_type_id','id','id');
     }
 
 }

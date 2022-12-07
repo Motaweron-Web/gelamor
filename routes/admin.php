@@ -116,6 +116,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/myPackages/store', [PackageController::class, 'store'])->name('package.store');
         Route::post('/myPackages/delete', [PackageController::class, 'delete'])->name('package.delete');
         Route::post('/statusPackage', [PackageController::class, 'changeStatus'])->name('packageStatus');
+        Route::post('/package/update', [PackageController::class, 'update'])->name('packageUpdate');
         Route::get('/packageActive', [PackageController::class, 'activePackage'])->name('activePackage');
         Route::get('/packageHanging', [PackageController::class, 'hangingPackage'])->name('hangingPackage');
 

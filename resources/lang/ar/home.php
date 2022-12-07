@@ -157,6 +157,9 @@ return [
     'normal_package' => 'باقة عادية',
     'days' => 'أيام',
     'change_state' => 'تغيير الحالة',
+    'package_edit' => 'تعديل الباقة',
+    'package_basic' => 'باقة عادية',
+    'package_special' => 'باقة خاصة',
 
     // Complaints and Reports
     'complaints_and_reports' => 'الشكاوي والبلاغات',
