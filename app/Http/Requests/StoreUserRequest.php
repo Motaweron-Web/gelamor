@@ -17,14 +17,11 @@ class StoreUserRequest extends FormRequest
     public function rules(){
 
         return [
-
-            'name_ar' => 'required',
-            'name_en' => 'required',
+            'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
             'phone' => 'required|numeric|unique:users,phone',
-            'location_ar' => 'required|string',
-            'location_en' => 'required|string',
+            'location' => 'required|string',
             'country_id' => 'required|exists:countries,id',
         ];
     }
@@ -33,8 +30,7 @@ class StoreUserRequest extends FormRequest
 
         return [
 
-            'name_ar.required' => 'اسم المستخدم بالعربي مطلوب',
-            'name_en.required' => 'اسم المستخدم بالانجليزي مطلوب',
+            'name.required' => 'اسم المستخدم مطلوب',
             'email.required' => 'البريد الالكتروني للمستخدم مطلوب',
             'email.email' => 'البريد الالكتروني يجب ان يكون ايميل',
             'email.unique' => 'هذا البريد موجود من قبل',
@@ -43,10 +39,8 @@ class StoreUserRequest extends FormRequest
             'password.min' => 'كلمه المرور يجب ان لا تقل عن 6 حروف',
             'phone.required' => 'الهاتف الجوال مطلوب',
             'phone.numeric' => 'الهاتف الجوال يجب ان يكون ارقام',
-            'location_ar.required' => 'موقع العميل باللغه العربيه مطلوب',
-            'location_ar.string' => 'موقع العميل باللغه العربيه يجب ان يكون نص وليس ارقام',
-            'location_en.required' => 'موقع العميل باللغه الانجليزيه مطلوب',
-            'location_en.string' => 'موقع العميل باللغه الانجليزيه يجب ان يكون نص وليس ارقام',
+            'location.required' => 'موقع العميل مطلوب',
+            'location.string' => 'موقع العميل يجب ان يكون نص وليس ارقام',
             'country_id.required' => 'رقم البلد التابع لها العميل مطلوبه',
             'country_id.exists' => 'هذه البلده غير موجوده بسجل البيانات',
 
