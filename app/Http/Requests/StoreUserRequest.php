@@ -29,7 +29,6 @@ class StoreUserRequest extends FormRequest
     public function messages(){
 
         return [
-
             'name.required' => 'اسم المستخدم مطلوب',
             'email.required' => 'البريد الالكتروني للمستخدم مطلوب',
             'email.email' => 'البريد الالكتروني يجب ان يكون ايميل',
@@ -43,7 +42,6 @@ class StoreUserRequest extends FormRequest
             'location.string' => 'موقع العميل يجب ان يكون نص وليس ارقام',
             'country_id.required' => 'رقم البلد التابع لها العميل مطلوبه',
             'country_id.exists' => 'هذه البلده غير موجوده بسجل البيانات',
-
         ];
     }
 }

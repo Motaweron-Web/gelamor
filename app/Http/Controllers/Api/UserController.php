@@ -39,7 +39,6 @@ class UserController extends Controller{
                 'img' => $profileImage ?? "default.png",
 
             ]);
-//            $user['token']  = JWTAuth::fromUser($user);
             $user['token'] = auth()->guard('user-api')->attempt($request->only(['email','password']));
             return returnDataSuccess("تم تسجيل بيانات المستخدم بنجاح",200,"user",new UserResource($user));
 
@@ -57,13 +56,10 @@ class UserController extends Controller{
 
         try {
 
-
             $token = auth()->guard('user-api')->attempt($request->only(['email','password']));
 
             if(!$token){
-
-
-                return returnMessageError("يوجد خطاء ببيانات الدخول حاول مره اخري","404");
+                return returnMessageError("يوجد خطاء ببيانات الدخول حاول مره اخري","406");
             }
 
 
