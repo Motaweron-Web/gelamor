@@ -115,6 +115,7 @@ return [
     'normal_package' => 'Normal Package',
     'days' => 'Days',
     'change_state' => 'Change State',
+    'package_edit' => 'Package Edit',
 
     // Complaints and Reports
     'complaints_and_reports' => 'Complaints and Reports',
@@ -123,6 +124,8 @@ return [
     'created_at' => 'Created At',
     'message' => 'Message',
     'delete_report' => 'Delete Report',
+    'package_basic' => 'Package Basic',
+    'package_special' => 'Package Special',
 
 
 
