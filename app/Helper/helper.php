@@ -81,7 +81,11 @@ if (!function_exists('get_file')) {
     }
 }
 
+if(!function_exists('accept_language')) {
 
-
-
+    function accept_language()
+    {
+        return request()->header('Accept-Language');
+    }
+}
 
