@@ -32,6 +32,7 @@ class UpdateComponentRequest extends FormRequest
         return [
             'img.required' => trans('validation.image_required'),
             'img.image' => trans('validation.image_required'),
+            'component_categories_id.required' => trans('validation.type'),
         ];
     }
 }

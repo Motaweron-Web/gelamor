@@ -104,6 +104,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::post('/component/store', [ComponentController::class, 'store'])->name('components.store');
         Route::post('/component/delete', [ComponentController::class, 'delete'])->name('components.delete');
         Route::post('/component/update', [ComponentController::class, 'update'])->name('components.update');
+        // category component
+        Route::get('/component/details', [ComponentController::class, 'details'])->name('components.details');
+        Route::post('/component-category/store', [ComponentController::class, 'storeCategory'])->name('storeCategory');
+        Route::post('/component-category/delete', [ComponentController::class, 'deleteCategory'])->name('deleteCategory');
+        Route::post('/component-category/update', [ComponentController::class, 'updateCategory'])->name('updateCategory');
 
 
         #### Packages ####

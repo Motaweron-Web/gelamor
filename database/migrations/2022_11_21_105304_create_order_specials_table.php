@@ -21,6 +21,7 @@ class CreateOrderSpecialsTable extends Migration
             $table->unsignedBigInteger('component_id');
             $table->date('date_of_order');
             $table->integer('protein');
+            $table->enum('type',['special','patient']);
             $table->timestamps();
 
             $table->foreign('meal_type_id')->references('id')->on('meal_types')->cascadeOnUpdate()->cascadeOnDelete();
