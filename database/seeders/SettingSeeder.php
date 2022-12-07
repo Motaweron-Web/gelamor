@@ -14,7 +14,6 @@ class SettingSeeder extends Seeder
         DB::table('settings')->insert([
 
             [
-
                 'location_ar' => 'الكويت',
                 'location_en' => 'Elkuet',
                 'name_ar' => 'جيلامور',

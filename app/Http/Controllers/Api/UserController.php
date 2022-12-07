@@ -30,19 +30,17 @@ class UserController extends Controller{
 
             $user = User::create([
 
-                'name_ar' =>  $request->name_ar,
-                'name_en' =>  $request->name_en,
+                'name' =>  $request->name,
                 'email' =>  $request->email,
                 'password' =>  Hash::make($request->password),
                 'phone' =>  $request->phone,
-                'location_ar' => $request->location_ar,
-                'location_en' => $request->location_en,
+                'location' => $request->location,
                 'country_id' => $request->country_id,
                 'img' => $profileImage ?? "default.png",
 
             ]);
-
-
+//            $user['token']  = JWTAuth::fromUser($user);
+            $user['token'] = auth()->guard('user-api')->attempt($request->only(['email','password']));
             return returnDataSuccess("تم تسجيل بيانات المستخدم بنجاح",200,"user",new UserResource($user));
 
         }catch (\Exception $exception){

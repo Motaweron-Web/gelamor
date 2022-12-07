@@ -13,13 +13,11 @@ class CreateUsersTable extends Migration
 
             $table->bigIncrements('id');
             $table->text('img')->nullable();
-            $table->string('name_ar');
-            $table->string('name_en');
+            $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('location_ar')->comment('موقع العميل بالعربي');
-            $table->string('location_en')->comment('موقع العميل بالانجليزي');
+            $table->string('location')->comment('موقع العميل بالعربي');
             $table->string('phone')->unique()->comment('هاتف العميل');
             $table->unsignedBigInteger('country_id');
             $table->boolean('is_active')->default(true)->comment('0 is unActive and 1 is active');
