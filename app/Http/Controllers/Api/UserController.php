@@ -59,7 +59,7 @@ class UserController extends Controller{
             $token = auth()->guard('user-api')->attempt($request->only(['email','password']));
 
             if(!$token){
-                return returnMessageError("يوجد خطاء ببيانات الدخول حاول مره اخري","406");
+                return returnMessageError("يوجد خطاء ببيانات الدخول حاول مره اخري",406);
             }
 
 
