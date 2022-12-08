@@ -16,7 +16,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'location' => $this->location,
-            'country_id' => $this->country_id,
+            'country_id' => (int)$this->country_id,
             'img' => $this->img != 'default.png' ? asset('img_user/' . $this->img) : asset('img_default/default.png'),
             'is_active' => $this->is_active,
             'token' => $this->token,
