@@ -14,10 +14,46 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller{
 
 
-    public function register(StoreUserRequest $request){
+    public function register(Request $request){
 
 
         try {
+
+            $rules = [
+
+                'name'       => 'required',
+                'email'      => 'required|email|unique:users,email',
+                'password'   => 'required|min:6',
+                'phone'      => 'required|numeric|unique:users,phone',
+                'location'   => 'required|string',
+                'country_id' => 'required|exists:countries,id',
+
+            ];
+            $validator = Validator::make($request->all(), $rules, [
+
+                'country_id.exists' => 404,
+                'email.unique'      => 405,
+                'phone.unique'      => 406,
+            ]);
+
+            if ($validator->fails()) {
+
+                $errors = collect($validator->errors())->flatten(1)[0];
+
+                if (is_numeric($errors)) {
+
+                    $errors_arr = [
+
+                        405 => 'Failed,Email already exists',
+                        406 => 'Failed,Phone already exists',
+                        404 => 'Failed,Country not found',
+
+                    ];
+                    $code = collect($validator->errors())->flatten(1)[0];
+                    return helperJson(null, isset($errors_arr[$errors]) ? $errors_arr[$errors] : 500, $code);
+                }
+                return response()->json(['data' => null, 'message' => $validator->errors(), 'code' => 422], 200);
+            }
 
             if ($image = $request->file('img')) {
 
@@ -40,7 +76,9 @@ class UserController extends Controller{
 
             ]);
             $user['token'] = auth()->guard('user-api')->attempt($request->only(['email','password']));
-            return returnDataSuccess("تم تسجيل بيانات المستخدم بنجاح",200,"user",new UserResource($user));
+
+            return helperJson(new UserResource($user), "تم تسجيل بيانات المستخدم بنجاح");
+
 
         }catch (\Exception $exception){
 
