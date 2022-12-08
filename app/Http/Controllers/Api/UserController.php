@@ -16,7 +16,6 @@ class UserController extends Controller{
 
     public function register(Request $request){
 
-
         try {
 
             $rules = [
@@ -89,23 +88,54 @@ class UserController extends Controller{
     }
 
 
-    public function login(LoginUserRequest $request){
+    public function login(Request $request){
 
 
         try {
 
+            $rules = [
+
+                'email' => 'required|email',
+                'password' => 'required',
+
+            ];
+            $validator = Validator::make($request->all(), $rules, [
+
+                'email.email' => 405,
+
+            ]);
+
+            if ($validator->fails()) {
+
+                $errors = collect($validator->errors())->flatten(1)[0];
+
+                if (is_numeric($errors)) {
+
+                    $errors_arr = [
+
+                        405 => 'Failed,Email must be a valid email address',
+
+                    ];
+                    $code = collect($validator->errors())->flatten(1)[0];
+                    return helperJson(null, isset($errors_arr[$errors]) ? $errors_arr[$errors] : 500, $code);
+                }
+                return response()->json(['data' => null, 'message' => $validator->errors(), 'code' => 422], 200);
+            }
+
+
             $token = auth()->guard('user-api')->attempt($request->only(['email','password']));
 
             if(!$token){
-                return returnMessageError("يوجد خطاء ببيانات الدخول حاول مره اخري",406);
+
+                return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري");
             }
 
 
             $user = new UserResource(auth()->guard('user-api')->user());
             $user->token = $token;
 
+            return helperJson(new UserResource($user), "تم تسجيل دخول المستخدم بنجاح");
 
-            return returnDataSuccess("تم تسجيل دخول المستخدم بنجاح",200,"user",$user);
 
         }catch (\Exception $exception){
 
@@ -138,8 +168,6 @@ class UserController extends Controller{
 
 
 
-
-
     public function contact_us(Request $request){
 
 
@@ -147,12 +175,10 @@ class UserController extends Controller{
 
             $rules = [
 
-
                 'name' => 'required',
                 'email' => 'required|email',
                 'subject' => 'required',
                 'message' => 'required'
-
 
             ];
 
