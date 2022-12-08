@@ -95,10 +95,11 @@ class UserController extends Controller{
 
             $rules = [
 
-                'email' => 'required|email',
+                'email'    => 'required|email',
                 'password' => 'required',
 
             ];
+
             $validator = Validator::make($request->all(), $rules, [
 
                 'email.email' => 405,
