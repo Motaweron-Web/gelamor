@@ -89,3 +89,16 @@ if(!function_exists('accept_language')) {
     }
 }
 
+
+if (!function_exists('helperJson')) {
+
+    function helperJson($data=null,$message='',$code=200,$status=200) {
+
+        return response()->json([
+            'data'=>$data,
+            'message'=>$message,
+            'code'=>intval($code)
+        ],$status);
+
+    }
+}
