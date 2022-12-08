@@ -22,8 +22,9 @@ class CodeCheckController extends Controller
         }
 
         return response([
-            'code' => $passwordReset->code,
-            'message' => trans('passwords.code_is_valid')
+            'verify_code' => $passwordReset->code,
+            'message' => trans('passwords.code_is_valid'),
+            'code' => 200
         ], 200);
     }
 }
