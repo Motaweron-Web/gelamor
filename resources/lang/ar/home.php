@@ -160,6 +160,7 @@ return [
     'package_edit' => 'تعديل الباقة',
     'package_basic' => 'باقة عادية',
     'package_special' => 'باقة خاصة',
+    'package_show' => 'عرض الباقة',
 
     // Complaints and Reports
     'complaints_and_reports' => 'الشكاوي والبلاغات',

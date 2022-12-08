@@ -41,8 +41,6 @@ class PackageController extends Controller
     public function update(StorePackagRequest $request)
     {
         $inputs = $request->all();
-
-        dd($inputs);
         $package = Package::find($request->id);
         if ($package->update($inputs)) {
             $package->meal_type()->sync($request->meal_type_ids);
