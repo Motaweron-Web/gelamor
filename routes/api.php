@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::group(['middleware' => 'lang'], function (){
+
+
 //start auth user
  Route::group(['prefix' => 'auth'], function () {
 
@@ -75,3 +78,4 @@ Route::group(['prefix' => 'orders','middleware' => 'check:user-api'], function (
 });
 
     Route::get('countries',[\App\Http\Controllers\Api\CountryController::class,'index']);
+});
