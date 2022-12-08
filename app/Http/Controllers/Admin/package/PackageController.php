@@ -24,8 +24,6 @@ class PackageController extends Controller
     public function store(StorePackagRequest $request)
     {
         $inputs = $request->all();
-
-
         $package = Package::create($inputs);
         if ($package) {
             $package->meal_type()->attach($request->meal_type_ids);
@@ -40,15 +38,17 @@ class PackageController extends Controller
 
     public function update(StorePackagRequest $request)
     {
-        $inputs = $request->all();
         $package = Package::find($request->id);
+
+        $inputs = $request->all();
+
         if ($package->update($inputs)) {
             $package->meal_type()->sync($request->meal_type_ids);
             toastr()->success(trans('messages.update_message_success'));
-            return redirect()->route('myPackage.index');
+            return redirect()->route('package.index');
         } else {
             toastr()->error(trans('messages.message_fail'));
-            return redirect()->route('meals.index');
+            return redirect()->route('package.index');
         }
 
     } // end update

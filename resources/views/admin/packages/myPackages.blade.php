@@ -303,6 +303,10 @@
                                                                           method="post">
                                                                         {{--                                                                    {{ method_field('patch') }}--}}
                                                                         @csrf
+                                                                        @php
+//                                                                        dd($package)
+                                                                        @endphp
+                                                                        <input type="hidden" name="id" value="{{ $package->id }}" />
                                                                         <div class="row">
                                                                             <div class="col-6">
                                                                                 <label for="Name"
