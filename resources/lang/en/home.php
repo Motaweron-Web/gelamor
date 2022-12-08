@@ -116,6 +116,7 @@ return [
     'days' => 'Days',
     'change_state' => 'Change State',
     'package_edit' => 'Package Edit',
+    'package_show' => 'Package Show',
 
     // Complaints and Reports
     'complaints_and_reports' => 'Complaints and Reports',
@@ -126,6 +127,7 @@ return [
     'delete_report' => 'Delete Report',
     'package_basic' => 'Package Basic',
     'package_special' => 'Package Special',
+
 
 
 

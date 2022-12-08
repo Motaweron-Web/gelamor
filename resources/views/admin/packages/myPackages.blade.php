@@ -75,12 +75,16 @@
                                                                     data-target="#edit{{ $package->id }}"
                                                                     title="{{ trans('home.edit') }}"><i
                                                                     class="fa fa-edit"></i></button>
+                                                            <button type="button" class="btn btn-warning btn-sm"
+                                                                    data-toggle="modal"
+                                                                    data-target="#show{{ $package->id }}"
+                                                                    title="{{ trans('home.edit') }}"><i
+                                                                    class="fa fa-eye"></i></button>
                                                         </td>
                                                     </tr>
 
                                                     <!-- show_modal_Grade -->
-                                                    <div class="modal fade" id="update{{-- $admin->id --}}"
-                                                         tabindex="-1"
+                                                    <div class="modal fade" id="show{{ $package->id }}" tabindex="-1"
                                                          role="dialog"
                                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-lg" role="document">
@@ -89,7 +93,7 @@
                                                                     <h5 style="font-family: 'Cairo', sans-serif;"
                                                                         class="modal-title"
                                                                         id="exampleModalLabel">
-                                                                        {{ trans('home.show_admin') }}
+                                                                        {{ trans('home.package_show') }}
                                                                     </h5>
                                                                     <button type="button" class="close"
                                                                             data-dismiss="modal"
@@ -98,55 +102,182 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-
-                                                                    {{--                                                                    {{ method_field('patch') }}--}}
-                                                                    @csrf
-                                                                    <input type="text" hidden name="role_id" value="1">
-                                                                    <div class="row">
-                                                                        <div class="col-6">
-                                                                            <label for="Name"
-                                                                                   class="mr-sm-2">{{ trans('home.name') }}
-                                                                                :</label>
-                                                                            <input id="name" type="text" name="name"
-                                                                                   class="form-control"
-                                                                                   value="{{-- $admin->name --}}"
-                                                                                   disabled>
-                                                                            <input id="id" type="hidden" name="id"
-                                                                                   class="form-control"
-                                                                                   value="{{-- $admin->id --}}"
-                                                                                   disabled>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <label for="Name"
+                                                                                       class="mr-sm-2">{{ trans('home.name_ar') }}
+                                                                                    :</label>
+                                                                                <input id="name" type="text"
+                                                                                       name="name_ar"
+                                                                                       class="form-control"
+                                                                                       value="{{ $package->name_ar }}"
+                                                                                       name="name_ar"
+                                                                                       disabled>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="Name_en"
+                                                                                       class="mr-sm-2">{{ trans('home.name_en') }}
+                                                                                    :</label>
+                                                                                <input type="text" class="form-control"
+                                                                                       value="{{ $package->name_ar }}"
+                                                                                       name="name_en" disabled>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="Description_en"
+                                                                                       class="mr-sm-2">{{ trans('home.details_ar') }}
+                                                                                    :</label>
+                                                                                <input type="text" class="form-control"
+                                                                                       value="{{ $package->details_ar }}"
+                                                                                       name="details_ar" disabled>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="Name_en"
+                                                                                       class="mr-sm-2">{{ trans('home.details_en') }}
+                                                                                    :</label>
+                                                                                <input type="text" class="form-control"
+                                                                                       value="{{ $package->details_en }}"
+                                                                                       name="details_en" disabled>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="End"
+                                                                                       class="mr-sm-2">{{ trans('home.start') }}
+                                                                                    :</label>
+                                                                                <input type="date" class="form-control"
+                                                                                       value="{{ $package->start->format('Y-m-d') }}"
+                                                                                       name="start" disabled>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="End"
+                                                                                       class="mr-sm-2">{{ trans('home.end') }}
+                                                                                    :</label>
+                                                                                <input type="date" class="form-control"
+                                                                                       value="{{ $package->end->format('Y-m-d') }}"
+                                                                                       name="end" disabled>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="currency_ar"
+                                                                                       class="mr-sm-2">{{ trans('home.currency') }}
+                                                                                    :</label>
+                                                                                <select class="form-control"
+                                                                                        style="height: 4rem"
+                                                                                        name="currency_en">
+                                                                                    <option value="" disabled
+                                                                                            @foreach($currencies as $currency)
+                                                                                                selected>{{ trans('home.currency') }}</option>
+                                                                                    <option
+                                                                                        {{($package->currency_en == $currency->name_en) ? 'selected' : ''}} disabled>
+                                                                                        {{ lang() == 'ar' ? $currency->name_ar : $currency->name_en }}
+                                                                                    </option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <label for="price"
+                                                                                       class="mr-sm-2">{{ trans('home.price') }}
+                                                                                    :</label>
+                                                                                <input type="number"
+                                                                                       class="form-control"
+                                                                                       value="{{ $package->price }}"
+                                                                                       name="start" disabled>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label for="type"
+                                                                                       class="mr-sm-2">{{ trans('home.type_package') }}
+                                                                                    :</label>
+                                                                                <select class="form-control"
+                                                                                        style="height: 4rem"
+                                                                                        name="type">
+                                                                                    <option value="{{ $package->type }}"
+                                                                                            disabled
+                                                                                            selected>{{ trans('home.package_type') }}</option>
+                                                                                    <option
+                                                                                        {{ ($package->type == 'basic') ? 'selected' : '' }} disabled>{{trans('home.package_basic')}}</option>
+                                                                                    <option
+                                                                                        {{ ($package->type == 'special') ? 'selected' : '' }} disabled>{{trans('home.package_special')}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label for="type_meal"
+                                                                                       class="mr-sm-2">{{ trans('home.meal_type') }}
+                                                                                    :</label>
+                                                                                @php
+                                                                                    $mealType_packages = \App\Models\MealTypePackage::where('package_id',$package->id)->get();
+                                                                                @endphp
+                                                                                <div class="form-check">
+                                                                                    <input type="checkbox"
+                                                                                           class="form-check-input"
+                                                                                           name="meal_type_ids[]"
+                                                                                           value="1"
+                                                                                           disabled
+                                                                                           @foreach($mealType_packages as $meal_type)
+                                                                                               {{ $meal_type->meal_type_id == 1 ? 'checked' : '' }}
+                                                                                           @endforeach
+                                                                                           style="scale: 1.2">
+                                                                                    <label class="form-check-label">
+                                                                                        {{ trans('home.breakfast') }}
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="form-check">
+                                                                                    <input type="checkbox"
+                                                                                           class="form-check-input"
+                                                                                           name="meal_type_ids[]"
+                                                                                           value="2"
+                                                                                           disabled
+                                                                                           @foreach($mealType_packages as $meal_type)
+                                                                                               {{ $meal_type->meal_type_id == 2 ? 'checked' : '' }}
+                                                                                           @endforeach
+                                                                                           style="scale: 1.2">
+                                                                                    <label class="form-check-label">
+                                                                                        {{ trans('home.lunch') }}
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="form-check">
+                                                                                    <input type="checkbox"
+                                                                                           class="form-check-input"
+                                                                                           name="meal_type_ids[]"
+                                                                                           value="3"
+                                                                                           disabled
+                                                                                           @foreach($mealType_packages as $meal_type)
+                                                                                               {{ $meal_type->meal_type_id == 3 ? 'checked' : '' }}
+                                                                                           @endforeach
+                                                                                           style="scale: 1.2">
+                                                                                    <label class="form-check-label">
+                                                                                        {{ trans('home.dinner') }}
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="form-check">
+                                                                                    <input type="checkbox"
+                                                                                           class="form-check-input"
+                                                                                           name="meal_type_ids[]"
+                                                                                           value="4"
+                                                                                           disabled
+                                                                                           @foreach($mealType_packages as $meal_type)
+                                                                                               {{ $meal_type->meal_type_id == 4 ? 'checked' : '' }}
+                                                                                           @endforeach
+                                                                                           style="scale: 1.2">
+                                                                                    <label class="form-check-label">
+                                                                                        {{ trans('home.snacks') }}
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="col-6">
-                                                                            <label for="email"
-                                                                                   class="mr-sm-2">{{ trans('home.email') }}
-                                                                                :</label>
-                                                                            <input type="email" class="form-control"
-                                                                                   value="{{-- $admin->email --}}"
-                                                                                   name="email" disabled>
+
+                                                                        <br><br>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">{{ trans('home.close') }}</button>
                                                                         </div>
-                                                                        <div class="col-12">
-                                                                            <label for="password"
-                                                                                   class="mr-sm-2">{{ trans('home.password') }}
-                                                                                :</label>
-                                                                            <input type="password" class="form-control"
-                                                                                   placeholder="(optional)"
-                                                                                   name="password" disabled>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <br><br>
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                                data-dismiss="modal">{{ trans('home.close') }}</button>
-                                                                    </div>
-
+                                                                    </form>
 
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
+
+                                                    <!-- End Show Modal -->
 
                                                     <!-- edit_modal -->
                                                     <div class="modal fade" id="edit{{ $package->id }}" tabindex="-1"
@@ -172,6 +303,10 @@
                                                                           method="post">
                                                                         {{--                                                                    {{ method_field('patch') }}--}}
                                                                         @csrf
+                                                                        @php
+//                                                                        dd($package)
+                                                                        @endphp
+                                                                        <input type="hidden" name="id" value="{{ $package->id }}" />
                                                                         <div class="row">
                                                                             <div class="col-6">
                                                                                 <label for="Name"
@@ -273,13 +408,14 @@
                                                                                 @php
                                                                                 $mealType_packages = \App\Models\MealTypePackage::where('package_id',$package->id)->get();
                                                                                 @endphp
-                                                                                @foreach($mealType_packages as $meal_type)
                                                                                 <div class="form-check">
                                                                                     <input type="checkbox"
                                                                                            class="form-check-input"
                                                                                            name="meal_type_ids[]"
                                                                                            value="1"
+                                                                                           @foreach($mealType_packages as $meal_type)
                                                                                            {{ $meal_type->meal_type_id == 1 ? 'checked' : '' }}
+                                                                                           @endforeach
                                                                                            style="scale: 1.2">
                                                                                     <label class="form-check-label">
                                                                                         {{ trans('home.breakfast') }}
@@ -290,7 +426,9 @@
                                                                                            class="form-check-input"
                                                                                            name="meal_type_ids[]"
                                                                                            value="2"
-                                                                                        {{ $meal_type->meal_type_id == 2 ? 'checked' : '' }}
+                                                                                           @foreach($mealType_packages as $meal_type)
+                                                                                    {{ $meal_type->meal_type_id == 2 ? 'checked' : '' }}
+                                                                                           @endforeach
                                                                                             style="scale: 1.2">
                                                                                     <label class="form-check-label">
                                                                                         {{ trans('home.lunch') }}
@@ -301,7 +439,9 @@
                                                                                            class="form-check-input"
                                                                                            name="meal_type_ids[]"
                                                                                            value="3"
-                                                                                        {{ $meal_type->meal_type_id == 3 ? 'checked' : '' }}
+                                                                                           @foreach($mealType_packages as $meal_type)
+                                                                                    {{ $meal_type->meal_type_id == 3 ? 'checked' : '' }}
+                                                                                           @endforeach
                                                                                            style="scale: 1.2">
                                                                                     <label class="form-check-label">
                                                                                         {{ trans('home.dinner') }}
@@ -312,14 +452,14 @@
                                                                                            class="form-check-input"
                                                                                            name="meal_type_ids[]"
                                                                                            value="4"
-                                                                                        {{ $meal_type->meal_type_id == 4 ? 'checked' : '' }}
+                                                                                           @foreach($mealType_packages as $meal_type)
+                                                                                    {{ $meal_type->meal_type_id == 4 ? 'checked' : '' }}
+                                                                                           @endforeach
                                                                                            style="scale: 1.2">
                                                                                     <label class="form-check-label">
                                                                                         {{ trans('home.snacks') }}
                                                                                     </label>
                                                                                 </div>
-                                                                                @endforeach
-
                                                                             </div>
                                                                         </div>
 
