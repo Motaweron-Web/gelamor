@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CountryResource;
 use App\Models\Country;
 
 class CountryController extends Controller
@@ -19,10 +18,7 @@ class CountryController extends Controller
 
         }catch (\Exception $exception){
 
-
             return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري",500);
-
-
         }
     }
 }
