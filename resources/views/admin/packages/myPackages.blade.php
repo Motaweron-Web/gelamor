@@ -102,181 +102,75 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
+                                                                    <div class="card card-body">
                                                                         <div class="row">
                                                                             <div class="col-6">
-                                                                                <label for="Name"
-                                                                                       class="mr-sm-2">{{ trans('home.name_ar') }}
-                                                                                    :</label>
-                                                                                <input id="name" type="text"
-                                                                                       name="name_ar"
-                                                                                       class="form-control"
-                                                                                       value="{{ $package->name_ar }}"
-                                                                                       name="name_ar"
-                                                                                       disabled>
+                                                                                <label
+                                                                                    for="">{{ trans('home.name') }}</label>
+                                                                                <h5>{{ lang() == 'ar' ? $package->name_ar : $package->name_en }}</h5>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="Name_en"
-                                                                                       class="mr-sm-2">{{ trans('home.name_en') }}
-                                                                                    :</label>
-                                                                                <input type="text" class="form-control"
-                                                                                       value="{{ $package->name_ar }}"
-                                                                                       name="name_en" disabled>
+                                                                                <label
+                                                                                    for="">{{ trans('home.type_package') }}</label>
+                                                                                <h5>{{ $package->type }}</h5>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="Description_en"
-                                                                                       class="mr-sm-2">{{ trans('home.details_ar') }}
-                                                                                    :</label>
-                                                                                <input type="text" class="form-control"
-                                                                                       value="{{ $package->details_ar }}"
-                                                                                       name="details_ar" disabled>
+                                                                                <label
+                                                                                    for="">{{ trans('home.start') }}</label>
+                                                                                <h5>{{ $package->start->format('Y-m-d') }}</h5>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="Name_en"
-                                                                                       class="mr-sm-2">{{ trans('home.details_en') }}
-                                                                                    :</label>
-                                                                                <input type="text" class="form-control"
-                                                                                       value="{{ $package->details_en }}"
-                                                                                       name="details_en" disabled>
+                                                                                <label
+                                                                                    for="">{{ trans('home.end') }}</label>
+                                                                                <h5>{{ $package->end->format('Y-m-d') }}</h5>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="End"
-                                                                                       class="mr-sm-2">{{ trans('home.start') }}
-                                                                                    :</label>
-                                                                                <input type="date" class="form-control"
-                                                                                       value="{{ $package->start->format('Y-m-d') }}"
-                                                                                       name="start" disabled>
+                                                                                <label
+                                                                                    for="">{{ trans('home.currency') }}</label>
+                                                                                <h5>{{ lang() == 'ar' ? $package->currency->name_ar : $package->currency->name_en }}</h5>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="End"
-                                                                                       class="mr-sm-2">{{ trans('home.end') }}
-                                                                                    :</label>
-                                                                                <input type="date" class="form-control"
-                                                                                       value="{{ $package->end->format('Y-m-d') }}"
-                                                                                       name="end" disabled>
+                                                                                <label
+                                                                                    for="">{{ trans('home.price') }}</label>
+                                                                                <h5>{{ number_format($package->price,2) }}</h5>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="currency_ar"
-                                                                                       class="mr-sm-2">{{ trans('home.currency') }}
-                                                                                    :</label>
-                                                                                <select class="form-control"
-                                                                                        style="height: 4rem"
-                                                                                        name="currency_en">
-                                                                                    <option value="" disabled
-                                                                                            @foreach($currencies as $currency)
-                                                                                                selected>{{ trans('home.currency') }}</option>
-                                                                                    <option
-                                                                                        {{($package->currency_en == $currency->name_en) ? 'selected' : ''}} disabled>
-                                                                                        {{ lang() == 'ar' ? $currency->name_ar : $currency->name_en }}
-                                                                                    </option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <label for="price"
-                                                                                       class="mr-sm-2">{{ trans('home.price') }}
-                                                                                    :</label>
-                                                                                <input type="number"
-                                                                                       class="form-control"
-                                                                                       value="{{ $package->price }}"
-                                                                                       name="start" disabled>
+                                                                                <label
+                                                                                    for="">{{ trans('home.price') }}</label>
+                                                                                <h5>{{ number_format($package->price,2) }}</h5>
                                                                             </div>
                                                                             <div class="col-12">
-                                                                                <label for="type"
-                                                                                       class="mr-sm-2">{{ trans('home.type_package') }}
-                                                                                    :</label>
-                                                                                <select class="form-control"
-                                                                                        style="height: 4rem"
-                                                                                        name="type">
-                                                                                    <option value="{{ $package->type }}"
-                                                                                            disabled
-                                                                                            selected>{{ trans('home.package_type') }}</option>
-                                                                                    <option
-                                                                                        {{ ($package->type == 'basic') ? 'selected' : '' }} disabled>{{trans('home.package_basic')}}</option>
-                                                                                    <option
-                                                                                        {{ ($package->type == 'special') ? 'selected' : '' }} disabled>{{trans('home.package_special')}}</option>
-                                                                                </select>
+                                                                                <label
+                                                                                    for="">{{ trans('home.details') }}</label>
+                                                                                <h5>{{ lang() == 'ar' ? $package->details_ar : $package->details_en }}</h5>
                                                                             </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    @php
+                                                                        $mealType_packages = \App\Models\MealTypePackage::where('package_id',$package->id)->get();
+                                                                    @endphp
+                                                                    <div class="card card-body">
+                                                                        <div class="row">
                                                                             <div class="col-12">
-                                                                                <label for="type_meal"
-                                                                                       class="mr-sm-2">{{ trans('home.meal_type') }}
-                                                                                    :</label>
-                                                                                @php
-                                                                                    $mealType_packages = \App\Models\MealTypePackage::where('package_id',$package->id)->get();
-                                                                                @endphp
-                                                                                <div class="form-check">
-                                                                                    <input type="checkbox"
-                                                                                           class="form-check-input"
-                                                                                           name="meal_type_ids[]"
-                                                                                           value="1"
-                                                                                           disabled
-                                                                                           @foreach($mealType_packages as $meal_type)
-                                                                                               {{ $meal_type->meal_type_id == 1 ? 'checked' : '' }}
-                                                                                           @endforeach
-                                                                                           style="scale: 1.2">
-                                                                                    <label class="form-check-label">
-                                                                                        {{ trans('home.breakfast') }}
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="form-check">
-                                                                                    <input type="checkbox"
-                                                                                           class="form-check-input"
-                                                                                           name="meal_type_ids[]"
-                                                                                           value="2"
-                                                                                           disabled
-                                                                                           @foreach($mealType_packages as $meal_type)
-                                                                                               {{ $meal_type->meal_type_id == 2 ? 'checked' : '' }}
-                                                                                           @endforeach
-                                                                                           style="scale: 1.2">
-                                                                                    <label class="form-check-label">
-                                                                                        {{ trans('home.lunch') }}
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="form-check">
-                                                                                    <input type="checkbox"
-                                                                                           class="form-check-input"
-                                                                                           name="meal_type_ids[]"
-                                                                                           value="3"
-                                                                                           disabled
-                                                                                           @foreach($mealType_packages as $meal_type)
-                                                                                               {{ $meal_type->meal_type_id == 3 ? 'checked' : '' }}
-                                                                                           @endforeach
-                                                                                           style="scale: 1.2">
-                                                                                    <label class="form-check-label">
-                                                                                        {{ trans('home.dinner') }}
-                                                                                    </label>
-                                                                                </div>
-                                                                                <div class="form-check">
-                                                                                    <input type="checkbox"
-                                                                                           class="form-check-input"
-                                                                                           name="meal_type_ids[]"
-                                                                                           value="4"
-                                                                                           disabled
-                                                                                           @foreach($mealType_packages as $meal_type)
-                                                                                               {{ $meal_type->meal_type_id == 4 ? 'checked' : '' }}
-                                                                                           @endforeach
-                                                                                           style="scale: 1.2">
-                                                                                    <label class="form-check-label">
-                                                                                        {{ trans('home.snacks') }}
-                                                                                    </label>
-                                                                                </div>
+                                                                                <label for="">{{ trans('home.meal_type') }}</label>
+                                                                                @foreach($mealType_packages as $mealType)
+                                                                                <h5></h5>
+                                                                                @endforeach
                                                                             </div>
                                                                         </div>
+                                                                    </div>
+                                                                    <br><br>
 
-                                                                        <br><br>
-
-                                                                        <div class="modal-footer">
-                                                                            <button type="button"
-                                                                                    class="btn btn-secondary"
-                                                                                    data-dismiss="modal">{{ trans('home.close') }}</button>
-                                                                        </div>
-                                                                    </form>
-
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
-
                                                     <!-- End Show Modal -->
 
                                                     <!-- edit_modal -->
@@ -301,12 +195,9 @@
                                                                     <!-- add_form -->
                                                                     <form action="{{ route('packageUpdate') }}"
                                                                           method="post">
-                                                                        {{--                                                                    {{ method_field('patch') }}--}}
                                                                         @csrf
-                                                                        @php
-//                                                                        dd($package)
-                                                                        @endphp
-                                                                        <input type="hidden" name="id" value="{{ $package->id }}" />
+                                                                        <input type="hidden" name="id"
+                                                                               value="{{ $package->id }}"/>
                                                                         <div class="row">
                                                                             <div class="col-6">
                                                                                 <label for="Name"
@@ -316,7 +207,6 @@
                                                                                        name="name_ar"
                                                                                        class="form-control"
                                                                                        value="{{ $package->name_ar }}"
-                                                                                       name="name_ar"
                                                                                        required>
                                                                             </div>
                                                                             <div class="col-6">
@@ -365,14 +255,14 @@
                                                                                     :</label>
                                                                                 <select class="form-control"
                                                                                         style="height: 4rem"
-                                                                                        name="currency_en">
+                                                                                        name="currency_id" required>
                                                                                     <option value="" disabled
-                                                                                            @foreach($currencies as $currency)
-                                                                                                selected>{{ trans('home.currency') }}</option>
-                                                                                    <option
-                                                                                        {{($package->currency_en == $currency->name_en) ? 'selected' : ''}}>
-                                                                                        {{ lang() == 'ar' ? $currency->name_ar : $currency->name_en }}
-                                                                                    </option>
+                                                                                            selected>{{ trans('home.currency') }}</option>
+                                                                                    @foreach($currencies as $currency)
+                                                                                        <option
+                                                                                            value="{{ $currency->id  }}" {{ $package->currency_id == $currency->id ? 'selected' : '' }}>
+                                                                                            {{ lang() == 'ar' ? $currency->name_ar : $currency->name_en }}
+                                                                                        </option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>
@@ -392,13 +282,13 @@
                                                                                 <select class="form-control"
                                                                                         style="height: 4rem"
                                                                                         name="type">
-                                                                                    <option value="{{ $package->type }}"
+                                                                                    <option value=""
                                                                                             disabled
                                                                                             selected>{{ trans('home.package_type') }}</option>
                                                                                     <option
-                                                                                        {{ ($package->type == 'basic') ? 'selected' : '' }} >{{trans('home.package_basic')}}</option>
+                                                                                        {{ ($package->type == 'basic') ? 'selected' : '' }} value="basic">{{trans('home.package_basic')}}</option>
                                                                                     <option
-                                                                                        {{ ($package->type == 'special') ? 'selected' : '' }} >{{trans('home.package_special')}}</option>
+                                                                                        {{ ($package->type == 'special') ? 'selected' : '' }} value="special">{{trans('home.package_special')}}</option>
                                                                                 </select>
                                                                             </div>
                                                                             <div class="col-12">
@@ -406,7 +296,7 @@
                                                                                        class="mr-sm-2">{{ trans('home.meal_type') }}
                                                                                     :</label>
                                                                                 @php
-                                                                                $mealType_packages = \App\Models\MealTypePackage::where('package_id',$package->id)->get();
+                                                                                    $mealType_packages = \App\Models\MealTypePackage::where('package_id',$package->id)->get();
                                                                                 @endphp
                                                                                 <div class="form-check">
                                                                                     <input type="checkbox"
@@ -414,7 +304,7 @@
                                                                                            name="meal_type_ids[]"
                                                                                            value="1"
                                                                                            @foreach($mealType_packages as $meal_type)
-                                                                                           {{ $meal_type->meal_type_id == 1 ? 'checked' : '' }}
+                                                                                               {{ $meal_type->meal_type_id == 1 ? 'checked' : '' }}
                                                                                            @endforeach
                                                                                            style="scale: 1.2">
                                                                                     <label class="form-check-label">
@@ -427,9 +317,9 @@
                                                                                            name="meal_type_ids[]"
                                                                                            value="2"
                                                                                            @foreach($mealType_packages as $meal_type)
-                                                                                    {{ $meal_type->meal_type_id == 2 ? 'checked' : '' }}
+                                                                                               {{ $meal_type->meal_type_id == 2 ? 'checked' : '' }}
                                                                                            @endforeach
-                                                                                            style="scale: 1.2">
+                                                                                           style="scale: 1.2">
                                                                                     <label class="form-check-label">
                                                                                         {{ trans('home.lunch') }}
                                                                                     </label>
@@ -440,7 +330,7 @@
                                                                                            name="meal_type_ids[]"
                                                                                            value="3"
                                                                                            @foreach($mealType_packages as $meal_type)
-                                                                                    {{ $meal_type->meal_type_id == 3 ? 'checked' : '' }}
+                                                                                               {{ $meal_type->meal_type_id == 3 ? 'checked' : '' }}
                                                                                            @endforeach
                                                                                            style="scale: 1.2">
                                                                                     <label class="form-check-label">
@@ -453,7 +343,7 @@
                                                                                            name="meal_type_ids[]"
                                                                                            value="4"
                                                                                            @foreach($mealType_packages as $meal_type)
-                                                                                    {{ $meal_type->meal_type_id == 4 ? 'checked' : '' }}
+                                                                                               {{ $meal_type->meal_type_id == 4 ? 'checked' : '' }}
                                                                                            @endforeach
                                                                                            style="scale: 1.2">
                                                                                     <label class="form-check-label">
@@ -478,7 +368,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                     <!-- end edit_modal -->
 
                                                     <!-- delete_modal_Grade -->
@@ -572,11 +461,11 @@
                                                            class="mr-sm-2">{{ trans('home.currency') }}
                                                         :</label>
                                                     <select class="form-control" style="height: 4rem"
-                                                            name="currency_en">
+                                                            name="currency_id" required>
                                                         <option value="" disabled
                                                                 selected>{{ trans('home.currency') }}</option>
                                                         @foreach($currencies as $currency)
-                                                            <option value="{{ $currency->name_en  }}">
+                                                            <option value="{{ $currency->id  }}">
                                                                 {{ lang() == 'ar' ? $currency->name_ar : $currency->name_en }}
                                                             </option>
                                                         @endforeach

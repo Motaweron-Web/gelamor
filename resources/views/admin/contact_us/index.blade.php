@@ -66,8 +66,8 @@
                                                 <tr>
                                                         <?php $i++; ?>
                                                     <td>{{ $i }}</td>
-                                                    <td>{{ (lang() == 'ar') ? $contact->user->name_ar : $contact->user->name_en }}</td>
-                                                    <td><a class="btn btn-success" href="mailto:{{ $contact->user->email }}">{{ $contact->user->email }}</a></td>
+                                                    <td>{{ $contact->name }}</td>
+                                                    <td><a class="btn btn-success" href="mailto:{{ $contact->email }}">{{ $contact->email }}</a></td>
                                                     <td>{{ $contact->subject }}</td>
                                                     <td>{{ $contact->created_at->diffForHumans() }}</td>
                                                     <td>
@@ -111,7 +111,7 @@
                                                                             :</label>
                                                                         <input id="name" type="text" name="name"
                                                                                class="form-control"
-                                                                               value="{{ (lang() == 'ar') ? $contact->user->name_ar : $contact->user->name_en }}"
+                                                                               value="{{ $contact->name  }}"
                                                                                disabled>
                                                                     </div>
                                                                     <div class="col-6">
@@ -120,7 +120,7 @@
                                                                             :</label>
                                                                         <input id="name" type="text" name="name"
                                                                                class="form-control"
-                                                                               value="{{ $contact->user->email }}"
+                                                                               value="{{ $contact->email }}"
                                                                                disabled>
                                                                     </div>
                                                                     <div class="col-6">

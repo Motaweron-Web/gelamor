@@ -31,10 +31,8 @@ class StorePackagRequest extends FormRequest
             'details_en' => 'required',
             'start' => 'required',
             'end' => 'required',
-            'currency_ar' => 'nullable',
-            'currency_en' => 'required',
+            'currency_id' => 'required',
             'type' => 'required',
-//            'payment_method' => 'required',
             'status' => 'nullable',
             'meal_type_ids' => 'required|array',
 

@@ -20,11 +20,11 @@ class CreatePackagesTable extends Migration
             $table->date('start');
             $table->date('end');
             $table->double('price',15,2);
-            $table->string('currency_ar')->nullable();
-            $table->string('currency_en');
+            $table->unsignedBigInteger('currency_id');
             $table->enum('type',['basic','special'])->comment('نوع الباقه');
             $table->enum('status',['show','hide'])->comment('حاله الباقه');
-//            $table->enum('payment_method',['visa','cash','wallet'])->comment('حاله الدفع');
+
+            $table->foreign('currency_id')->references('id')->on('currencies')->cascadeOnDelete();
             $table->timestamps();
 
         });
