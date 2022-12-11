@@ -67,7 +67,7 @@ return [
 
     // form
     'add' => 'اضف',
-    'edit' => 'اضف',
+    'edit' => 'تعديل',
     'update' => 'تحديث',
     'delete' => 'حذف',
     'image' => 'صورة',
