@@ -138,8 +138,8 @@
                                     <tr>
                                             <?php $i++; ?>
                                         <td>{{ $i }}</td>
-                                        <td>{{ lang() == 'ar' ? $contact->user->name_ar : $contact->user->name_en }}</td>
-                                        <td>{{ $contact->user->email }}</td>
+                                        <td>{{  $contact->name }}</td>
+                                        <td>{{ $contact->email }}</td>
                                         <td>{{ $contact->subject }}</td>
                                         <td>{{ $contact->created_at->format('Y-m-d') }}</td>
                                     </tr>

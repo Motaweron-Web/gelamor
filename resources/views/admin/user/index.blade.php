@@ -66,7 +66,7 @@
                                                     <?php $i++; ?>
                                                     <td>{{ $i }}</td>
 
-                                                    <td>{{ lang() == 'ar' ? $user->name_ar : $user->name_en }}</td>
+                                                    <td>{{ $user->name }}</td>
                                                     <td>{{ $user->email }}</td>
                                                     <td>
                                                         <img src="{{ getFile($user->img) }}"
@@ -128,7 +128,7 @@
                                                                             :</label>
                                                                         <input id="name" type="text" name="name"
                                                                                class="form-control"
-                                                                               value="{{  lang() == 'ar' ? $user->name_ar : $user->name_en }}"
+                                                                               value="{{  $user->name }}"
                                                                                disabled>
                                                                     </div>
                                                                     <div class="col-12">
@@ -155,7 +155,7 @@
                                                                             :</label>
                                                                         <input id="location" type="text" name="location"
                                                                                class="form-control"
-                                                                               value="{{ lang() == 'ar' ? $user->location_ar : $user->location_en }}"
+                                                                               value="{{ $user->location }}"
                                                                                disabled>
                                                                     </div>
                                                                 </div>

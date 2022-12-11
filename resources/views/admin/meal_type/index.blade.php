@@ -39,22 +39,21 @@
                                             </ul>
                                         </div>
                                     @endif
-{{--                                    <button type="button" class="button x-small" data-toggle="modal"--}}
-{{--                                            data-target="#addModal">--}}
-{{--                                        @lang('home.add_meal_type_list')--}}
-{{--                                    </button>--}}
+                                    {{--                                    <button type="button" class="button x-small" data-toggle="modal"--}}
+                                    {{--                                            data-target="#addModal">--}}
+                                    {{--                                        @lang('home.add_meal_type_list')--}}
+                                    {{--                                    </button>--}}
                                     <br><br>
 
                                     <div class="table-responsive">
                                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                                data-page-length="50"
-                                               style="text-align: center" >
+                                               style="text-align: center">
                                             <thead>
                                             <tr>
                                                 <th>#</th>
                                                 <th>{{ trans('home.name') }}</th>
                                                 <th>{{ trans('home.details') }}</th>
-                                                <th>{{ trans('home.package_type') }}</th>
                                                 <th>{{ trans('home.actions') }}</th>
                                             </tr>
                                             </thead>
@@ -66,18 +65,17 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{ (lang() == 'ar') ? $type->name_ar : $type->name_en }}</td>
                                                     <td>{{ (lang() == 'ar') ? $type->details_ar : $type->details_en }}</td>
-                                                    <td>{{ (lang() == 'ar') ? $type->package->name_ar : $type->package->name_en }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-info btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#update{{ $type->id }}"
                                                                 title="{{ trans('home.edit') }}"><i
                                                                 class="fa fa-edit"></i></button>
-{{--                                                        <button type="button" class="btn btn-danger btn-sm"--}}
-{{--                                                                data-toggle="modal"--}}
-{{--                                                                data-target="#delete{{ $type->id }}"--}}
-{{--                                                                title="{{ trans('home.delete') }}"><i--}}
-{{--                                                                class="fa fa-trash"></i></button>--}}
+                                                        {{--                                                        <button type="button" class="btn btn-danger btn-sm"--}}
+                                                        {{--                                                                data-toggle="modal"--}}
+                                                        {{--                                                                data-target="#delete{{ $type->id }}"--}}
+                                                        {{--                                                                title="{{ trans('home.delete') }}"><i--}}
+                                                        {{--                                                                class="fa fa-trash"></i></button>--}}
                                                         <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#show{{ $type->id }}"
@@ -149,23 +147,23 @@
                                                                                    value="{{ $type->details_en }}"
                                                                                    name="details_en">
                                                                         </div>
-                                                                        <div class="col-12">
-                                                                            <label for="Name_en"
-                                                                                   class="mr-sm-2">{{ trans('home.package_type') }}
-                                                                                :</label>
-                                                                            <select class="form-control"
-                                                                                    name="package_id"
-                                                                                    style="height: calc(4.1rem + 2px);">
-                                                                                <option value="" disabled
-                                                                                        selected>@lang('home.package_type')</option>
-                                                                                @foreach($packages as $package)
-                                                                                    <option
-                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->package->id) ? 'selected' : '' }} >
-                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
-                                                                                    </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
+                                                                        {{--                                                                        <div class="col-12">--}}
+                                                                        {{--                                                                            <label for="Name_en"--}}
+                                                                        {{--                                                                                   class="mr-sm-2">{{ trans('home.package_type') }}--}}
+                                                                        {{--                                                                                :</label>--}}
+                                                                        {{--                                                                            <select class="form-control"--}}
+                                                                        {{--                                                                                    name="package_id"--}}
+                                                                        {{--                                                                                    style="height: calc(4.1rem + 2px);">--}}
+                                                                        {{--                                                                                <option value="" disabled--}}
+                                                                        {{--                                                                                        selected>@lang('home.package_type')</option>--}}
+                                                                        {{--                                                                                @foreach($packages as $package)--}}
+                                                                        {{--                                                                                    <option--}}
+                                                                        {{--                                                                                        value="{{ $package->id }}" {{ ($package->id == $type->package->id) ? 'selected' : '' }} >--}}
+                                                                        {{--                                                                                        {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}--}}
+                                                                        {{--                                                                                    </option>--}}
+                                                                        {{--                                                                                @endforeach--}}
+                                                                        {{--                                                                            </select>--}}
+                                                                        {{--                                                                        </div>--}}
                                                                     </div>
 
                                                                     <br><br>
@@ -206,39 +204,20 @@
                                                                 {{--                                                                      method="post">--}}
                                                                 {{--                                                                    {{ method_field('patch') }}--}}
                                                                 @csrf
-                                                                <div class="row">
-                                                                    <div class="col-6">
-                                                                        <label for="Name"
-                                                                               class="mr-sm-2">{{ trans('home.name') }}
-                                                                            :</label>
-                                                                        <input id="name" type="text" name="name"
-                                                                               class="form-control"
-                                                                               value="{{ (lang() == 'ar') ? $type->name_ar : $type->name_en }}"
-                                                                               disabled>
+                                                                    <div class="card card-body">
+                                                                        <div class="col-6">
+                                                                            <label for="Name"
+                                                                                   class="mr-sm-2">{{ trans('home.name') }}
+                                                                                :</label>
+                                                                            <h5>{{ (lang() == 'ar') ? $type->name_ar : $type->name_en }}</h5>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                            <label for="email"
+                                                                                   class="mr-sm-2">{{ trans('home.details') }}
+                                                                                :</label>
+                                                                            <h5> {{ (lang() == 'ar') ? $type->details_ar : $type->details_en }}</h5>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="col-6">
-                                                                        <label for="email"
-                                                                               class="mr-sm-2">{{ trans('home.package_type') }}
-                                                                            :</label>
-                                                                        <input id="name" type="text" name="name"
-                                                                               class="form-control"
-                                                                               value="{{ (lang() == 'ar') ? $type->package->name_en : $type->package->name_en }}"
-                                                                               disabled>
-                                                                    </div>
-
-                                                                    <div class="col-12">
-                                                                        <label for="email"
-                                                                               class="mr-sm-2">{{ trans('home.details') }}
-                                                                            :</label>
-                                                                        <textarea id="details" type="text" name="details"
-                                                                                  rows="4"
-                                                                                  class="form-control"
-                                                                                  disabled>
-                                                                            {{ (lang() == 'ar') ? $type->details_ar : $type->details_en }}
-                                                                        </textarea>
-                                                                    </div>
-
-                                                                </div>
 
                                                                 <br><br>
 
@@ -351,21 +330,21 @@
                                                     <input type="text" class="form-control"
                                                            name="details_en" required>
                                                 </div>
-                                                <div class="col-12">
-                                                    <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('home.package_type') }}
-                                                        :</label>
-                                                    <select class="form-control" name="package_id"
-                                                            style="height: calc(4.1rem + 2px);">
-                                                        <option value="" disabled
-                                                                selected>@lang('home.package_type')</option>
-                                                        @foreach($packages as $package)
-                                                            <option value="{{ $package->id }}">
-                                                                {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
+                                                {{--                                                <div class="col-12">--}}
+                                                {{--                                                    <label for="Name_en"--}}
+                                                {{--                                                           class="mr-sm-2">{{ trans('home.package_type') }}--}}
+                                                {{--                                                        :</label>--}}
+                                                {{--                                                    <select class="form-control" name="package_id"--}}
+                                                {{--                                                            style="height: calc(4.1rem + 2px);">--}}
+                                                {{--                                                        <option value="" disabled--}}
+                                                {{--                                                                selected>@lang('home.package_type')</option>--}}
+                                                {{--                                                        @foreach($packages as $package)--}}
+                                                {{--                                                            <option value="{{ $package->id }}">--}}
+                                                {{--                                                                {{ (lang() == 'ar') ? $package->name_ar : $package->name_en }}--}}
+                                                {{--                                                            </option>--}}
+                                                {{--                                                        @endforeach--}}
+                                                {{--                                                    </select>--}}
+                                                {{--                                                </div>--}}
                                             </div>
 
                                             <br><br>

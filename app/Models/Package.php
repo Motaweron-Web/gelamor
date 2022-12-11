@@ -19,11 +19,9 @@ class Package extends Model
         'start',
         'end',
         'price',
-        'currency_ar',
-        'currency_en',
+        'currency_id',
         'type',
         'status',
-        'payment_method',
     ];
 
     protected $dates = [
@@ -35,6 +33,11 @@ class Package extends Model
     public function meal_type(){
 
         return $this->belongsToMany(MealType::class,'meal_type_packages','package_id','meal_type_id','id','id');
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class,'currency_id','id');
     }
 
 }
