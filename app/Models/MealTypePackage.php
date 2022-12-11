@@ -15,4 +15,9 @@ class MealTypePackage extends Model
         'meal_type_id',
         'package_id',
     ];
+
+    public function meal_type()
+    {
+        return $this->belongsTo(MealType::class,'meal_type_id','id');
+    }
 }

@@ -139,7 +139,8 @@
                                                                                     for="">{{ trans('home.price') }}</label>
                                                                                 <h5>{{ number_format($package->price,2) }}</h5>
                                                                             </div>
-                                                                            <div class="col-12">
+                                                                            <div class="col-12"
+                                                                                 style="text-align: center">
                                                                                 <label
                                                                                     for="">{{ trans('home.details') }}</label>
                                                                                 <h5>{{ lang() == 'ar' ? $package->details_ar : $package->details_en }}</h5>
@@ -152,10 +153,11 @@
                                                                     @endphp
                                                                     <div class="card card-body">
                                                                         <div class="row">
-                                                                            <div class="col-12">
-                                                                                <label for="">{{ trans('home.meal_type') }}</label>
+                                                                            <div class="col-12" style="display: flex">
+                                                                                <label style="margin-left: 15px"
+                                                                                       for="">{{ trans('home.meal_type') }}</label>
                                                                                 @foreach($mealType_packages as $mealType)
-                                                                                <h5></h5>
+                                                                                    <h5 style="margin-left: 15px">{{ lang() == 'ar' ? $mealType->meal_type->name_ar : $mealType->meal_type->name_en }}</h5>
                                                                                 @endforeach
                                                                             </div>
                                                                         </div>
@@ -214,27 +216,29 @@
                                                                                        class="mr-sm-2">{{ trans('home.name_en') }}
                                                                                     :</label>
                                                                                 <input type="text" class="form-control"
-                                                                                       value="{{ $package->name_ar }}"
+                                                                                       value="{{ $package->name_en }}"
                                                                                        name="name_en" required>
                                                                             </div>
                                                                             <div class="col-6">
                                                                                 <label for="Description_en"
                                                                                        class="mr-sm-2">{{ trans('home.details_ar') }}
                                                                                     :</label>
-                                                                                <input type="text" class="form-control"
-                                                                                       value="{{ $package->details_ar }}"
-                                                                                       name="details_ar" required>
+                                                                                <textarea type="text"
+                                                                                          class="form-control"
+                                                                                          name="details_ar" rows="5"
+                                                                                          required>{{ $package->details_ar }}</textarea>
                                                                             </div>
                                                                             <div class="col-6">
                                                                                 <label for="Name_en"
                                                                                        class="mr-sm-2">{{ trans('home.details_en') }}
                                                                                     :</label>
-                                                                                <input type="text" class="form-control"
-                                                                                       value="{{ $package->details_en }}"
-                                                                                       name="details_en" required>
+                                                                                <textarea type="text"
+                                                                                          class="form-control"
+                                                                                          name="details_en" rows="5"
+                                                                                          required>{{ $package->details_en }}</textarea>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="End"
+                                                                                <label for="start"
                                                                                        class="mr-sm-2">{{ trans('home.start') }}
                                                                                     :</label>
                                                                                 <input type="date" class="form-control"
@@ -451,7 +455,7 @@
                                                            class="mr-sm-2">{{ trans('home.details_ar') }}
                                                         :</label>
                                                     <textarea id="details_ar" name="details_ar" class="form-control"
-                                                              required></textarea>
+                                                              rows="5" required></textarea>
                                                     <label for="start"
                                                            class="mr-sm-2">{{ trans('home.start')}}
                                                         :</label>
@@ -491,7 +495,7 @@
                                                            class="mr-sm-2">{{ trans('home.details_en') }}
                                                         :</label>
                                                     <textarea id="details_en" name="details_en" class="form-control"
-                                                              required></textarea>
+                                                              rows="5" required></textarea>
                                                     <label for="end"
                                                            class="mr-sm-2">{{ trans('home.end') }}
                                                         :</label>
