@@ -18,7 +18,7 @@ class ContactUsController extends Controller
     {
         $contact_us = ContactUs::find($request->id);
         $contact_us->delete();
-        toastr()->error(trans('messages.delete_message_success'));
+        toastr()->success(trans('messages.delete_message_success'));
         return redirect()->route('contact_us.index');
     }
     // End Delete

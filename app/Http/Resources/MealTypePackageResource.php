@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MealTypeResource extends JsonResource
+class MealTypePackageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,11 @@ class MealTypeResource extends JsonResource
     {
         return [
 
-            'id' => $this->id,
-            'name_ar' => $this->name_ar,
-            'name_en' => $this->name_en,
-            'details_ar' => $this->details_ar,
-            'details_en' => $this->details_en,
+            'id' => $this->meal_type->id,
+            'name_ar' => $this->meal_type->name_ar,
+            'name_en' => $this->meal_type->name_en,
+            'details_ar' => $this->meal_type->details_ar,
+            'details_en' => $this->meal_type->details_en,
 //            'package' => new PackageResource($this->package)
 
         ];

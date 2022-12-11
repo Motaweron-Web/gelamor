@@ -24,8 +24,8 @@ class PackageResource extends JsonResource
         'start' => $this->start,
         'end' => $this->end,
         'price' => $this->price,
-        'currency_ar' => $this->currency_ar,
-        'currency_en' => $this->currency_en,
+        'currency_ar' => $this->currency->name_ar,
+        'currency_en' => $this->currency->name_en,
         'status' => $this->status
 
         ];

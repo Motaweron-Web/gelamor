@@ -71,21 +71,21 @@
                                                     <td>{{ $contact->subject }}</td>
                                                     <td>{{ $contact->created_at->diffForHumans() }}</td>
                                                     <td>
+                                                        <button type="button" class="btn btn-danger btn-sm"
+                                                        data-toggle="modal"
+                                                        data-target="#delete{{ $contact->id }}"
+                                                        title="{{ trans('home.delete') }}"><i
+                                                        class="fa fa-trash"></i></button>
                                                         <button type="button" class="btn btn-info btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#show{{ $contact->id }}"
                                                                 title="{{ trans('home.show') }}"><i
                                                                 class="fa fa-eye"></i> {{ trans('home.read_massage') }}</button>
-                                                        <button type="button" class="btn btn-danger btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#delete{{ $contact->id }}"
-                                                                title="{{ trans('home.delete') }}"><i
-                                                                class="fa fa-trash"></i></button>
                                                     </td>
                                                 </tr>
 
 
-                                                <!-- show_modal_chefs -->
+                                                <!-- show_modal_contact-us -->
                                                 <div class="modal fade" id="show{{ $contact->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">

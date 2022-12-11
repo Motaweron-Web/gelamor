@@ -67,20 +67,20 @@
                                                     <td>{{ $admin->name }}</td>
                                                     <td>{{ $admin->email }}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-info btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#edit{{ $admin->id }}"
-                                                                title="{{ trans('home.edit') }}"><i
-                                                                class="fa fa-edit"></i></button>
                                                         <button type="button" class="btn btn-danger btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#delete{{ $admin->id }}"
                                                                 title="{{ trans('home.delete') }}"><i
                                                                 class="fa fa-trash"></i></button>
+                                                        <button type="button" class="btn btn-info btn-sm"
+                                                                data-toggle="modal"
+                                                                data-target="#edit{{ $admin->id }}"
+                                                                title="{{ trans('home.edit') }}"><i
+                                                                class="fa fa-edit"></i></button>
                                                         <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#update{{ $admin->id }}"
-                                                                title="{{ trans('home.update') }}"><i class="fa fa-eye"></i>
+                                                                title="{{ trans('home.show') }}"><i class="fa fa-eye"></i>
                                                         </button>
                                                     </td>
                                                 </tr>

@@ -57,7 +57,7 @@ class AdminController extends Controller
     {
         $admin = Admin::find($request->id);
         $admin->delete();
-        toastr()->error(trans('messages.delete_message_success'));
+        toastr()->success(trans('messages.delete_message_success'));
         return redirect()->back();
     }
 }
