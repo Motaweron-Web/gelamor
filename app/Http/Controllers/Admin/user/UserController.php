@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $admin = User::find($request->id);
         $admin->delete();
-        toastr()->error(trans('messages.delete_message_success'));
+        toastr()->success(trans('messages.delete_message_success'));
         return redirect()->back();
     } // end delete
 }

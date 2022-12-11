@@ -38,7 +38,7 @@ class ChefController extends Controller
     {
         $chef = Chef::find($request->id);
         $chef->delete();
-        toastr()->error(trans('messages.delete_message_success'));
+        toastr()->success(trans('messages.delete_message_success'));
         return redirect()->route('chef.index');
     }// end delete
 

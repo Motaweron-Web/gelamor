@@ -70,7 +70,7 @@ class PackageController extends Controller
     {
         $package = Package::find($request->id);
         $package->delete();
-        toastr()->error(trans('messages.delete_message_success'));
+        toastr()->success(trans('messages.delete_message_success'));
         return redirect()->back();
     } // end delete
 
