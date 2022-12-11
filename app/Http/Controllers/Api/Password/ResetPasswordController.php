@@ -32,8 +32,8 @@ class ResetPasswordController extends Controller
 
         // delete current code
         $passwordReset->delete();
+        
+        return response(['message' =>'password has been successfully reset','code' =>200], 200);
 
-//        return response(['message' =>'password has been successfully reset'],200);
-        return response(['message' => 'password has been successfully reset','code'=> 200],200);
     }
 }
