@@ -79,7 +79,7 @@
                                                         <button type="button" class="btn btn-warning btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#show{{ $type->id }}"
-                                                                title="{{ trans('home.update') }}"><i
+                                                                title="{{ trans('home.show') }}"><i
                                                                 class="fa fa-eye"></i>
                                                         </button>
                                                     </td>

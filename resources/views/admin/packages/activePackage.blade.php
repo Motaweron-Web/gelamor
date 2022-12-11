@@ -153,7 +153,7 @@
                                                                             <input id="start" type="text" name="start"
                                                                                    class="form-control"
                                                                                    required
-                                                                                   value="{{ $package->package->currency_en }}"
+                                                                                   value="{{ lang() == 'ar' ? $package->package->currency->name_ar : $package->package->currency->name_en }}"
                                                                                    disabled>
                                                                         </div>
                                                                         <div class="col-12">

@@ -78,7 +78,7 @@
                                                             <button type="button" class="btn btn-warning btn-sm"
                                                                     data-toggle="modal"
                                                                     data-target="#show{{ $package->id }}"
-                                                                    title="{{ trans('home.edit') }}"><i
+                                                                    title="{{ trans('home.show') }}"><i
                                                                     class="fa fa-eye"></i></button>
                                                         </td>
                                                     </tr>
