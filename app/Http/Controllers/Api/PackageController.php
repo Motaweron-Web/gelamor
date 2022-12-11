@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MealResource;
+use App\Http\Resources\MealTypePackageResource;
 use App\Http\Resources\MealTypeResource;
 use App\Http\Resources\PackageResource;
 use App\Models\Meal;
 use App\Models\MealType;
+use App\Models\MealTypePackage;
 use App\Models\Package;
 
 class PackageController extends Controller{
@@ -45,11 +47,11 @@ class PackageController extends Controller{
                 return returnMessageError("هذه الباقه غير موجوده بسجل البيانات",404);
             }
 
-            $meal_types = MealType::query()->where('package_id','=',$package->id)->get();
+            $meal_types = MealTypePackage::query()->where('package_id','=',$package->id)->get();
 
             if($meal_types->count() > 0)
 
-                return returnDataSuccess("تم الحصول علي جميع انواع الوجبات التابعه لهذه الوجبه بنجاح",200,"meal_types",MealTypeResource::collection($meal_types));
+                return returnDataSuccess("تم الحصول علي جميع انواع الوجبات التابعه لهذه الوجبه بنجاح",200,"meal_types",MealTypePackageResource::collection($meal_types));
 
             else
                 return returnMessageError("لا يوجد انواع وجبات مسجله مسبقا تابعه لهذه الباقه",404);
