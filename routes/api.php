@@ -79,3 +79,5 @@ Route::group(['prefix' => 'orders','middleware' => 'check:user-api'], function (
 
     Route::get('countries',[\App\Http\Controllers\Api\CountryController::class,'index']);
 });
+
+Route::get('statistics/{id}', [\App\Http\Controllers\Api\StatisticsController::class, 'countCalories']);
