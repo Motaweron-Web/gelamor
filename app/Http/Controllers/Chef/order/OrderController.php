@@ -18,8 +18,15 @@ class OrderController extends Controller
             ->where('status','1')
             ->get();
         $orders = \App\Models\Order::groupBy('meal_id')->get();
-        $orders_special = OrderSpecial::where('date_of_order', $date)->groupBy('user_id')->get();
-        return view('chef.order.index', compact('invoices', 'meal_types', 'orders_special', 'orders', 'date'));
+        $orders_special = OrderSpecial::where('date_of_order', $date)
+            ->where('type','special')
+            ->groupBy('user_id')
+            ->get();
+        $orders_patient = OrderSpecial::where('date_of_order', $date)
+            ->where('type','patient')
+            ->groupBy('user_id')
+            ->get();
+        return view('chef.order.index', compact('invoices', 'meal_types', 'orders_special', 'orders', 'date','orders_patient'));
     }// end of index
 
     public function allOrders()
