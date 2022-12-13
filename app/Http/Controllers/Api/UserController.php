@@ -51,7 +51,7 @@ class UserController extends Controller{
                     $code = collect($validator->errors())->flatten(1)[0];
                     return helperJson(null, isset($errors_arr[$errors]) ? $errors_arr[$errors] : 500, $code);
                 }
-                return response()->json(['data' => null, 'message' => $validator->errors(), 'code' => 422], 200);
+                return response()->json(['data' => null, 'message' => $validator->errors()->first(), 'code' => 422], 200);
             }
 
             if ($image = $request->file('img')) {
