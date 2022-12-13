@@ -91,3 +91,5 @@ Route::group(['middleware' => 'lang'], function () {
     // Category
     Route::get('category', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
 });
+
+Route::get('statistics/{id}', [\App\Http\Controllers\Api\StatisticsController::class, 'countCalories']);

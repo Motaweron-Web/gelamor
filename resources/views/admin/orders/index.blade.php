@@ -21,6 +21,7 @@
                     <div class="row">
 
 
+                      
                         @if ($errors->any())
                             <div class="error">{{ $errors->first('Name') }}</div>
                         @endif
@@ -65,7 +66,7 @@
                                             @foreach ($invoices as $invoice)
                                                 <tr>
                                                     <td>{{ $invoice->id }}</td>
-                                                    <td>{{ lang() == 'ar' ? $invoice->user->name_ar : $invoice->user->name_en }}</td>
+                                                    <td>{{ $invoice->user->name }}</td>
                                                     <td>{{ $invoice->invoice_date }}</td>
                                                     <td>
                                                         <button type="button" class="btn btn-success btn-sm"
