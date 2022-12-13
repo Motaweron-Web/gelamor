@@ -18,7 +18,7 @@ class CreateOrderSpecialsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('meal_type_id');
-            $table->unsignedBigInteger('component_id');
+            $table->string('component_ids');
             $table->date('date_of_order');
             $table->integer('protein');
             $table->enum('type',['special','patient']);
@@ -26,7 +26,7 @@ class CreateOrderSpecialsTable extends Migration
 
             $table->foreign('meal_type_id')->references('id')->on('meal_types')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('component_id')->references('id')->on('components')->cascadeOnUpdate()->cascadeOnDelete();
+//            $table->foreign('component_id')->references('id')->on('components')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }

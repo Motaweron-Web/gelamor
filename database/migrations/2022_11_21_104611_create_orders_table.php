@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration{
             $table->bigIncrements('id');
             $table->unsignedBigInteger('invoice_id');
             $table->unsignedBigInteger('meal_id');
+            $table->text('comment')->nullable();
             $table->integer('protein')->nullable();
             $table->timestamps();
 
