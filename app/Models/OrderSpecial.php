@@ -14,10 +14,16 @@ class OrderSpecial extends Model{
 
         'user_id',
         'meal_type_id',
-        'component_id',
+        'component_ids',
         'date_of_order',
-        'protein'
+        'protein',
+        'type'
 
+    ];
+
+
+    protected $casts = [
+        'component_ids' => 'array'
     ];
 
 
@@ -36,7 +42,7 @@ class OrderSpecial extends Model{
 
     public function component(){
 
-        return $this->belongsTo(Component::class,'component_id', 'id');
+        return $this->belongsTo(Component::class,'component_ids', 'id');
 
     }
 

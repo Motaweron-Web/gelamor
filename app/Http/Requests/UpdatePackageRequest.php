@@ -23,15 +23,15 @@ class UpdatePackageRequest extends FormRequest
      */
     public function rules()
     {
+        
         return [
             'name_ar' => 'required',
             'name_en' => 'required',
             'details_ar' => 'required',
             'details_en' => 'required',
-            'start' => 'required',
-            'end' => 'required',
-            'currency_ar' => 'nullable',
-            'currency_en' => 'required',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'currency_id' => 'required',
             'type' => 'required',
             'status' => 'nullable',
             'meal_type_ids' => 'required|array',

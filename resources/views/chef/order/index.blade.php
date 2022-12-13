@@ -226,42 +226,43 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if($orders_special->count() > 0)
+                                            @if($orders_special->count() > 0 )
                                                 @foreach($orders_special as $special)
                                                     @php
-                                                        $orders_specials = \App\Models\OrderSpecial::where('date_of_order', $invoice->invoice_date)
-                                                        ->where('user_id',$special->user_id)->get();
+                                                        $orders_specials = \App\Models\OrderSpecial::where('date_of_order', $date)
+                                                        ->where('user_id',$special->user_id)->get()
+                                                        ->whereIn('component_ids',$special->component_ids);
                                                     @endphp
                                                     <tr>
                                                         <td>#{{ $special->id }}</td>
                                                         <td>#{{ $special->user->id }}</td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 1)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 1)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 2)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 2)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 3)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 3)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 4)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 4)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -317,42 +318,43 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if($orders_special->count() > 0)
-                                                @foreach($orders_special as $special)
-                                                    @php
-                                                        $orders_specials = \App\Models\OrderSpecial::where('date_of_order', $invoice->invoice_date)
-                                                        ->where('user_id',$special->user_id)->get();
-                                                    @endphp
+                                            @php
+                                                $orders_specials = \App\Models\OrderSpecial::where('date_of_order', $date)
+                                                ->where('type', 'patient')
+                                                ->where('user_id',$special->user_id)->get();
+                                            @endphp
+                                            @if($orders_specials->count() > 0)
+                                                @foreach($orders_specials as $special)
                                                     <tr>
                                                         <td>#{{ $special->id }}</td>
                                                         <td>#{{ $special->user->id }}</td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 1)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 1)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 2)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 2)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 3)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 3)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                         <td>
-                                                            @foreach($orders_specials as $value)
-                                                                @if($value->meal_type_id == 4)
-                                                                    <div>{{ '#'. $value->component->id }} {{ (lang() == 'ar') ? $value->component->name_ar : $value->component->name_en }}</div>
+{{--                                                            @foreach($orders_specials as $special)--}}
+                                                                @if($special->meal_type_id == 4)
+                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
                                                                 @endif
-                                                            @endforeach
+{{--                                                            @endforeach--}}
                                                         </td>
                                                     </tr>
                                                 @endforeach

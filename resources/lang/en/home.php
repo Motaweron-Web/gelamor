@@ -80,6 +80,7 @@ return [
     'delete_user' => 'Delete User',
     'show' => 'Show',
     'image' => 'Image',
+    'phone' => 'Phone',
 
     //chefs
     'chef' => 'Chef',

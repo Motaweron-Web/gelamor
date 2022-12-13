@@ -246,7 +246,7 @@
                                                                                        name="start" required>
                                                                             </div>
                                                                             <div class="col-6">
-                                                                                <label for="End"
+                                                                                <label for="end"
                                                                                        class="mr-sm-2">{{ trans('home.end') }}
                                                                                     :</label>
                                                                                 <input type="date" class="form-control"
@@ -277,7 +277,7 @@
                                                                                 <input type="number"
                                                                                        class="form-control"
                                                                                        value="{{ $package->price }}"
-                                                                                       name="start" required>
+                                                                                       name="price" required>
                                                                             </div>
                                                                             <div class="col-12">
                                                                                 <label for="type"

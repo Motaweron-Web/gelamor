@@ -36,10 +36,9 @@ class PackageController extends Controller
     } // end store
 
 
-    public function update(StorePackagRequest $request)
+    public function update(UpdatePackageRequest $request)
     {
         $package = Package::find($request->id);
-
         $inputs = $request->all();
 
         if ($package->update($inputs)) {
