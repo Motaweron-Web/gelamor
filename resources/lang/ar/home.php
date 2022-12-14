@@ -185,6 +185,10 @@ return [
     'type'=> 'النوع',
 
 
+    // Special Order Message
+    'special_order_message' => 'رسائل الطلبات المميزة',
+
+
 
 
 

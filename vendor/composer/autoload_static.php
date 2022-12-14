@@ -715,6 +715,7 @@ class ComposerStaticInit17615c8bd795042307089fb7c08418e5
         'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/Models/Payment.php',
         'App\\Models\\ResetCodePassword' => __DIR__ . '/../..' . '/app/Models/ResetCodePassword.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
+        'App\\Models\\SpecialOrderMessage' => __DIR__ . '/../..' . '/app/Models/SpecialOrderMessage.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\UserPackage' => __DIR__ . '/../..' . '/app/Models/UserPackage.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

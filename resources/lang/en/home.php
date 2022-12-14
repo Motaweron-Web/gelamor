@@ -191,6 +191,11 @@ return [
 
     'need_help' => 'Need Help !',
 
+
+
+    // Special Order Message
+    'special_order_message' => 'Special Order Message',
+
 #############################################
 ################ chef #######################
 #############################################

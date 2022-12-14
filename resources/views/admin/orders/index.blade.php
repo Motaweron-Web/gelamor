@@ -21,7 +21,7 @@
                     <div class="row">
 
 
-                      
+
                         @if ($errors->any())
                             <div class="error">{{ $errors->first('Name') }}</div>
                         @endif
