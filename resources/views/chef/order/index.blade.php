@@ -102,7 +102,7 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>{{ trans('home.order_day') }}</th>
-                                                    <th>{{ trans('home.basic_orders') }}</th>
+                                                    <th>{{ trans('home.count') . ' ' . trans('home.meals') }}</th>
                                                     <th>{{ trans('home.special_orders') }}</th>
                                                 </tr>
                                                 </thead>
@@ -150,13 +150,25 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
+                                                                        @php
+                                                                            $comments = \App\Models\Order::where('meal_id',$order->meal->id)
+                                                                            ->get();
+                                                                        @endphp
                                                                         <div class="row">
-                                                                            <div class="col-12" style="margin: 10px 31px;
-                                                                flex: 0px">
-                                                                                <div class="card card-body">
-                                                                                    <label>@lang('home.comments')</label>
-                                                                                    <h4>{{ $invoice->comment }}</h4>
-                                                                                </div>
+                                                                            <div class="col-12"
+                                                                                 style="margin: 10px 31px;flex: 0px;">
+                                                                                @foreach($comments as $comment)
+                                                                                @if($comment->comment !== null)
+                                                                                    <div class="card card-body"
+                                                                                         style="margin-bottom: 5px">
+                                                                                        <label>@lang('home.user_id')
+                                                                                            [{{ $comment->invoice->user_id }}]</label>
+                                                                                        <h5>{{lang() == 'ar' ? 'رقم الطلب' : 'Order NUM' }}
+                                                                                            [{{$comment->invoice_id }}]</h5>
+                                                                                        <h4>{{ ($comment->comment !== null) ? $comment->comment : 'No Comment for this meal' }}</h4>
+                                                                                    </div>
+                                                                                    @endif
+                                                                                @endforeach
                                                                             </div>
                                                                         </div>
 
@@ -167,7 +179,6 @@
                                                                                     class="btn btn-secondary"
                                                                                     data-dismiss="modal">{{ trans('home.close') }}</button>
                                                                         </div>
-                                                                        {{--                                                                </form>--}}
 
                                                                     </div>
                                                                 </div>
@@ -212,59 +223,86 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>{{ trans('home.user_id') }}</th>
-                                                <th>{{ trans('home.breakfast') }}
-                                                    <small>({{ trans('home.components') }}
-                                                        )</small></th>
-                                                <th>{{ trans('home.lunch') }} <small>({{ trans('home.components') }}
-                                                        )</small></th>
-                                                <th>{{ trans('home.dinner') }}
-                                                    <small>({{ trans('home.components') }}
-                                                        )</small></th>
-                                                <th>{{ trans('home.snacks') }}
-                                                    <small>({{ trans('home.components') }}
-                                                        )</small></th>
+                                                <th colspan="4" align="center">{{ trans('home.order_day') }} (
+                                                    <small>@lang('home.components')</small> )
+                                                </th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                             @if($orders_special->count() > 0 )
                                                 @foreach($orders_special as $special)
-                                                    @php
-                                                        $orders_specials = \App\Models\OrderSpecial::where('date_of_order', $date)
-                                                        ->where('user_id',$special->user_id)->get()
-                                                        ->whereIn('component_ids',$special->component_ids);
-                                                    @endphp
                                                     <tr>
                                                         <td>#{{ $special->id }}</td>
                                                         <td>#{{ $special->user->id }}</td>
                                                         <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 1)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
-                                                        </td>
-                                                        <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 2)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
-                                                        </td>
-                                                        <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 3)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
-                                                        </td>
-                                                        <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 4)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
+                                                                <?php $orders_specials = \App\Models\OrderSpecial::where('user_id', $special->user_id)
+                                                                ->get(); ?>
+                                                            @foreach($orders_specials as $special_order)
+                                                                <button type="button" class="btn btn-sm btn-success"
+                                                                        data-toggle="modal"
+                                                                        data-target="#show{{ $special_order->id }}"
+                                                                        title="{{ trans('home.breakfast') }}">
+                                                                    {{ lang() == 'ar' ? $special_order->meal_type->name_ar : $special_order->meal_type->name_en }}
+                                                                </button>
+                                                            @endforeach
                                                         </td>
                                                     </tr>
+                                                    @foreach($orders_specials as $special_order)
+                                                        <!-- show_modal_meal type -->
+                                                        <div class="modal fade" id="show{{ $special_order->id }}"
+                                                             tabindex="-1"
+                                                             role="dialog"
+                                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 style="font-family: 'Cairo', sans-serif;"
+                                                                            class="modal-title"
+                                                                            id="exampleModalLabel">
+                                                                            {{ trans('home.show') . 'ID['. $special_order->id .']' }}
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                                data-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="card card-body">
+                                                                            <div class="col-6">
+                                                                                <label for="Name"
+                                                                                       class="mr-sm-2">{{ trans('home.meal_type_') }}
+                                                                                    :</label>
+                                                                                <h5>{{ $special_order->meal_type->name_ar }}</h5>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label for="email"
+                                                                                       class="mr-sm-2">{{ trans('home.details') }}
+                                                                                    :</label>
+                                                                                    <?php $component_order = \App\Models\Component::whereIn('id', $special_order->component_ids)->get(); ?>
+                                                                                @foreach($component_order as $component)
+                                                                                    <div>
+                                                                                        <img
+                                                                                            style="width: 5%; height: 30px; margin-left: 10px; margin-bottom: 10px; border-radius: 50%;"
+                                                                                            src="{{ asset($component->img) }}">
+                                                                                        <h5 style="display: contents;">{{ lang() == 'ar' ? $component->name_ar : $component->name_en }}</h5>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <br><br>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 @endforeach
                                             @else
                                                 <tr>
@@ -304,59 +342,86 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>{{ trans('home.user_id') }}</th>
-                                                <th>{{ trans('home.breakfast') }}
-                                                    <small>({{ trans('home.components') }}
-                                                        )</small></th>
-                                                <th>{{ trans('home.lunch') }} <small>({{ trans('home.components') }}
-                                                        )</small></th>
-                                                <th>{{ trans('home.dinner') }}
-                                                    <small>({{ trans('home.components') }}
-                                                        )</small></th>
-                                                <th>{{ trans('home.snacks') }}
-                                                    <small>({{ trans('home.components') }}
-                                                        )</small></th>
+                                                <th colspan="4" align="center">{{ trans('home.order_day') }} (
+                                                    <small>@lang('home.components')</small> )
+                                                </th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @php
-                                                $orders_specials = \App\Models\OrderSpecial::where('date_of_order', $date)
-                                                ->where('type', 'patient')
-                                                ->where('user_id',$special->user_id)->get();
-                                            @endphp
-                                            @if($orders_specials->count() > 0)
-                                                @foreach($orders_specials as $special)
+                                            @if($orders_patient->count() > 0 )
+                                                @foreach($orders_patient as $special)
                                                     <tr>
                                                         <td>#{{ $special->id }}</td>
                                                         <td>#{{ $special->user->id }}</td>
                                                         <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 1)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
-                                                        </td>
-                                                        <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 2)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
-                                                        </td>
-                                                        <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 3)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
-                                                        </td>
-                                                        <td>
-{{--                                                            @foreach($orders_specials as $special)--}}
-                                                                @if($special->meal_type_id == 4)
-                                                                    <div>{{ '#'. $special->component->id }} {{ (lang() == 'ar') ? $special->component->name_ar : $special->component->name_en }}</div>
-                                                                @endif
-{{--                                                            @endforeach--}}
+                                                                <?php $orders_specials = \App\Models\OrderSpecial::where('user_id', $special->user_id)
+                                                                ->get(); ?>
+                                                            @foreach($orders_specials as $special_order)
+                                                                <button type="button" class="btn btn-sm btn-success"
+                                                                        data-toggle="modal"
+                                                                        data-target="#show{{ $special_order->id }}"
+                                                                        title="{{ trans('home.breakfast') }}">
+                                                                    {{ lang() == 'ar' ? $special_order->meal_type->name_ar : $special_order->meal_type->name_en }}
+                                                                </button>
+                                                            @endforeach
                                                         </td>
                                                     </tr>
+                                                    @foreach($orders_specials as $special_order)
+                                                        <!-- show_modal_meal type -->
+                                                        <div class="modal fade" id="show{{ $special_order->id }}"
+                                                             tabindex="-1"
+                                                             role="dialog"
+                                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 style="font-family: 'Cairo', sans-serif;"
+                                                                            class="modal-title"
+                                                                            id="exampleModalLabel">
+                                                                            {{ trans('home.show') . 'ID['. $special_order->id .']' }}
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                                data-dismiss="modal"
+                                                                                aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="card card-body">
+                                                                            <div class="col-6">
+                                                                                <label for="Name"
+                                                                                       class="mr-sm-2">{{ trans('home.meal_type_') }}
+                                                                                    :</label>
+                                                                                <h5>{{ $special_order->meal_type->name_ar }}</h5>
+                                                                            </div>
+                                                                            <div class="col-12">
+                                                                                <label for="email"
+                                                                                       class="mr-sm-2">{{ trans('home.details') }}
+                                                                                    :</label>
+                                                                                    <?php $component_order = \App\Models\Component::whereIn('id', $special_order->component_ids)->get(); ?>
+                                                                                @foreach($component_order as $component)
+                                                                                    <div>
+                                                                                        <img
+                                                                                            style="width: 5%; height: 30px; margin-left: 10px; margin-bottom: 10px; border-radius: 50%;"
+                                                                                            src="{{ asset($component->img) }}">
+                                                                                        <h5 style="display: contents;">{{ lang() == 'ar' ? $component->name_ar : $component->name_en }}</h5>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <br><br>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">{{ trans('home.close') }}</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
                                                 @endforeach
                                             @else
                                                 <tr>

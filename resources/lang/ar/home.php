@@ -27,6 +27,7 @@ return [
     'visa' => 'فيزا',
     'cash' => 'كاش',
     'wallet' => 'محفظة',
+    'special_orders_patient' => 'الطلبات الخاصة بالمرضي',
 
 
     // Admins

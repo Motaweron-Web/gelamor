@@ -61,10 +61,10 @@ class ComponentController extends Controller
         }
         if ($meal_type->update($inputs)) {
             toastr()->success(trans('messages.update_message_success'));
-            return redirect()->route('components.details');
+            return redirect()->route('components.index');
         } else {
             toastr()->error(trans('messages.message_fail'));
-            return redirect()->route('components.details');
+            return redirect()->route('components.index');
         }
     } // end update
 

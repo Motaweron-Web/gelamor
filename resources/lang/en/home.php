@@ -27,6 +27,7 @@ return [
     'visa' => 'Visa',
     'cash' => 'Cash',
     'wallet' => 'Wallet',
+    'special_orders_patient' => 'Special Orders Patient',
 
 
 
