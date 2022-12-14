@@ -21,7 +21,7 @@
                     <div class="row">
 
 
-                      
+
                         @if ($errors->any())
                             <div class="error">{{ $errors->first('Name') }}</div>
                         @endif
@@ -57,7 +57,6 @@
                                                 <th>{{ trans('home.name') }}</th>
                                                 <th>{{ trans('home.date_meal') }}</th>
                                                 <th>{{ trans('home.details') }}</th>
-                                                <th>{{ trans('home.comments') }}</th>
                                                 <th>@lang('home.actions')</th>
                                             </tr>
                                             </thead>
@@ -75,24 +74,6 @@
                                                                 title="{{ trans('home.details') }}"><i
                                                                 class="fa fa-eye"></i> {{trans('home.details')}}
                                                         </button>
-                                                    </td>
-                                                    <td>
-                                                        @if($invoice->comment !== null)
-                                                            <button type="button" class="btn btn-info btn-sm"
-                                                                    data-toggle="modal"
-                                                                    data-target="#comment{{ $invoice->id }}"
-                                                                    title="{{ trans('home.show') }}"><i
-                                                                    class="fa fa-comment"></i> {{trans('home.show')}}
-                                                            </button>
-                                                        @else
-                                                            <button type="button" class="btn btn-info btn-sm"
-                                                                    data-toggle="modal"
-                                                                    disabled
-                                                                    data-target="#comment{{ $invoice->id }}"
-                                                                    title="{{ trans('home.show') }}"><i
-                                                                    class="fa fa-comment"></i> {{ trans('home.no_data') }}
-                                                            </button>
-                                                        @endif
                                                     </td>
                                                     <td>
                                                         @if($invoice->status == 0)
