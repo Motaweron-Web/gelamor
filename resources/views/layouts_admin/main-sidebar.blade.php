@@ -133,6 +133,16 @@
                             </a>
                         </li>
 
+                         <!-- Special Order Message -->
+                         <li>
+                            <a href="{{ route('special.index') }}">
+                                <div class="pull-left"><i class="fas fa-star"></i><span
+                                        class="right-nav-text">@lang('home.special_order_message')</span></div>
+                                <div class="pull-right"></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+
                         <!-- Settings -->
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">

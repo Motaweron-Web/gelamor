@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
 use App\Http\Controllers\Admin\all_Orders\AllOrdersController;
+use App\Http\Controllers\Admin\order_special_message\SpecialOrderMessageController;
 use App\Http\Controllers\Chef\home\HomeController;
 use App\Http\Controllers\Chef\order\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -127,6 +128,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         #### Orders ####
         Route::get('/orders', [AllOrdersController::class, 'index'])->name('orders.index');
         Route::post('/orderActivation',[AllOrdersController::class, 'status'])->name('orders.status');
+
+
+
+        #### Special Order Message ####
+        Route::get('/special_order_message', [SpecialOrderMessageController::class, 'index'])->name('special.index');
+        Route::post('/special_order_message/delete', [SpecialOrdermessageController::class, 'delete'])->name('special.delete');
+
     });
 
 

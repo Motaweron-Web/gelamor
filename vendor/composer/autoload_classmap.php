@@ -115,6 +115,7 @@ return array(
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
     'App\\Models\\ResetCodePassword' => $baseDir . '/app/Models/ResetCodePassword.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
+    'App\\Models\\SpecialOrderMessage' => $baseDir . '/app/Models/SpecialOrderMessage.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\UserPackage' => $baseDir . '/app/Models/UserPackage.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

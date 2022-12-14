@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Password\ResetPasswordController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\SpecialOrderMessageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -92,4 +93,8 @@ Route::group(['middleware' => 'lang'], function () {
     Route::get('category', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
 });
 
-Route::get('statistics/{id}', [\App\Http\Controllers\Api\StatisticsController::class, 'countCalories']);
+// start Special Order Message
+
+Route::group(['prefix' => 's-p-m', 'middleware' => 'check:user-api'], function () {
+    Route::post('store', [SpecialOrderMessageController::class, 'store']);
+});
