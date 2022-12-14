@@ -83,10 +83,7 @@ class UserController extends Controller{
 
             return returnMessageError($exception->getMessage(),500);
         }
-
-
     }
-
 
     public function login(Request $request){
 
