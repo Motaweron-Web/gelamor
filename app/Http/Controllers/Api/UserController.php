@@ -152,14 +152,26 @@ class UserController extends Controller{
         try {
 
             auth()->guard('user-api')->logout();
-
             return returnMessageSuccess("تم تسجيل خروج المستخدم بنجاح","201");
 
         }catch (\Exception $exception){
-
-
             return returnMessageError($exception->getMessage(),500);
+        }
 
+    }
+
+    //delete user
+    public function delete(){
+
+
+        try {
+
+            $delete_user = User::find(auth()->guard('user-api')->id());
+            $delete_user->delete();
+            return returnMessageSuccess("تم حذف المستخدم بنجاح","201");
+
+        }catch (\Exception $exception){
+            return returnMessageError($exception->getMessage(),500);
         }
 
     }
