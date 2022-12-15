@@ -14,29 +14,34 @@ class SpecialOrderMessageController extends Controller
 
         try {
             $rules = [
-                    'title' => 'required',
-                    'message' => 'required'
+                'title' => 'required',
+                'message' => 'required'
+            ];
+
+            $messages = [
+                'title.required' => 'عنوان الرسالة مطلوب',
+                'message.required' => 'حقل الرسالة مطلوب',
             ];
 
 
-        $validator = Validator::make($request->all(),$rules);
+            $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()) {
-            return returnMessageError($validator->errors(), 404);
-        }
+            if ($validator->fails()) {
+                return returnMessageError($validator->errors(), 404);
+            }
 
 
-        $data['title'] = $request->title;
-        $data['message'] = $request->message;
-        $data['user_id'] = auth()->guard('user-api')->id();
+            $data['title'] = $request->title;
+            $data['message'] = $request->message;
+            $data['user_id'] = auth()->guard('user-api')->id();
 
-        $specials = SpecialOrderMessage::create($data);
+            $specials = SpecialOrderMessage::create($data);
 
-        return helperJson($specials,'Special Order Message created successfully',201);
+            return helperJson(null, 'تم ارسال الرسالة بنجاح', 201);
 
-        }catch (\Exception $e){
+        } catch (\Exception $e) {
 
-            return returnMessageError($e->getMessage(),500);
+            return returnMessageError($e->getMessage(), 500);
 
         }
 
