@@ -75,6 +75,7 @@ return [
     'phone' => 'هاتف',
 
     // users
+    'user' => 'مستخدم',
     'user_list' => 'قائمة المستخدمين',
     'users' => 'المستخدمين',
     'add_user' => 'اضف مستخدم',
@@ -188,6 +189,10 @@ return [
 
     // Special Order Message
     'special_order_message' => 'رسائل الطلبات المميزة',
+
+    // Order Special
+
+    'order_special' => 'الطلبات المميزة',
 
 
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\meals\CustomMealController;
 use App\Http\Controllers\Admin\meals\MealController;
 use App\Http\Controllers\Admin\meals\MealTypeController;
 use App\Http\Controllers\Admin\package\PackageController;
+use App\Http\Controllers\Admin\special_order\SpecialOrderController;
 use App\Http\Controllers\Admin\user\UserController;
 use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
@@ -134,6 +135,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         #### Special Order Message ####
         Route::get('/special_order_message', [SpecialOrderMessageController::class, 'index'])->name('special.index');
         Route::post('/special_order_message/delete', [SpecialOrdermessageController::class, 'delete'])->name('special.delete');
+
+        #### Order Special ####
+        Route::post('order_special/store', [SpecialOrderController::class, 'store'])->name('order_special.store');
 
     });
 
