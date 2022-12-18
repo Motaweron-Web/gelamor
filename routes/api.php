@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Password\ForgotPasswordController;
 use App\Http\Controllers\Api\Password\ResetPasswordController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\SpecialOrderMessageController;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ Route::group(['middleware' => 'lang'], function () {
     Route::group(['prefix' => 'auth', 'middleware' => 'check:user-api'], function () {
 
         Route::post('user/logout', [UserController::class, 'logout']);
+        Route::post('user/delete', [UserController::class, 'delete']);
         Route::post('pay-credit-card', [PaymentController::class, 'pay']);
         Route::post('contact-us-reply', [ContactUsController::class, 'contact_us_reply']);
     });
@@ -54,6 +56,7 @@ Route::group(['middleware' => 'lang'], function () {
 
         Route::post('user/update', [ProfileController::class, 'update']);
         Route::get('user/getProfile', [ProfileController::class, 'getProfile']);
+        Route::get('user/statistics', [StatisticsController::class, 'index']);
 
     });
 
@@ -95,6 +98,6 @@ Route::group(['middleware' => 'lang'], function () {
 
 // start Special Order Message
 
-Route::group(['prefix' => 's-p-m', 'middleware' => 'check:user-api'], function () {
-    Route::post('store', [SpecialOrderMessageController::class, 'store']);
+Route::group(['prefix' => 'specialOrderMessage', 'middleware' => 'check:user-api'], function () {
+    Route::post('/', [SpecialOrderMessageController::class, 'store']);
 });

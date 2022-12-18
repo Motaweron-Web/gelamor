@@ -17,15 +17,10 @@ class PackageResource extends JsonResource
         return [
 
         'id' => $this->id,
-        'name_ar' => $this->name_ar,
-        'name_en' => $this->name_en,
-        'details_ar' => $this->details_ar,
-        'details_en' => $this->details_en,
-        'start' => $this->start,
-        'end' => $this->end,
+        'name' => (lang() == 'ar') ? $this->name_ar : $this->name_en,
+        'details' => (lang() == 'ar') ? $this->details_ar : $this->details_en,
+        'currency' => lang() == ('ar') ? $this->currency->name_ar : $this->currency->name_en,
         'price' => $this->price,
-        'currency_ar' => $this->currency->name_ar,
-        'currency_en' => $this->currency->name_en,
         'status' => $this->status
 
         ];

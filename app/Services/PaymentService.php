@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Payment;
+use App\Models\UserPackage;
 use Exception;
 use Illuminate\Support\Facades\Validator;
 use IZaL\Knet\KnetBilling;
@@ -63,6 +64,12 @@ class PaymentService
             $payment->currency = $charge->currency;
             $payment->payment_status = $charge->status;
             $payment->save();
+            UserPackage::create([
+                'user_id'=> auth()->user()->id,
+                'package_id' => $request->package_id,
+                'payment_method' => $request->payment_method,
+                'status' => ($request->payment_method == 'cash') ? 0 :  1,
+            ]);
             return response()->json(["data"=>'',"errors"=>[],'message'=>"Payment Successfully."],200);
         } else {
             return response()->json(["data"=>'',"errors"=>[],'message'=>"Payment failed."],406);

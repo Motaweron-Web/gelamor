@@ -24,7 +24,7 @@ class PackageController extends Controller{
 
             if($packages->count() > 0)
 
-            return returnDataSuccess("تم الحصول علي جميع الباقات بنجاح",200,"packages",PackageResource::collection($packages));
+            return helperJson(PackageResource::collection($packages),"تم الحصول علي جميع الباقات بنجاح");
 
             else
                 return returnMessageError("لا يوجد باقات الي الان",404);
