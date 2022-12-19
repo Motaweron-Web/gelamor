@@ -74,6 +74,7 @@ return [
     'delete' => 'Delete' ,
 
     // users
+    "user" => 'User',
     'user_list' => 'User List',
     'users' => 'Users',
     'add_user' => 'Add User',
@@ -196,6 +197,12 @@ return [
 
     // Special Order Message
     'special_order_message' => 'Special Order Message',
+
+
+
+    // Order Special
+
+    'order_special' => 'Order Special',
 
 #############################################
 ################ chef #######################
