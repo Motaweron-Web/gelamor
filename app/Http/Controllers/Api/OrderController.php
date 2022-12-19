@@ -11,16 +11,16 @@ use App\Models\Order;
 use App\Models\OrderSpecial;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller{
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
 
+//        return $request;
         try {
-
             $rules = [
 
                 'invoice_date' => 'required|date|date_format:Y-m-d',
@@ -28,7 +28,6 @@ class OrderController extends Controller{
             ];
 
             $validator = Validator::make($request->all(), $rules, [
-
 
                 'invoice_date.date'            => 406,
                 'invoice_date.date_format'     => 407,
@@ -52,27 +51,38 @@ class OrderController extends Controller{
                 return response()->json(['data' => null, 'message' => $validator->errors()->first(), 'code' => 422], 200);
             }
 
+            $invoice = Invoice::create([
 
-            $data['invoice_date'] = $request->invoice_date;
-            $data['user_id'] = auth()->guard('user-api')->id();
-            $invoice = Invoice::create($data);
-            $invoice_id = Invoice::find($invoice->id);
-            $invoice_id->meals()->sync($request->details);
+                 'user_id' => auth()->guard('user-api')->id(),
+                 'invoice_date' => $request->invoice_date,
 
-            return helperJson(new InvoiceResource($invoice),'Order created successfully',201);
+            ]);
+
+            for ($i = 0; $i < count($request->meal_id); $i++) {
+
+                Order::create([
+                    'invoice_id' => $invoice->id,
+                    'meal_id' => $request->meal_id[$i],
+                    'protein' => $request->protein[$i],
+                    'comment' => $request->comment[$i]
+
+                ]);
+            }
+
+            return helperJson(new InvoiceResource($invoice),'Order created successfully',200);
 
         } catch (\Exception $e) {
 
-            return helperJson(null,$e->getMessage(), 500);
+            return helperJson(null, $e->getMessage(), 500);
 
         }
-
 
     } // end of store
 
     public function specialStore(Request $request)
     {
         try {
+
             $rules = [
 
                 'meal_type_id' => 'required',
@@ -82,35 +92,48 @@ class OrderController extends Controller{
                 'type' => 'required',
             ];
 
-            $messages = [
-                'meal_type_ids.required' => 'نوع الوجبة مطلوب',
-                'component_ids.required' => 'يجب اختيار المكونات',
-                'component_ids.min' => 'يجب اختيار مكون علي الاقل',
-                'date_of_order.date_format' => 'التاريخ يجب ان يكون سنه وشهر ويوم',
-                'date_of_order.required' => 'التاريخ مطلوب',
-                'protein.required' => 'كمية البروتين مطلوبة',
-            ];
+            $validator = Validator::make($request->all(), $rules, [
 
-            $validator = Validator::make($request->all(), $rules, $messages);
+                'component_ids.min'          => 405,
+                'date_of_order.date'         => 406,
+                'date_of_order.date_format'  => 407,
+            ]);
 
             if ($validator->fails()) {
 
-                return returnMessageError($validator->errors(), 422);
+                $errors = collect($validator->errors())->flatten(1)[0];
+
+                if (is_numeric($errors)) {
+
+                    $errors_arr = [
+
+                        405 => 'Failed,Component_ids must be an min 1',
+                        406 => 'Failed,Date of order  must be date',
+                        407 => 'Failed,The date of order format must be Y-m-d',
+
+                    ];
+                    $code = collect($validator->errors())->flatten(1)[0];
+                    return helperJson(null, isset($errors_arr[$errors]) ? $errors_arr[$errors] : 500, $code);
+                }
+                return response()->json(['data' => null, 'message' => $validator->errors()->first(), 'code' => 422], 200);
             }
 
-            $data['date_of_order'] = $request->date_of_order;
-            $data['component_ids'] = $request->component_ids;
-            $data['meal_type_id'] = $request->meal_type_id;
-            $data['protein'] = $request->protein;
-            $data['type'] = $request->type;
-            $data['user_id'] = auth()->guard('user-api')->id();
+           $special_order = OrderSpecial::create([
 
-            $special_order = OrderSpecial::create($data);
+                'date_of_order' => $request->date_of_order,
+                'component_ids' => $request->component_ids,
+                'meal_type_id' => $request->meal_type_id,
+                'protein' => $request->protein,
+                'type' => $request->type,
+                'user_id' => Auth::guard('user-api')->id()
 
-            return helperJson(new SpecialOrderResource($special_order), 'Special Order Created Successfully ',201);
+            ]);
 
-        } catch (\Exception $e) {
-            return returnMessageError($e->getMessage(), 500);
+            return helperJson(new SpecialOrderResource($special_order), 'Special Order Created Successfully ',200,200);
+
+        } catch (\Exception $exception) {
+
+            return helperJson(null,$exception->getMessage(), 500);
         }
 
     } // end store
