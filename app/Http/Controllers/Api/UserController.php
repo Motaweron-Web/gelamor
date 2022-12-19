@@ -94,7 +94,6 @@ class UserController extends Controller{
 
                 'email'    => 'required|email',
                 'password' => 'required',
-
             ];
 
             $validator = Validator::make($request->all(), $rules, [
@@ -117,7 +116,7 @@ class UserController extends Controller{
                     $code = collect($validator->errors())->flatten(1)[0];
                     return helperJson(null, isset($errors_arr[$errors]) ? $errors_arr[$errors] : 500, $code);
                 }
-                return response()->json(['data' => null, 'message' => $validator->errors(), 'code' => 422], 200);
+                return response()->json(['data' => null, 'message' => $validator->errors()->first(), 'code' => 422], 200);
             }
 
 
@@ -127,7 +126,6 @@ class UserController extends Controller{
 
                 return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري");
             }
-
 
             $user = new UserResource(auth()->guard('user-api')->user());
             $user->token = $token;
@@ -179,7 +177,6 @@ class UserController extends Controller{
                 'message' => 'required'
 
             ];
-
 
             $messages = [
 
