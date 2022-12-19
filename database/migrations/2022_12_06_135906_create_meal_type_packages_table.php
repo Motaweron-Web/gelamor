@@ -17,7 +17,6 @@ class CreateMealTypePackagesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('meal_type_id');
             $table->unsignedBigInteger('package_id');
-
             $table->foreign('meal_type_id')->references('id')->on('meal_types')->cascadeOnDelete();
             $table->foreign('package_id')->references('id')->on('packages')->cascadeOnDelete();
             $table->timestamps();

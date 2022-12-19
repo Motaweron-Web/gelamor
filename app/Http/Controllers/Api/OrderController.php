@@ -13,54 +13,57 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class OrderController extends Controller
-{
+class OrderController extends Controller{
 
 
     public function store(Request $request)
     {
-
 
         try {
 
             $rules = [
 
                 'invoice_date' => 'required|date|date_format:Y-m-d',
-                'details' => 'array|min:4'
-
+                'details'      => 'array|min:4'
             ];
 
-            $messages = [
-
-                'invoice_date.required' => 'تاريخ الوجبه مطلوب',
-                'invoice_date.date' => 'تاريخ الوجبه يجب ان يكون تاريخ',
-                'invoice_date.date_format' => 'تاريخ الوجبه يجب ان يكون سنه وشهر ويوم',
-
-            ];
+            $validator = Validator::make($request->all(), $rules, [
 
 
-            $validator = Validator::make($request->all(), $rules, $messages);
+                'invoice_date.date'            => 406,
+                'invoice_date.date_format'     => 407,
+            ]);
 
             if ($validator->fails()) {
 
-                return returnMessageError($validator->errors(), 422);
+                $errors = collect($validator->errors())->flatten(1)[0];
 
+                if (is_numeric($errors)) {
+
+                    $errors_arr = [
+
+                        406 => 'Failed,Invoice date must be date',
+                        407 => 'Failed,The date format must be Y-m-d',
+
+                    ];
+                    $code = collect($validator->errors())->flatten(1)[0];
+                    return helperJson(null, isset($errors_arr[$errors]) ? $errors_arr[$errors] : 500, $code);
+                }
+                return response()->json(['data' => null, 'message' => $validator->errors()->first(), 'code' => 422], 200);
             }
+
 
             $data['invoice_date'] = $request->invoice_date;
             $data['user_id'] = auth()->guard('user-api')->id();
             $invoice = Invoice::create($data);
-
             $invoice_id = Invoice::find($invoice->id);
-
             $invoice_id->meals()->sync($request->details);
 
             return helperJson(new InvoiceResource($invoice),'Order created successfully',201);
 
-
         } catch (\Exception $e) {
 
-            return returnMessageError($e->getMessage(), 500);
+            return helperJson(null,$e->getMessage(), 500);
 
         }
 
