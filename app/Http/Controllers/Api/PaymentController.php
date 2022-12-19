@@ -33,6 +33,7 @@ class PaymentController extends Controller
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
         \Stripe\Charge::create([
+
             'amount' => $request->amount,
             'currency'=>"usd",
             'source'=> $request->stripeToken,
