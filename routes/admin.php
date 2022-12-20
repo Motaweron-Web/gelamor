@@ -135,6 +135,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         #### Special Order Message ####
         Route::get('/special_order_message', [SpecialOrderMessageController::class, 'index'])->name('special.index');
         Route::post('/special_order_message/delete', [SpecialOrdermessageController::class, 'delete'])->name('special.delete');
+        Route::post('/special_order_message/deleteMeal', [SpecialOrdermessageController::class, 'deleteMeal'])->name('special.deleteMeal');
 
         #### Order Special ####
         Route::post('order_special/store', [SpecialOrderController::class, 'store'])->name('order_special.store');
