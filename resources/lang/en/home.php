@@ -204,6 +204,12 @@ return [
 
     'order_special' => 'Order Special',
 
+    //Notification
+
+    'notification' => 'Notification',
+    'delete_notification' => 'Delete Notification',
+
+
 #############################################
 ################ chef #######################
 #############################################

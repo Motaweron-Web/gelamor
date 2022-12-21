@@ -194,6 +194,11 @@ return [
 
     'order_special' => 'الطلبات المميزة',
 
+    //Notification
+
+    'notification' => 'الاشعارات',
+    'delete_notification' => 'حذف الاشعار',
+
 
 
 
