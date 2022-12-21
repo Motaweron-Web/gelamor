@@ -8,7 +8,7 @@
 @section('page-header')
     <!--breadcrumb -->
     @section('PageTitle')
-        @lang('home.special_order_message')
+    @lang('home.special_order_message')
     @stop
     <!-- breadcrumb -->
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ContactUsController;
+use App\Http\Controllers\Api\NotificationControllr;
 use App\Http\Controllers\Api\Password\CodeCheckController;
 use App\Http\Controllers\Api\Password\ForgotPasswordController;
 use App\Http\Controllers\Api\Password\ResetPasswordController;
@@ -100,4 +101,10 @@ Route::group(['middleware' => 'lang'], function () {
 
 Route::group(['prefix' => 'specialOrderMessage', 'middleware' => 'check:user-api'], function () {
     Route::post('/', [SpecialOrderMessageController::class, 'store']);
+});
+
+// Start Notification
+
+Route::group(['prefix' => 'notification', 'middleware' => 'check:user-api'], function () {
+    Route::get('/', [NotificationControllr::class, 'index']);
 });

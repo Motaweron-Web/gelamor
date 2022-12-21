@@ -143,6 +143,16 @@
                             </a>
                         </li>
 
+                          <!-- Notification -->
+                          <li>
+                            <a href="{{ route('notification.index') }}">
+                                <div class="pull-left"><i class="fas fa-bell"></i><span
+                                        class="right-nav-text">@lang('home.notification')</span></div>
+                                <div class="pull-right"></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+
                         <!-- Settings -->
                         <li>
                             <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections-menu">

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\home\MainController;
 use App\Http\Controllers\Admin\setting\SettingController;
 use App\Http\Controllers\Admin\all_Orders\AllOrdersController;
 use App\Http\Controllers\Admin\order_special_message\SpecialOrderMessageController;
+use App\Http\Controllers\Admin\notification\NotificationController;
 use App\Http\Controllers\Chef\home\HomeController;
 use App\Http\Controllers\Chef\order\OrderController;
 use Illuminate\Support\Facades\Route;
@@ -139,6 +140,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
         #### Order Special ####
         Route::post('order_special/store', [SpecialOrderController::class, 'store'])->name('order_special.store');
+
+        #### Notification ####
+        Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
+        Route::post('/notification/delete', [NotificationController::class, 'delete'])->name('notification.delete');
 
     });
 
