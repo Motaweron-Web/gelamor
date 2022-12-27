@@ -23,6 +23,7 @@ class StoreSpecialOrderRequest extends FormRequest
      */
     public function rules()
     {
+//        dd(request()->all());
         return [
             'user_id' => 'required',
             'meal_type_id' => 'required',
