@@ -149,7 +149,7 @@ class UserController extends Controller{
         try {
 
             auth()->guard('user-api')->logout();
-            return returnMessageSuccess("تم تسجيل خروج المستخدم بنجاح","201");
+            return returnMessageSuccess("تم تسجيل خروج المستخدم بنجاح",200);
 
         }catch (\Exception $exception){
             return returnMessageError($exception->getMessage(),500);
