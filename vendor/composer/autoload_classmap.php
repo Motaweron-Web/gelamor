@@ -118,6 +118,7 @@ return array(
     'App\\Models\\Meal' => $baseDir . '/app/Models/Meal.php',
     'App\\Models\\MealType' => $baseDir . '/app/Models/MealType.php',
     'App\\Models\\MealTypePackage' => $baseDir . '/app/Models/MealTypePackage.php',
+    'App\\Models\\Notification' => $baseDir . '/app/Models/Notification.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\OrderSpecial' => $baseDir . '/app/Models/OrderSpecial.php',
     'App\\Models\\Package' => $baseDir . '/app/Models/Package.php',

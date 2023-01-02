@@ -25,6 +25,14 @@ class SpecialOrderMessageController extends Controller
         $specials->delete();
         toastr()->success(trans('messages.delete_message_success'));
         return redirect()->back();
+    } //End Delete
+
+    public function deleteMeal(Request $request)
+    {
+        $meal = OrderSpecial::where('user_id', $request->user_id)
+        ->where('meal_type_id', $request->meal_type_id)
+        ->delete();
+
+        return response()->json(['status' => '200']);
     }
-    //End Delete
 }
