@@ -124,7 +124,7 @@ class UserController extends Controller{
 
             if(!$token){
 
-                return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري");
+                return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري",401);
             }
 
             $user = new UserResource(auth()->guard('user-api')->user());
