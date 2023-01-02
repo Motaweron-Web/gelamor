@@ -39,7 +39,7 @@ class StatisticsController extends Controller
                             'date' => Carbon::parse($i)->format('Y-m-d'),
                             'calories' => (isset($special_order->component_ids)) ? array_sum(Component::whereIn('id', $special_order->component_ids)
                                 ->pluck('calories')->toArray()) : 0 ,
-                            'day' => Carbon::parse($i)->dayName, //
+                            'day' => Carbon::parse($i)->dayName,
                         ];
 
                 } else {
@@ -52,9 +52,10 @@ class StatisticsController extends Controller
 
                     $days_list[] =
                         [
-                            'date' => $i,
+                            'date' => Carbon::parse($i)->format('Y-m-d'),
                             'calories' => (isset($order)) ? array_sum(Meal::whereIn('id', $order)
                                 ->pluck('calories')->toArray()) : 0,
+                            'day' => Carbon::parse($i)->dayName,
                         ];
                 }
 
