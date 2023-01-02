@@ -19,7 +19,7 @@ class PackageResource extends JsonResource
         'id' => $this->id,
         'name' => (lang() == 'ar') ? $this->name_ar : $this->name_en,
         'details' => (lang() == 'ar') ? $this->details_ar : $this->details_en,
-        'currency' => lang() == ('ar') ? $this->currency->name_ar : $this->currency->name_en,
+        'currency' => (lang() == 'ar') ? $this->currency->name_ar : $this->currency->name_en,
         'price' => $this->price,
         'status' => $this->status
 

@@ -92,14 +92,13 @@ class UserController extends Controller{
 
             $rules = [
 
-                'email'    => 'required|email|exists:users,email',
+                'email'    => 'required|email',
                 'password' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules, [
 
                 'email.email' => 405,
-                'email.exists' => 408,
 
             ]);
 
@@ -112,7 +111,6 @@ class UserController extends Controller{
                     $errors_arr = [
 
                         405 => 'Failed,Email must be a valid email address',
-                        408 => 'Failed,Email of user not found ',
 
                     ];
                     $code = collect($validator->errors())->flatten(1)[0];
@@ -121,10 +119,12 @@ class UserController extends Controller{
                 return response()->json(['data' => null, 'message' => $validator->errors()->first(), 'code' => 422], 200);
             }
 
+
             $token = auth()->guard('user-api')->attempt($request->only(['email','password']));
+
             if(!$token){
 
-                return helperJson(null, "Password, of user not vaild",422);
+                return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري",401);
             }
 
             $user = new UserResource(auth()->guard('user-api')->user());
@@ -135,7 +135,7 @@ class UserController extends Controller{
 
         }catch (\Exception $exception){
 
-            return returnMessageError($exception->getMessage(),"500");
+            return returnMessageError($exception->getMessage(),500);
 
         }
 
@@ -149,7 +149,7 @@ class UserController extends Controller{
         try {
 
             auth()->guard('user-api')->logout();
-            return returnMessageSuccess("تم تسجيل خروج المستخدم بنجاح","201");
+            return returnMessageSuccess("تم تسجيل خروج المستخدم بنجاح",200);
 
         }catch (\Exception $exception){
             return returnMessageError($exception->getMessage(),500);
@@ -164,7 +164,7 @@ class UserController extends Controller{
 
             $delete_user = User::find(auth()->guard('user-api')->id());
             $delete_user->delete();
-            return returnMessageSuccess("تم حذف المستخدم بنجاح","201");
+            return returnMessageSuccess("تم حذف المستخدم بنجاح",201);
 
         }catch (\Exception $exception){
             return returnMessageError($exception->getMessage(),500);
@@ -173,7 +173,9 @@ class UserController extends Controller{
     }
 
 
+
     public function contact_us(Request $request){
+
 
         try {
 

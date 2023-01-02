@@ -25,6 +25,7 @@ class MealController extends Controller
         return view('admin.meals.index', compact('meals', 'meal_type', 'component','types'));
     } // end of index
 
+
     public function store(StoreMealRequest $request)
     {
         $inputs = $request->all();

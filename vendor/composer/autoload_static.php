@@ -718,6 +718,7 @@ class ComposerStaticInit17615c8bd795042307089fb7c08418e5
         'App\\Models\\Meal' => __DIR__ . '/../..' . '/app/Models/Meal.php',
         'App\\Models\\MealType' => __DIR__ . '/../..' . '/app/Models/MealType.php',
         'App\\Models\\MealTypePackage' => __DIR__ . '/../..' . '/app/Models/MealTypePackage.php',
+        'App\\Models\\Notification' => __DIR__ . '/../..' . '/app/Models/Notification.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\OrderSpecial' => __DIR__ . '/../..' . '/app/Models/OrderSpecial.php',
         'App\\Models\\Package' => __DIR__ . '/../..' . '/app/Models/Package.php',

@@ -69,7 +69,7 @@
                             <ul id="meal-menu" class="collapse" data-parent="#sidebarnav">
                                 <li><a href="{{ route('meal_type.index') }}">@lang('home.meal_type_list')</a></li>
                                 <li><a href="{{ route('meals.index') }}">@lang('home.meals_list')</a></li>
-                                <li><a href="{{ route('custom_meal.index') }}">@lang('home.custom_meals_list')</a></li>
+{{--                                <li><a href="{{ route('custom_meal.index') }}">@lang('home.custom_meals_list')</a></li>--}}
                             </ul>
                         </li>
 
@@ -138,6 +138,16 @@
                             <a href="{{ route('special.index') }}">
                                 <div class="pull-left"><i class="fas fa-star"></i><span
                                         class="right-nav-text">@lang('home.special_order_message')</span></div>
+                                <div class="pull-right"></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+
+                          <!-- Notification -->
+                          <li>
+                            <a href="{{ route('notification.index') }}">
+                                <div class="pull-left"><i class="fas fa-bell"></i><span
+                                        class="right-nav-text">@lang('home.notification')</span></div>
                                 <div class="pull-right"></div>
                                 <div class="clearfix"></div>
                             </a>
