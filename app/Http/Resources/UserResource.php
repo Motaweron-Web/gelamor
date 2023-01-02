@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'country_id' => (int)$this->country_id,
             'img' => $this->img != 'default.png' ? asset('img_user/' . $this->img) : asset('img_default/default.png'),
             'is_active' => $this->is_active,
-            'token' => 'Bearer ' . $this->token,
+            'token'=>'Bearer '.$this->token ??'',
             'created_at' => $this->created_at->format('Y-m-d')
 
         ];
