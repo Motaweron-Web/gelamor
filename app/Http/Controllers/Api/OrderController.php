@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\FirebaseNotification;
 use App\Http\Resources\InvoiceResource;
 use App\Http\Resources\SpecialOrderResource;
 use App\Models\Invoice;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller{
 
-
+    use FirebaseNotification;
     public function store(Request $request){
 
 //        return $request;
@@ -65,10 +66,9 @@ class OrderController extends Controller{
                     'meal_id' => $request->meal_id[$i],
                     'protein' => $request->protein[$i],
                     'comment' => $request->comment[$i]
-
                 ]);
             }
-
+             $this->sendNotification('رساله جديده لديك','تم اضافه طلب جديد');
             return helperJson(new InvoiceResource($invoice),'Order created successfully',200);
 
         } catch (\Exception $e) {
@@ -106,7 +106,6 @@ class OrderController extends Controller{
                 if (is_numeric($errors)) {
 
                     $errors_arr = [
-
                         405 => 'Failed,Component_ids must be an min 1',
                         406 => 'Failed,Date of order  must be date',
                         407 => 'Failed,The date of order format must be Y-m-d',

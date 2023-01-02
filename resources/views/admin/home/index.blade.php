@@ -97,6 +97,9 @@
                                         <div class="float-right text-right">
                                             <p class="card-text text-dark">@lang('home.packages')</p>
                                             <h4>{{\App\Models\Package::count()}}</h4>
+                                            <center>
+                                                <button id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-danger btn-xs btn-flat">Allow for Notification</button>
+                                            </center>
                                         </div>
                                     </div>
 {{--                                    <p class="text-muted pt-3 mb-0 mt-2 border-top">--}}
@@ -159,4 +162,65 @@
     @toastr_js
     @toastr_render
 
+{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>--}}
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase.js"></script>
+    <script>
+
+        var firebaseConfig = {
+            apiKey: "AIzaSyCfg6F_U7_yNbXrUvl6PfAPbXB7jti4Pbg",
+            authDomain: "notifications-58259.firebaseapp.com",
+            projectId: "notifications-58259",
+            storageBucket: "notifications-58259.appspot.com",
+            messagingSenderId: "279292727077",
+            appId: "1:279292727077:web:65908e4b96de2f51f254cc",
+            measurementId: "G-GLZ51LQSKQ"
+        };
+        // measurementId: G-R1KQTR3JBN
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
+
+        function initFirebaseMessagingRegistration() {
+            messaging
+                .requestPermission()
+                .then(function () {
+                    return messaging.getToken()
+                })
+                .then(function(token) {
+                    console.log(token);
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': "{{csrf_token()}}"
+                        }
+                    });
+
+                    $.ajax({
+                        url: '{{route("save-token")}}',
+                        type: 'POST',
+                        data: {token: token},
+                        dataType: 'JSON',
+                        success: function (response) {
+                            alert('Token saved successfully.');
+                        },
+                        error: function (err) {
+                            console.log('User Chat Token Error'+ err);
+                        },
+                    });
+
+                }).catch(function (err) {
+                toastr.error('User Chat Token Error'+ err, null, {timeOut: 3000, positionClass: "toast-bottom-right"});
+            });
+        }
+
+        messaging.onMessage(function(payload) {
+            const noteTitle = payload.notification.title;
+            const noteOptions = {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+            };
+            new Notification(noteTitle, noteOptions);
+
+        });
+
+    </script>
 @endsection

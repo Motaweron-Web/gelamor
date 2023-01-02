@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminStoreRequest;
 use App\Http\Requests\AdminUpdateRequest;
 use App\Models\Admin;
+use App\Models\PhoneToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use mysql_xdevapi\Exception;
@@ -20,6 +21,16 @@ class AdminController extends Controller
         return view('admin.admin.index', compact('admins'));
     } // end index
 
+
+    public function saveToken(Request $request){
+
+        PhoneToken::create([
+            'admin_id' => auth()->guard('admin')->id(),
+            'token'=>$request->token
+        ]);
+
+        return response()->json(['token saved successfully.']);
+    }
     public function store(AdminStoreRequest $request)
     {
         $inputs = $request->all();

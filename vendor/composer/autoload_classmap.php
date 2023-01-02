@@ -123,6 +123,7 @@ return array(
     'App\\Models\\OrderSpecial' => $baseDir . '/app/Models/OrderSpecial.php',
     'App\\Models\\Package' => $baseDir . '/app/Models/Package.php',
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
+    'App\\Models\\PhoneToken' => $baseDir . '/app/Models/PhoneToken.php',
     'App\\Models\\ResetCodePassword' => $baseDir . '/app/Models/ResetCodePassword.php',
     'App\\Models\\Setting' => $baseDir . '/app/Models/Setting.php',
     'App\\Models\\SpecialOrderMessage' => $baseDir . '/app/Models/SpecialOrderMessage.php',

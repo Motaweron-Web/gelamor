@@ -723,6 +723,7 @@ class ComposerStaticInit17615c8bd795042307089fb7c08418e5
         'App\\Models\\OrderSpecial' => __DIR__ . '/../..' . '/app/Models/OrderSpecial.php',
         'App\\Models\\Package' => __DIR__ . '/../..' . '/app/Models/Package.php',
         'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/Models/Payment.php',
+        'App\\Models\\PhoneToken' => __DIR__ . '/../..' . '/app/Models/PhoneToken.php',
         'App\\Models\\ResetCodePassword' => __DIR__ . '/../..' . '/app/Models/ResetCodePassword.php',
         'App\\Models\\Setting' => __DIR__ . '/../..' . '/app/Models/Setting.php',
         'App\\Models\\SpecialOrderMessage' => __DIR__ . '/../..' . '/app/Models/SpecialOrderMessage.php',

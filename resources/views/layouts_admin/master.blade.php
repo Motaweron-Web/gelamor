@@ -18,10 +18,10 @@
     <!--=================================
 preloader -->
 
-    <div id="pre-loader">
-        <img src="{{ URL::asset('assets/images/pre-loader/'. (lang() == 'ar' ? 'loader-ar.svg' : 'loader-en.svg')) }}"
-             alt="">
-    </div>
+{{--    <div id="pre-loader">--}}
+{{--        <img src="{{ URL::asset('assets/images/pre-loader/'. (lang() == 'ar' ? 'loader-ar.svg' : 'loader-en.svg')) }}"--}}
+{{--             alt="">--}}
+{{--    </div>--}}
 
     <!--=================================
 preloader -->
@@ -80,6 +80,7 @@ wrapper -->
 footer -->
 
 @include('layouts_admin.footer-scripts')
+@yield('js')
 
 </body>
 
