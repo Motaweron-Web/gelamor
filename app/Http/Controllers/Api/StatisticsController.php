@@ -24,11 +24,11 @@ class StatisticsController extends Controller
             $package = UserPackage::where('user_id', $user->id)
                 ->where('status', '=', '1')->select('*')->first();
 
-            $start = Carbon::now()->subDays(7)->format('Y-m-d');
-            $end = Carbon::now()->format('Y-m-d');
+            $start = Carbon::now()->modify('-7 day');
+            $end = Carbon::now()->modify('-1 day');
             $days_list = [];
-
-            for ($i = $start; $i < $end; $i++) {
+//            dd($end);
+            for ($i = $start; $i <= $end; $i->modify('+1 day')) {
                 if ($package->package->type == 'special') {
                     $special_order = OrderSpecial::where('user_id', $user->id)
                         ->where('date_of_order', '=', $i)
@@ -36,9 +36,10 @@ class StatisticsController extends Controller
 
                     $days_list[] =
                         [
-                            'date' => $i,
+                            'date' => Carbon::parse($i)->format('Y-m-d'),
                             'calories' => (isset($special_order->component_ids)) ? array_sum(Component::whereIn('id', $special_order->component_ids)
-                                ->pluck('calories')->toArray()) : 0
+                                ->pluck('calories')->toArray()) : 0 ,
+                            'day' => Carbon::parse($i)->dayName,
                         ];
 
                 } else {

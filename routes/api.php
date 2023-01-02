@@ -58,6 +58,7 @@ Route::group(['middleware' => 'lang'], function () {
         Route::post('user/update', [ProfileController::class, 'update']);
         Route::get('user/getProfile', [ProfileController::class, 'getProfile']);
         Route::get('user/statistics', [StatisticsController::class, 'index']);
+        Route::get('user/checkPackage', [ProfileController::class, 'checkPackage']);
 
     });
 
