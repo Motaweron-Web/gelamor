@@ -135,7 +135,6 @@ class UserController extends Controller{
 
         }catch (\Exception $exception){
 
-
             return returnMessageError($exception->getMessage(),"500");
 
         }
@@ -160,7 +159,6 @@ class UserController extends Controller{
 
     //delete user
     public function delete(){
-
 
         try {
 

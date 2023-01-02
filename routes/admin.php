@@ -34,6 +34,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']], function () {
 
+    Route::post('/save-token', [\App\Http\Controllers\Admin\admin\AdminController::class, 'saveToken'])->name('save-token');
+
 
     ##################### Select Login #################################
     Route::get('/select-login', [SelectLoginController::class, 'index'])->name('select-login');

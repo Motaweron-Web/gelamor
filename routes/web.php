@@ -34,4 +34,3 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('stripe', [PaymentController::class , 'stripe']);
 Route::post('stripe', [PaymentController::class, 'stripePost'])->name('stripe.post');
-
