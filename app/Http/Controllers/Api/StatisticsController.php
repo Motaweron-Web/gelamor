@@ -31,7 +31,7 @@ class StatisticsController extends Controller
             for ($i = $start; $i <= $end; $i->modify('+1 day')) {
                 if ($package->package->type == 'special') {
                     $special_order = OrderSpecial::where('user_id', $user->id)
-                        ->where('date_of_order', '=', $i)
+                        ->where('date_of_order', '=', $i->format('y-m-d'))
                         ->first();
 
                     $days_list[] =
@@ -45,7 +45,7 @@ class StatisticsController extends Controller
                 } else {
 
                     $invoice = Invoice::where('user_id', $user->id)
-                        ->where('invoice_date', '=', $i)
+                        ->where('invoice_date', '=', $i->format('y-m-d'))
                         ->select('id')
                         ->pluck('id')->toArray();
                     $order = Order::whereIn('invoice_id', $invoice)->pluck('meal_id')->toArray();
