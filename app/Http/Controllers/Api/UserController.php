@@ -136,7 +136,7 @@ class UserController extends Controller{
         }catch (\Exception $exception){
 
 
-            return returnMessageError($exception->getMessage(),"500");
+            return returnMessageError($exception->getMessage(),500);
 
         }
 
@@ -166,7 +166,7 @@ class UserController extends Controller{
 
             $delete_user = User::find(auth()->guard('user-api')->id());
             $delete_user->delete();
-            return returnMessageSuccess("تم حذف المستخدم بنجاح","201");
+            return returnMessageSuccess("تم حذف المستخدم بنجاح",201);
 
         }catch (\Exception $exception){
             return returnMessageError($exception->getMessage(),500);
