@@ -9,22 +9,23 @@ use App\Http\Resources\UserResource;
 use App\Models\Package;
 use App\Models\User;
 use App\Models\UserPackage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
 
 class ProfileController extends Controller
 {
 
 
-    public function getProfile()
+    public function getProfile(Request $request)
     {
 
 
         try {
 
             $user = auth()->guard('user-api')->user();
+            $user->token = $request->bearerToken();
 
-            return returnDataSuccess("تم الحصول علي بيانات المستخدم بنجاح", 200, "user", new UserResource($user));
+            return helperJson(new UserResource($user),"تم الحصول علي بيانات المستخدم بنجاح");
 
         } catch (\Exception $exception) {
 
