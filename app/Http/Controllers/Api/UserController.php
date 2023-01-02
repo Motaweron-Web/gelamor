@@ -92,13 +92,14 @@ class UserController extends Controller{
 
             $rules = [
 
-                'email'    => 'required|email',
+                'email'    => 'required|email|exists:users,email',
                 'password' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules, [
 
                 'email.email' => 405,
+                'email.exists' => 408,
 
             ]);
 
@@ -111,6 +112,7 @@ class UserController extends Controller{
                     $errors_arr = [
 
                         405 => 'Failed,Email must be a valid email address',
+                        408 => 'Failed,Email of user not found ',
 
                     ];
                     $code = collect($validator->errors())->flatten(1)[0];
@@ -119,12 +121,10 @@ class UserController extends Controller{
                 return response()->json(['data' => null, 'message' => $validator->errors()->first(), 'code' => 422], 200);
             }
 
-
             $token = auth()->guard('user-api')->attempt($request->only(['email','password']));
-
             if(!$token){
 
-                return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري");
+                return helperJson(null, "Password, of user not vaild",422);
             }
 
             $user = new UserResource(auth()->guard('user-api')->user());
@@ -173,9 +173,7 @@ class UserController extends Controller{
     }
 
 
-
     public function contact_us(Request $request){
-
 
         try {
 
