@@ -92,13 +92,14 @@ class UserController extends Controller{
 
             $rules = [
 
-                'email'    => 'required|email',
+                'email'    => 'required|email|exists:users,email',
                 'password' => 'required',
             ];
 
             $validator = Validator::make($request->all(), $rules, [
 
                 'email.email' => 405,
+                'email.exists' => 407,
 
             ]);
 
@@ -111,6 +112,7 @@ class UserController extends Controller{
                     $errors_arr = [
 
                         405 => 'Failed,Email must be a valid email address',
+                        407 => 'Failed,Email of user not valid',
 
                     ];
                     $code = collect($validator->errors())->flatten(1)[0];
@@ -123,8 +125,7 @@ class UserController extends Controller{
             $token = auth()->guard('user-api')->attempt($request->only(['email','password']));
 
             if(!$token){
-
-                return helperJson(null, "يوجد خطاء ببيانات الدخول حاول مره اخري",401);
+                return helperJson(null, "password of user not valid",422);
             }
 
             $user = new UserResource(auth()->guard('user-api')->user());
