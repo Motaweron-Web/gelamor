@@ -76,8 +76,10 @@ class ProfileController extends Controller
 
             ]);
 
+            $user['token'] = $request->bearerToken();
 
-            return returnDataSuccess("تم تعديل بيانات المستخدم بنجاح", 200, "user", new UserResource($user));
+
+            return helperJson(new UserResource($user),"تم تعديل بيانات المستخدم بنجاح", 200);
 
         } catch (\Exception $exception) {
 
